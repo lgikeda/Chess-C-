@@ -32,3 +32,6 @@
 *.app
 /.vs
 /x64/Debug
+/src/.vs
+/Debug/Pang.tlog
+/Trabajo/.vs/Trabajo
