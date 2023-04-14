@@ -28,7 +28,7 @@ int main(int argc,char* argv[])
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_COLOR_MATERIAL);	
 	glMatrixMode(GL_PROJECTION);
-	gluPerspective( 40.0, 800/600.0f, 0.1, 150);
+	gluPerspective( 40.0, 800/600.0f, 0.1, 200);
 
 	//Registrar los callbacks
 	glutDisplayFunc(OnDraw);
@@ -52,7 +52,7 @@ void OnDraw(void)
 	glMatrixMode(GL_MODELVIEW);	
 	glLoadIdentity();
 	
-	gluLookAt(0, 100, 90,  // posicion del ojo
+	gluLookAt(0, 70, -100,  // posicion del ojo
 		0.0, 0, 0.0,      // hacia que punto mira  (0,0,0) 
 		0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)    
 	
