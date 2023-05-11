@@ -22,10 +22,19 @@ Coordenada PiezaGen::getCoordenada()
 	return coord;
 }
 
+void PiezaGen::setTipo(Tipo t) {
+	this->tipo = t;
+}
+
+void PiezaGen::setColor(Color c) {
+	this->color = c;
+}
+
+void PiezaGen::setCoordenada(Coordenada coord) {
+	this->coord = coord;
+}
 
 void PiezaGen::dibuja() {
-
-	
 
 }
 

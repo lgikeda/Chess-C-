@@ -3,12 +3,12 @@
 #include <fstream>
 #include "PiezaGen.h"
 
-class Peon:public PiezaGen {
+class Torre :public PiezaGen {
 
 public:
 	//Constructores
-	Peon();
-	Peon(Color color, Coordenada coord);
+	Torre();
+	Torre(Color color, Coordenada coord);
 	bool mov_Legal();
 
 	//void guardarHistorial();

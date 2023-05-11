@@ -24,13 +24,16 @@ public:
 	~PiezaGen();
 
 	Coordenada getCoordenada();
-	void setCoordenada(Coordenada coord);
 	//Metodos virtuales
 	Color getColor();
 	void dibuja();
-	virtual bool movimientoLegal(Coordenada destino) = 0;
-	virtual void guardarHistorial() = 0;
-
+	//virtual bool movimientoLegal(Coordenada destino) = 0;
+	//virtual void mueve(Peon pieza);                                /////////// Movimiento de las piezas
+	//virtual void guardarHistorial() = 0;
+	//Setters
+	void setCoordenada(Coordenada coord);
+	void setTipo(Tipo t);
+	void setColor(Color c);
 	//Getters
 	virtual Tipo getTipo() { return tipo; }
 	//int getValor() { return valor; }                  ////////////          por si quiero hacer un contador de puntos
