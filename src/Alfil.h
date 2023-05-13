@@ -3,14 +3,14 @@
 #include <fstream>
 #include "PiezaGen.h"
 
-class Rey :public PiezaGen {
+class Alfil :public PiezaGen {
 
 public:
 	//Constructores
-	Rey();
-	Rey(Color color, Coordenada coord);
-	Sprite spriteN{ "imagenes/reyNegro.png" };
-	Sprite spriteB{ "imagenes/reyBlanco.png" };
+	Alfil();
+	Alfil(Color color, Coordenada coord);
+	Sprite spriteN{ "imagenes/alfilNegro.png" };
+	Sprite spriteB{ "imagenes/alfilBlanco.png" };
 	void dibuja() override;
 	//Color getColor(Color color);
 	//bool movimientoLegal(int fila, int columna, PiezaGen*) override;

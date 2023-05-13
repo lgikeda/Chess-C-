@@ -9,7 +9,11 @@ public:
 	//Constructores
 	Caballo();
 	Caballo(Color color, Coordenada coord);
-	bool mov_Legal();
+	Sprite spriteN{ "imagenes/caballoNegro.png" };
+	Sprite spriteB{ "imagenes/caballoBlanco.png" };
+	void dibuja() override;
+	//Color getColor(Color color);
+	//bool movimientoLegal(int fila, int columna, PiezaGen*) override;
 
 	//void guardarHistorial();
 };

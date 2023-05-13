@@ -14,12 +14,21 @@ PiezaGen::PiezaGen(Color color, Coordenada coord, Tipo tipo)
 
 Color PiezaGen::getColor()
 {
+	this->color = color;
 	return color;
 }
 
-Coordenada PiezaGen::getCoordenada()
+int PiezaGen::getPos_x()
 {
-	return coord;
+	std::cout << "Dentro de getPos_x()" << std::endl;
+	std::cout << coord.fila << std::endl;
+	return coord.getFila();
+}
+
+int PiezaGen::getPos_y() {
+	std::cout << "Dentro de getPos_y()" << std::endl;
+	std::cout << coord.columna << std::endl;
+	return coord.getColumna();
 }
 
 void PiezaGen::setTipo(Tipo t) {
@@ -30,14 +39,16 @@ void PiezaGen::setColor(Color c) {
 	this->color = c;
 }
 
-void PiezaGen::setCoordenada(Coordenada coord) {
-	this->coord = coord;
+void PiezaGen::setCoordenada(int fila, int columna) {
+	this->coord.fila = fila;
+	this->coord.columna = columna;
 }
 
-void PiezaGen::dibuja() {
-
+/*
+bool movimientoLegal(int fila, int columna, PiezaGen*) {
+	///Desde aquí de llamará a la función específica de cada pieza
 }
-
+*/
 
 PiezaGen::~PiezaGen()
 {

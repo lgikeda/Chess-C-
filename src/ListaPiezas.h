@@ -12,9 +12,13 @@ private:
 
 public:
 
+	PiezaGen* final = NULL;
+	PiezaGen* start = NULL;
 	ListaPiezas();
 	virtual ~ListaPiezas();
 	bool agregar(PiezaGen* e);
 	void dibuja();
-	void movimiento();
+	void mueve(int fila, int columna);
+	void destino(int fila, int columna);
+	PiezaGen* select_pieza(int fila, int columna);
 };

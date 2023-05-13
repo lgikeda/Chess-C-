@@ -19,7 +19,8 @@ public:
 	Tablero();
 	void dibujarTablero();
 	void dibuja();
-	void mueve();
-	void inicializa();
+	//void movimimientosPosibles(Coordenada coordIni, Coordenada coordFin);    // función que imprime por pantalla los movimientos posibles de la pieza
+	void mueve(int fila, int columna);
+	void inicializa();	
 };
 
