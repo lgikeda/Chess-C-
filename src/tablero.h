@@ -1,15 +1,27 @@
 #pragma once
-#include "piezas_derivadas.h"
+#include "ListaPiezas.h"
+#include "Peon.h"
+#include "Caballo.h"
+#include "Torre.h"
+#include "Alfil.h"
+#include "Reina.h"
+#include "Rey.h"
+#include "Coordenada.h"
+
+#include "freeglut.h"
 #include <vector>
 
-class tablero {
-	std::vector<Pieza*> total_piezas;
-	Pieza* start = NULL;
-	Pieza* final = NULL;
+class Tablero {
+private :
+	ListaPiezas piezas;
 public: 
-	tablero();
-	void dibujartablero();
-	Pieza* select_pieza(int x, int y);
-	void mover(int x, int y);
-	void destino(int x, int y);
+	
+	Tablero();
+	void dibujarTablero();
+	void dibuja();
+	//void movimimientosPosibles(Coordenada coordIni, Coordenada coordFin);    // función que imprime por pantalla los movimientos posibles de la pieza
+	void mueve(int fila, int columna);
+	void inicializa();
+	void destino(int fila, int columna);
 };
+

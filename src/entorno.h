@@ -1,21 +1,21 @@
 #pragma once
-#include "tablero.h"
-#include "piezas_derivadas.h"
+#include "Tablero.h"
+#include "Peon.h"
 #include <string>
+#include "coordenada.h"
 
 class Entorno
 {
-	int actual_click = 0;
 public:
 	Entorno() {}
 
-	tablero tablero;
-	//Peon peon;
-	//Rey rey;
+	Coordenada coord;
+	//ListaPiezas lista;
+	Tablero tablero;
 
 	void inicial();
 	void dibuja();
-	void mover();
-	void tecla(unsigned char);
+	/*void mover();
+	void tecla(unsigned char);*/
 	void raton(int button, int state, int x, int y);
 };
