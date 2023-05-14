@@ -1,20 +1,19 @@
 #pragma once
-#include "Vector.h"
-#include "ETSIDI.h"
-#include "Casilla.h"
-#include "Pieza.h"
+#include "Coordenada.h"
+#include <fstream>
+#include "PiezaGen.h"
 
-using namespace std;
+class Alfil :public PiezaGen {
 
-using ETSIDI::Sprite;
-
-class Alfil: public Pieza {
 public:
+	//Constructores
 	Alfil();
-	Alfil(int _f, int _c, int _color);
-	virtual ~Alfil() {};
-	void dibuja();
-	int getTipoPieza();
+	Alfil(Color color, Coordenada coord);
+	Sprite spriteN{ "imagenes/alfilNegro.png" };
+	Sprite spriteB{ "imagenes/alfilBlanco.png" };
+	void dibuja() override;
+	//Color getColor(Color color);
+	//bool movimientoLegal(int fila, int columna, PiezaGen*) override;
 
-
+	//void guardarHistorial();
 };
