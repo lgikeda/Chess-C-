@@ -238,10 +238,20 @@ void Tablero::inicializa(){
 }
 
 void Tablero::mueve(int fila, int columna) {
-	piezas.mueve(fila, columna);
+	if (piezas.getTurno(fila, columna, turno)) {
+		piezas.mueve(fila, columna);
+		std::cout << "//////////Objeto seleccionado///////////" << std::endl;
+		turno_destino = true;	
+	}
+	else turno_destino = false;
 }
 
 void Tablero::destino(int fila, int columna) {
-	std::cout << "casilla destino en  fila columna: " << fila << ";" << columna << std::endl;
-	piezas.destino(fila,columna);
+	std::cout << "casilla destino: " << fila << ";" << columna << std::endl;
+	std::cout << turno_destino << std::endl;
+	if (turno_destino) {
+		piezas.destino(fila, columna);
+		turno = not turno;	//Toogle para turno
+	}
+	turno_destino = false;
 }

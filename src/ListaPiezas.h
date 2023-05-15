@@ -21,4 +21,5 @@ public:
 	void mueve(int fila, int columna);
 	void destino(int fila, int columna);
 	PiezaGen* select_pieza(int fila, int columna);
+	bool getTurno(int fila, int columna, bool turno);
 };

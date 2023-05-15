@@ -33,3 +33,6 @@
 /.vs
 /tmp/Debug
 /x64/Debug
+/bin/Pang.pdb
+/bin/Pang.exe
+/tmp/Debug/Pang.tlog/CL.command.1.tlog
