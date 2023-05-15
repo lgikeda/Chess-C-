@@ -13,7 +13,7 @@ public:
 	Sprite spriteB{ "bin/imagenes/alfilBlanco.png" };
 	void dibuja() override;
 	//Color getColor(Color color);
-	//bool movimientoLegal(int fila, int columna, PiezaGen*) override;
+	bool movimientoLegal(int fila, int columna, PiezaGen*) override { return false; }
 
 	//void guardarHistorial();
 };

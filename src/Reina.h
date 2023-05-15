@@ -13,7 +13,7 @@ public:
 	Sprite spriteB{ "bin/imagenes/reinaBlanca.png" };
 	void dibuja() override;
 	//Color getColor(Color color);
-	//bool movimientoLegal(int fila, int columna, PiezaGen*) override;
+	bool movimientoLegal(int fila, int columna, PiezaGen*) override { return false; }
 
 	//void guardarHistorial();
 };
