@@ -133,13 +133,13 @@ void Tablero::inicializa(){
 			coord.columna = i - 8;
 			PiezaGen* aux = new Peon(NEGRO, coord);
 			piezas.agregar(aux); // agregar a la lista
-		}	
+		}
 	}
 	for (i = 17; i < 21; i++) {
 		if (i >= 17 and i < 19) {
 			coord.fila = 1;
 			if (i == 17)
-			coord.columna = 2;
+				coord.columna = 2;
 			if (i == 18)
 				coord.columna = 7;
 			PiezaGen* aux = new Caballo(BLANCO, coord);
@@ -167,7 +167,7 @@ void Tablero::inicializa(){
 			piezas.agregar(aux); // agregar a la lista
 		}
 		if (i >= 23 and i < 25) {
-		
+
 			coord.fila = 8;
 			if (i == 23)
 				coord.columna = 1;
@@ -179,7 +179,7 @@ void Tablero::inicializa(){
 	}
 	for (i = 25; i < 29; i++) {
 		if (i >= 25 and i < 27) {
-			
+
 			coord.fila = 1;
 			if (i == 25)
 				coord.columna = 3;
@@ -188,8 +188,8 @@ void Tablero::inicializa(){
 			PiezaGen* aux = new Alfil(BLANCO, coord);
 			piezas.agregar(aux); // agregar a la lista
 		}
-		if (i >= 27 and i < 29){
-			
+		if (i >= 27 and i < 29) {
+
 			coord.fila = 8;
 			if (i == 27)
 				coord.columna = 3;
@@ -200,7 +200,7 @@ void Tablero::inicializa(){
 		}
 	}
 	for (i = 29; i < 33; i++) {
-		
+
 		if (i >= 29 and i < 31) {
 			if (i == 29)
 			{
@@ -218,7 +218,7 @@ void Tablero::inicializa(){
 			}
 		}
 		if (i >= 31 and i < 33)
-		{		
+		{
 			if (i == 31)
 			{
 				coord.fila = 1;
@@ -233,7 +233,7 @@ void Tablero::inicializa(){
 				PiezaGen* aux = new Rey(NEGRO, coord);
 				piezas.agregar(aux); // agregar a la lista
 			}
-		}	
+		}
 	}
 }
 

@@ -1,0 +1,6 @@
+﻿  Alfil.cpp
+C:\Users\Recsofer\Desktop\Infor\Chess-Game-main\src\Alfil.cpp(22,137): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Recsofer\Desktop\Infor\Chess-Game-main\src\Alfil.cpp(22,76): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Recsofer\Desktop\Infor\Chess-Game-main\src\Alfil.cpp(28,137): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Recsofer\Desktop\Infor\Chess-Game-main\src\Alfil.cpp(28,76): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  Pang.vcxproj -> C:\Users\Recsofer\Desktop\Infor\Chess-Game-main\bin\Pang.exe
