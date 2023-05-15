@@ -30,11 +30,13 @@ PiezaGen* ListaPiezas::select_pieza(int fil, int col) {
 	return NULL;
 }
 
-void ListaPiezas::destino(int fila, int columna) {
+bool ListaPiezas::destino(int fila, int columna, bool turno) {
 	final = select_pieza(fila, columna);
-	if (start->movimientoLegal(fila, columna, final)) {
+	if (start->movimientoLegal(fila, columna, final, pieza)) {
 		start->setCoordenada(fila, columna);
+		turno = not turno;	//Toogle para turno
 	}
+	return turno;
 }
 
 void ListaPiezas::mueve(int fila, int columna) {
