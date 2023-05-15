@@ -30,7 +30,7 @@ public:
 	int getPos_y();
 	Color getColor();
 	virtual void dibuja() = 0;
-	//virtual bool movimientoLegal(int fila, int columna, PiezaGen*) = 0;
+	virtual bool movimientoLegal(int fila, int columna, PiezaGen*) = 0;
 	//virtual void mueve(Peon pieza);                                /////////// Movimiento de las piezas
 	//virtual void guardarHistorial() = 0;
 	//Setters

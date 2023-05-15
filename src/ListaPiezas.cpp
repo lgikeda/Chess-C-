@@ -16,23 +16,27 @@ bool ListaPiezas::agregar(PiezaGen* p) {
 }
 
 PiezaGen* ListaPiezas::select_pieza(int fil, int col) {
-	std::cout << "Dentro de select_pieza()" << std::endl;
-	for (int i = 0; i < 32; i++)
+	for (int i = 0; i < numero; i++)
 	{
-		std::cout <<"coordenadas pos[0]" << pieza[i]->getPos_x() << ";" << pieza[i]->getPos_y() << std::endl;
 		if (pieza[i]->getPos_x() == fil and pieza[i]->getPos_y() == col) {
+			std::cout << "//////////Objeto seleccionado///////////" << std::endl;
 			return pieza[i];
 		}
-		std::cout << "no se encontro objeto" << std::endl;
-		return NULL;
+		
+		/*std::cout << "no se encontro objeto en : " << fil << ";"<<  col << std::endl;
+		std::cout << "para pieza[] : " << pieza[i]->getPos_x() << ";" << pieza[i]->getPos_y() << std::endl;
+		return NULL;*/
 	}
+	std::cout << "no se encontro objeto en : " << fil << ";" << col << std::endl;
+	//std::cout << "para pieza[] : " << pieza[i]->getPos_x() << ";" << pieza[i]->getPos_y() << std::endl;
+	return NULL;
 }
 
 void ListaPiezas::destino(int fila, int columna) {
-	/*final = select_pieza(fila, columna);
+	final = select_pieza(fila, columna);
 	if (start->movimientoLegal(fila, columna, final)) {
 		start->setCoordenada(fila, columna);
-	}*/
+	}
 }
 
 void ListaPiezas::mueve(int fila, int columna) {

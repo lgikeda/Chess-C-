@@ -135,108 +135,113 @@ void Tablero::inicializa(){
 			piezas.agregar(aux); // agregar a la lista
 		}	
 	}
-	for (i = 17; i < 21; i++) {
-		if (i >= 17 and i < 19) {
-			coord.fila = 1;
-			if (i == 17)
-			coord.columna = 2;
-			if (i == 18)
-				coord.columna = 7;
-			PiezaGen* aux = new Caballo(BLANCO, coord);
-			piezas.agregar(aux); // agregar a la lista
-		}
-		if (i >= 19 and i < 21)
-		{
-			coord.fila = 8;
-			if (i == 19)
-				coord.columna = 2;
-			if (i == 20)
-				coord.columna = 7;
-			PiezaGen* aux = new Caballo(NEGRO, coord);
-			piezas.agregar(aux); // agregar a la lista
-		}
-	}
-	for (i = 21; i < 25; i++) {
-		if (i >= 21 and i < 23) {
-			coord.fila = 1;
-			if (i == 21)
-				coord.columna = 1;
-			if (i == 22)
-				coord.columna = 8;
-			PiezaGen* aux = new Torre(BLANCO, coord);
-			piezas.agregar(aux); // agregar a la lista
-		}
-		if (i >= 23 and i < 25) {
-		
-			coord.fila = 8;
-			if (i == 23)
-				coord.columna = 1;
-			if (i == 24)
-				coord.columna = 8;
-			PiezaGen* aux = new Torre(NEGRO, coord);
-			piezas.agregar(aux); // agregar a la lista
-		}
-	}
-	for (i = 25; i < 29; i++) {
-		if (i >= 25 and i < 27) {
-			
-			coord.fila = 1;
-			if (i == 25)
-				coord.columna = 3;
-			if (i == 26)
-				coord.columna = 6;
-			PiezaGen* aux = new Alfil(BLANCO, coord);
-			piezas.agregar(aux); // agregar a la lista
-		}
-		if (i >= 27 and i < 29){
-			
-			coord.fila = 8;
-			if (i == 27)
-				coord.columna = 3;
-			if (i == 28)
-				coord.columna = 6;
-			PiezaGen* aux = new Alfil(NEGRO, coord);
-			piezas.agregar(aux); // agregar a la lista
-		}
-	}
-	for (i = 29; i < 33; i++) {
-		
-		if (i >= 29 and i < 31) {
-			if (i == 29)
-			{
-				coord.fila = 1;
-				coord.columna = 5;
-				PiezaGen* aux = new Reina(BLANCO, coord);
-				piezas.agregar(aux); // agregar a la lista
-			}
-			if (i == 30)
-			{
-				coord.fila = 8;
-				coord.columna = 5;
-				PiezaGen* aux = new Reina(NEGRO, coord);
-				piezas.agregar(aux); // agregar a la lista
-			}
-		}
-		if (i >= 31 and i < 33)
-		{		
-			if (i == 31)
-			{
-				coord.fila = 1;
-				coord.columna = 4;
-				PiezaGen* aux = new Rey(BLANCO, coord);
-				piezas.agregar(aux); // agregar a la lista
-			}
-			if (i == 32)
-			{
-				coord.fila = 8;
-				coord.columna = 4;
-				PiezaGen* aux = new Rey(NEGRO, coord);
-				piezas.agregar(aux); // agregar a la lista
-			}
-		}	
-	}
+	//for (i = 17; i < 21; i++) {
+	//	if (i >= 17 and i < 19) {
+	//		coord.fila = 1;
+	//		if (i == 17)
+	//		coord.columna = 2;
+	//		if (i == 18)
+	//			coord.columna = 7;
+	//		PiezaGen* aux = new Caballo(BLANCO, coord);
+	//		piezas.agregar(aux); // agregar a la lista
+	//	}
+	//	if (i >= 19 and i < 21)
+	//	{
+	//		coord.fila = 8;
+	//		if (i == 19)
+	//			coord.columna = 2;
+	//		if (i == 20)
+	//			coord.columna = 7;
+	//		PiezaGen* aux = new Caballo(NEGRO, coord);
+	//		piezas.agregar(aux); // agregar a la lista
+	//	}
+	//}
+	//for (i = 21; i < 25; i++) {
+	//	if (i >= 21 and i < 23) {
+	//		coord.fila = 1;
+	//		if (i == 21)
+	//			coord.columna = 1;
+	//		if (i == 22)
+	//			coord.columna = 8;
+	//		PiezaGen* aux = new Torre(BLANCO, coord);
+	//		piezas.agregar(aux); // agregar a la lista
+	//	}
+	//	if (i >= 23 and i < 25) {
+	//	
+	//		coord.fila = 8;
+	//		if (i == 23)
+	//			coord.columna = 1;
+	//		if (i == 24)
+	//			coord.columna = 8;
+	//		PiezaGen* aux = new Torre(NEGRO, coord);
+	//		piezas.agregar(aux); // agregar a la lista
+	//	}
+	//}
+	//for (i = 25; i < 29; i++) {
+	//	if (i >= 25 and i < 27) {
+	//		
+	//		coord.fila = 1;
+	//		if (i == 25)
+	//			coord.columna = 3;
+	//		if (i == 26)
+	//			coord.columna = 6;
+	//		PiezaGen* aux = new Alfil(BLANCO, coord);
+	//		piezas.agregar(aux); // agregar a la lista
+	//	}
+	//	if (i >= 27 and i < 29){
+	//		
+	//		coord.fila = 8;
+	//		if (i == 27)
+	//			coord.columna = 3;
+	//		if (i == 28)
+	//			coord.columna = 6;
+	//		PiezaGen* aux = new Alfil(NEGRO, coord);
+	//		piezas.agregar(aux); // agregar a la lista
+	//	}
+	//}
+	//for (i = 29; i < 33; i++) {
+	//	
+	//	if (i >= 29 and i < 31) {
+	//		if (i == 29)
+	//		{
+	//			coord.fila = 1;
+	//			coord.columna = 5;
+	//			PiezaGen* aux = new Reina(BLANCO, coord);
+	//			piezas.agregar(aux); // agregar a la lista
+	//		}
+	//		if (i == 30)
+	//		{
+	//			coord.fila = 8;
+	//			coord.columna = 5;
+	//			PiezaGen* aux = new Reina(NEGRO, coord);
+	//			piezas.agregar(aux); // agregar a la lista
+	//		}
+	//	}
+	//	if (i >= 31 and i < 33)
+	//	{		
+	//		if (i == 31)
+	//		{
+	//			coord.fila = 1;
+	//			coord.columna = 4;
+	//			PiezaGen* aux = new Rey(BLANCO, coord);
+	//			piezas.agregar(aux); // agregar a la lista
+	//		}
+	//		if (i == 32)
+	//		{
+	//			coord.fila = 8;
+	//			coord.columna = 4;
+	//			PiezaGen* aux = new Rey(NEGRO, coord);
+	//			piezas.agregar(aux); // agregar a la lista
+	//		}
+	//	}	
+	//}
 }
 
 void Tablero::mueve(int fila, int columna) {
 	piezas.mueve(fila, columna);
+}
+
+void Tablero::destino(int fila, int columna) {
+	std::cout << "casilla destino en  fila columna: " << fila << ";" << columna << std::endl;
+	piezas.destino(fila,columna);
 }

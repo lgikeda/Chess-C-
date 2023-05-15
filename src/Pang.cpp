@@ -1,7 +1,5 @@
 #include "freeglut.h"
-#include "Tablero.h"
 #include "entorno.h"
-
 #include <math.h>
 
 //los callback, funciones que seran llamadas automaticamente por la glut

@@ -9,8 +9,8 @@ public:
 	//Constructores
 	Torre();
 	Torre(Color color, Coordenada coord);
-	Sprite spriteN{ "imagenes/torreNegra.png" };
-	Sprite spriteB{ "imagenes/torreBlanca.png" };
+	Sprite spriteN{ "bin/imagenes/torreNegra.png" };
+	Sprite spriteB{ "bin/imagenes/torreBlanca.png" };
 	void dibuja() override;
 	//Color getColor(Color color);
 	//bool movimientoLegal(int fila, int columna, PiezaGen*) override;
