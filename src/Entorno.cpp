@@ -17,20 +17,15 @@ void Entorno::raton(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
         // Convertir las coordenadas del mouse a una casilla en el tablero
 
-        std::cout << "Click raton: (" << x << ", " << y << ")" << std::endl;
-
-        /*int casilla_x = (static_cast<int>((static_cast<float>(x-100.0f)/800.0f) *90.0f));
-        int casilla_y = 1- static_cast<int>((static_cast<float>(y)/600.0f)*80);*/
-
         int casilla_x = x / 10;
         int casilla_y = (800 - y) / 10;
-        std::cout << "Casilla seleccionada: (" << casilla_x << ", " << casilla_y << ")" << std::endl;
+
         for (int i = 0; i < 81; i += 10) {
             if (casilla_x >= i && casilla_x <= i + 10) { casilla_x = (i + (i + 10)) / 2; }
             if (casilla_y >= i && casilla_y <= i + 10) { casilla_y = (i + (i + 10)) / 2; }
         }
-        std::cout << "Casilla seleccionada REDONDEADA: (" << casilla_x << ", " << casilla_y<< ")" << std::endl;
-        //std::cout << "Casilla seleccionada: (" << coord.to_filaColumna(casilla_x, casilla_y).first << ", " << coord.to_filaColumna(casilla_x, casilla_y).second << ")" << std::endl;
+
+        std::cout << "Casilla seleccionada: (" << coord.to_filaColumna(casilla_x, casilla_y).first << ", " << coord.to_filaColumna(casilla_x, casilla_y).second << ")" << std::endl;
         
         tablero.mueve(coord.to_filaColumna(casilla_x, casilla_y).first, coord.to_filaColumna(casilla_x, casilla_y).second);
     }

@@ -250,8 +250,8 @@ void Tablero::destino(int fila, int columna) {
 	std::cout << "casilla destino: " << fila << ";" << columna << std::endl;
 	std::cout << turno_destino << std::endl;
 	if (turno_destino) {
-		if (piezas.destino(fila, columna, turno)) turno = true;	//Toogle para turno
-		else turno = false;
-		turno_destino = false;
+		piezas.destino(fila, columna);
+		turno = not turno;	//Toogle para turno
 	}
+	turno_destino = false;
 }
