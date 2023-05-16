@@ -14,6 +14,7 @@ PiezaGen::PiezaGen(Color color, Coordenada coord, Tipo tipo)
 
 Color PiezaGen::getColor()
 {
+
 	this->color = color;
 	return color;
 }

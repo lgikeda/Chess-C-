@@ -13,7 +13,7 @@ enum Color { NEGRO, BLANCO };
 
 class PiezaGen
 {
-public:
+protected:
 
 	Coordenada coord;
 	Tipo tipo;
