@@ -1,4 +1,5 @@
 #pragma once
+#include "ListaPiezas.h"
 #include "Tablero.h"
 #include "Peon.h"
 #include <string>
@@ -6,6 +7,7 @@
 
 class Entorno
 {
+	ListaPiezas piezas;
 public:
 	Entorno() {}
 

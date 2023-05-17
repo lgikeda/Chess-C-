@@ -31,47 +31,102 @@ void Peon::dibuja() {
 	}
 }
 
-bool Peon::movimientoLegal(int fila, int columna, PiezaGen* casilla, PiezaGen** pieza) {
-	
-			if ((coord.fila == fila) and (coord.columna == columna)) {	//Comprobacion de quedarse en la misma casilla
-				std::cout << "Movimiento invalido, selecciona distinta casilla a la inicial" << std::endl;
-				return false;
-			}
-			if (first_move) {	//Comprobacion de primer movimiento permitiendo doble desplazamiento
-				if ((coord.columna == columna) and (coord.fila - fila) == (color == BLANCO ? -2 : 2) and casilla == NULL) {
-					std::cout << "Movimiento valido, se puede desplazar doble" << std::endl;
-					first_move = false;
-					return true;
-				}
-			}
-			if (((coord.fila - fila) != (color == BLANCO ? -1 : 1)) or abs(coord.columna - columna) > 1) {	//Comprobacion de movimiento en direccion correcta segun el color
-				std::cout << "Movimiento invalido, no se puede desplazar en x" << std::endl;;
-				std::cout << "coord.columna = " << coord.columna << ";" << "columa = " << columna << std::endl;;
-				return false;
-			}
-			if (abs(coord.columna - columna)) {	//Comprobacion para el desplazamiento lateral
-				if (casilla == NULL) {	//Comprobacion de existencia de pieza para comer
-					std::cout << std::endl << "Movimiento invalido: La casilla debe tener una pieza contraria";
-					return false;
-				}
-				if (casilla->getColor() == color) {	//Comprobacion de pieza de color contraria para comer
-					std::cout << std::endl << "Movimiento invalido: La casilla debe tener una pieza contraria";
-					return false;
-				}
-			}
-			else if ((casilla != NULL) /*or (casillas != NULL)*/) {
-				std::cout << "Movimiento no valido: La casilla debe estar vacia";
-				return false;
-			}
-			//for (int i = 1; i < 33; i++) {
-			//	if ((pieza[i]->getCoordenada().first == coord.fila) and (pieza[i]->getCoordenada().second == coord.columna)) {
-			//		return false;
-			//	}
-			//	//if ((first_move == true) and (pieza[i]->getCoordenada().first == (coord.fila - 1)) and (pieza[i]->getCoordenada().second == coord.columna) /*and (casilla->getCoordenada().first == (fila + 2))*/) {
-			//	//	return false;
-			//	//}
-			//}
-	
+bool Peon::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
+
+	if ((coord.fila == fila) and (coord.columna == columna)) {	//Comprobacion de quedarse en la misma casilla
+		std::cout << "Movimiento invalido, selecciona distinta casilla a la inicial" << std::endl;
+		return false;
+	}
+	if (first_move) {	//Comprobacion de primer movimiento permitiendo doble desplazamiento
+		if ((coord.columna == columna) and (coord.fila - fila) == (color == BLANCO ? -2 : 2) and casilla == NULL) {
+			std::cout << "Movimiento valido, se puede desplazar doble" << std::endl;
+			first_move = false;
+			return true;
+		}
+	}
+	if (((coord.fila - fila) != (color == BLANCO ? -1 : 1)) or abs(coord.columna - columna) > 1) {	//Comprobacion de movimiento en direccion correcta segun el color
+		std::cout << "Movimiento invalido, no se puede desplazar en x" << std::endl;;
+		std::cout << "coord.columna = " << coord.columna << ";" << "columa = " << columna << std::endl;
+		return false;
+	}
+	if (abs(coord.columna - columna)) {	//Comprobacion para el desplazamiento lateral
+		if (casilla == NULL) {	//Comprobacion de existencia de pieza para comer
+			std::cout << std::endl << "Movimiento invalido: La casilla debe tener una pieza contraria";
+			return false;
+		}
+		if (casilla->getColor() == color) {	//Comprobacion de pieza de color contraria para comer
+			std::cout << std::endl << "Movimiento invalido: La casilla debe tener una pieza contraria";
+			return false;
+		}
+	}
+	else if ((casilla != NULL) /*or (casillas != NULL)*/) {
+		std::cout << "Movimiento no valido: La casilla debe estar vacia";
+		return false;
+	}
+
 	first_move = false;
 	return true;
 }
+
+//bool Peon::comprobar(PiezaGen* casilla, int fila, int columna)
+//{
+//	bool flag = false;
+//
+//	//Primero comprobamos el color del peon
+//	if (getColor() == BLANCO)
+//	{
+//		//Comprobacion para la captura en la diagonal derecha
+//		if (((casilla->getCoordenada().second - columna) == 1) && ((casilla->getCoordenada().first - fila) == 1)) {
+//			if (mirarCasilla(fila, columna)) return true;
+//			else return false;
+//		}
+//		//Comprobacion para la captura en la diagonal izquierda
+//		if (((casilla->getCoordenada().second - columna) == -1) && ((casilla->getCoordenada().first - fila) == 1)) {
+//			if (mirarCasilla(fila, columna)) return true;
+//			else return false;
+//		}
+//
+//		//Colision en el movimiento hacia delante
+//		if (mirarCasilla(fila + 1, columna)) return false;
+//
+//		//Movimiento de dos casillas hacia delante si el peon no se ha movido
+//		if ((fila) == (2))
+//		{
+//			//Comprobamos si hay colisiones
+//			if (mirarCasilla(fila + 2, columna)) flag = true;
+//			if (mirarCasilla(fila + 1, columna)) return false;
+//
+//			if (casilla->getCoordenada().first == 3) return true;
+//			else if (flag) return false;
+//		}
+//		return true;
+//	}
+//	else {
+//		//El negro tiene el mismo esquema que el del peon blanco pero cambiando las comprobaciones para ajustarse a su naturaleza simétrica
+//
+//		if (((casilla->getCoordenada().second - columna) == -1) && ((casilla->getCoordenada().first - fila) == -1)) {
+//			if (mirarCasilla(fila, columna)) return true;
+//			else return false;
+//		}
+//		if (((casilla->getCoordenada().second - columna) == 1) && ((casilla->getCoordenada().first - fila) == -1)) {
+//			if (mirarCasilla(fila, columna)) return true;
+//			else return false;
+//		}
+//
+//		if (mirarCasilla(fila - 1, columna)) return false;
+//
+//		if (fila == (7))
+//		{
+//			if (mirarCasilla(fila - 2, columna)) flag = true;
+//			if (mirarCasilla(fila - 1, columna)) return false;
+//
+//			if (casilla->getCoordenada().first == 6) return true;
+//
+//			else if (flag) return false;
+//		}
+//		flag = false;
+//		return true;
+//	}
+//}
+
+	

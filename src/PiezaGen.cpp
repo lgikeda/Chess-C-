@@ -27,6 +27,10 @@ int PiezaGen::getPos_y() {
 	return coord.getColumna();
 }
 
+Coordenada PiezaGen::getCoordenada() {
+	return coord;
+}
+
 void PiezaGen::setTipo(Tipo t) {
 	this->tipo = t;
 }

@@ -17,7 +17,6 @@ protected:
 
 	Coordenada coord;
 	Tipo tipo;
-	//int valor;
 	Color color;
 
 public:
@@ -30,18 +29,15 @@ public:
 	int getPos_y();
 	Color getColor();
 	virtual void dibuja() = 0;
-	virtual bool movimientoLegal(int fila, int columna, PiezaGen*, PiezaGen**) = 0;
-	//virtual void mueve(Peon pieza);                                /////////// Movimiento de las piezas
+	virtual bool movimientoLegal(int fila, int columna, PiezaGen*) = 0;
 	//virtual void guardarHistorial() = 0;
 	//Setters
 	void setCoordenada(int fila, int columna);
 	void setTipo(Tipo t);
 	void setColor(Color c);
 
-	std::pair<int,int> getCoordenada() {
-		std::pair<int, int> aux = { coord.fila, coord.columna };
-		return aux;
-	};
+	Coordenada getCoordenada();
+
 	//Getters
 	virtual Tipo getTipo() { return tipo; }
 	//int getValor() { return valor; }                  ////////////          por si quiero hacer un contador de puntos
