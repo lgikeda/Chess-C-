@@ -30,7 +30,7 @@ public:
 	int getPos_y();
 	Color getColor();
 	virtual void dibuja() = 0;
-	virtual bool movimientoLegal(int fila, int columna, PiezaGen*, PiezaGen**) = 0;
+	virtual bool movimientoLegal(int fila, int columna, PiezaGen*) = 0;
 	//virtual void mueve(Peon pieza);                                /////////// Movimiento de las piezas
 	//virtual void guardarHistorial() = 0;
 	//Setters
@@ -39,8 +39,7 @@ public:
 	void setColor(Color c);
 
 	std::pair<int,int> getCoordenada() {
-		std::pair<int, int> aux = { coord.fila, coord.columna };
-		return aux;
+		return {0,0};
 	};
 	//Getters
 	virtual Tipo getTipo() { return tipo; }

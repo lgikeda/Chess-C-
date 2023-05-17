@@ -8,7 +8,6 @@ class ListaPiezas
 
 private:
 	PiezaGen* pieza[MAX_PIEZAS];
-	
 	int numero;
 
 public:
