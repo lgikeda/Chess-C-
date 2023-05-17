@@ -18,35 +18,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\Alfil.h" />
-    <ClInclude Include="src\Caballo.h" />
-    <ClInclude Include="src\Coordenada.h" />
-    <ClInclude Include="src\Coordenadas.h" />
-    <ClInclude Include="src\Entorno.h" />
-    <ClInclude Include="src\ETSIDI.h" />
-    <ClInclude Include="src\ListaPiezas.h" />
-    <ClInclude Include="src\Peon.h" />
-    <ClInclude Include="src\PiezaGen.h" />
-    <ClInclude Include="src\Reina.h" />
-    <ClInclude Include="src\Rey.h" />
-    <ClInclude Include="src\Tablero.h" />
-    <ClInclude Include="src\Torre.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Alfil.cpp" />
-    <ClCompile Include="src\Caballo.cpp" />
-    <ClCompile Include="src\Coordenada.cpp" />
-    <ClCompile Include="src\Entorno.cpp" />
-    <ClCompile Include="src\ListaPiezas.cpp" />
-    <ClCompile Include="src\Pang.cpp" />
-    <ClCompile Include="src\Peon.cpp" />
-    <ClCompile Include="src\PiezaGen.cpp" />
-    <ClCompile Include="src\Reina.cpp" />
-    <ClCompile Include="src\Rey.cpp" />
-    <ClCompile Include="src\Tablero.cpp" />
-    <ClCompile Include="src\Torre.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
