@@ -9,7 +9,11 @@ public:
 	//Constructores
 	Reina();
 	Reina(Color color, Coordenada coord);
-	//bool movimientoLegal(int fila, int columna, PiezaGen*) override;
+	Sprite spriteN{ "bin/imagenes/reinaNegra.png" };
+	Sprite spriteB{ "bin/imagenes/reinaBlanca.png" };
+	void dibuja() override;
+	//Color getColor(Color color);
+//	bool movimientoLegal(int fila, int columna, PiezaGen*) override;
 
 	//void guardarHistorial();
 };

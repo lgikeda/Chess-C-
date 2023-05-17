@@ -9,7 +9,11 @@ public:
 	//Constructores
 	Rey();
 	Rey(Color color, Coordenada coord);
-	//bool movimientoLegal(int fila, int columna, PiezaGen*) override;
+	Sprite spriteN{ "bin/imagenes/reyNegro.png" };
+	Sprite spriteB{ "bin/imagenes/reyBlanco.png" };
+	void dibuja() override;
+	//Color getColor(Color color);
+//	bool movimientoLegal(int fila, int columna, PiezaGen*) override;
 
 	//void guardarHistorial();
 };

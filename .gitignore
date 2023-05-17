@@ -1,6 +1,39 @@
-﻿################################################################################
-# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
-################################################################################
+# Prerequisites
+*.d
 
-/tmp/Debug
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
 /.vs
+/tmp/Debug
+/x64/Debug
+/bin/Pang.pdb
+/bin/Pang.exe
+/tmp/Debug/Pang.tlog/CL.command.1.tlog
+/tmp/Debug/Pang.tlog/CL.command.1.tlog

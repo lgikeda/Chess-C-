@@ -9,6 +9,7 @@ void Entorno::inicial() {
 void Entorno::dibuja() {
     tablero.dibujarTablero();
     tablero.dibuja();
+
 }
 
 void Entorno::raton(int button, int state, int x, int y) {
@@ -24,11 +25,9 @@ void Entorno::raton(int button, int state, int x, int y) {
             if (casilla_y >= i && casilla_y <= i + 10) { casilla_y = (i + (i + 10)) / 2; }
         }
 
-        std::cout << "Casilla seleccionada: (" << casilla_x << ", " << casilla_y << ")" << std::endl;
         std::cout << "Casilla seleccionada: (" << coord.to_filaColumna(casilla_x, casilla_y).first << ", " << coord.to_filaColumna(casilla_x, casilla_y).second << ")" << std::endl;
         
         tablero.mueve(coord.to_filaColumna(casilla_x, casilla_y).first, coord.to_filaColumna(casilla_x, casilla_y).second);
-        //lista.mueve(coord.to_filaColumna(casilla_x, casilla_y).first, coord.to_filaColumna(casilla_x,casilla_y).second);
     }
     // Verificar si se hizo clic en el botón derecho del raton y si se soltó
     if (button == GLUT_RIGHT_BUTTON && state == GLUT_UP) {
@@ -42,7 +41,6 @@ void Entorno::raton(int button, int state, int x, int y) {
             if (casilla_y >= i && casilla_y <= i + 10) { casilla_y = (i + (i + 10)) / 2; }
         }
 
-        std::cout << "Casilla seleccionada: (" << casilla_x << ", " << casilla_y << ")" << std::endl;
         tablero.destino(coord.to_filaColumna(casilla_x, casilla_y).first, coord.to_filaColumna(casilla_x, casilla_y).second);
     }
 }

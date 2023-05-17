@@ -19,7 +19,6 @@ PiezaGen* ListaPiezas::select_pieza(int fil, int col) {
 	for (int i = 0; i < numero; i++)
 	{
 		if (pieza[i]->getPos_x() == fil and pieza[i]->getPos_y() == col) {
-			std::cout << "//////////Objeto seleccionado///////////" << std::endl;
 			return pieza[i];
 		}
 		
@@ -28,15 +27,16 @@ PiezaGen* ListaPiezas::select_pieza(int fil, int col) {
 		return NULL;*/
 	}
 	std::cout << "no se encontro objeto en : " << fil << ";" << col << std::endl;
-	//std::cout << "para pieza[] : " << pieza[i]->getPos_x() << ";" << pieza[i]->getPos_y() << std::endl;
 	return NULL;
 }
 
-void ListaPiezas::destino(int fila, int columna) {
+bool ListaPiezas::destino(int fila, int columna, bool turno) {
 	final = select_pieza(fila, columna);
-	if (start->movimientoLegal(fila, columna, final)) {
+	if (start->movimientoLegal(fila, columna, final, pieza)) {
 		start->setCoordenada(fila, columna);
+		turno = not turno;	//Toogle para turno
 	}
+	return turno;
 }
 
 void ListaPiezas::mueve(int fila, int columna) {
@@ -49,6 +49,18 @@ void ListaPiezas::dibuja() {
 	for (int i = 0; i < numero; i++)
 		pieza[i]->dibuja();
 }
+
+bool ListaPiezas::getTurno(int fila, int columna, bool turno) {
+	if (select_pieza(fila, columna) != NULL) {
+		if((select_pieza(fila, columna)->getColor() == BLANCO and turno) or (select_pieza(fila, columna)->getColor() == NEGRO and not turno)) {
+			std::cout << "Turno correcto!" << std::endl;
+			return true;
+		}
+	}
+	std::cout << "Turno incorrecto!" << std::endl;
+	return false;
+}
+
 
 ListaPiezas::~ListaPiezas() {
 

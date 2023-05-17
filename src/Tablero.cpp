@@ -1,5 +1,4 @@
 #include "Tablero.h"
-#include <iostream>
 
 using namespace std;
 
@@ -29,10 +28,10 @@ void Tablero::dibujarTablero()
 				}
 				glBegin(GL_POLYGON);
 				glColor3ub(c1, c2, c3);
-				glVertex3f(x, y, 0);
-				glVertex3f(x, y + 10, 0);
-				glVertex3f(x + 10, y + 10, 0);
-				glVertex3f(x + 10, y, 0);
+				glVertex3f(x, y, -0.1f);
+				glVertex3f(x, y + 10, -0.1f);
+				glVertex3f(x + 10, y + 10, -0.1f);
+				glVertex3f(x + 10, y, -0.1f);
 				glEnd();
 			}
 
@@ -49,10 +48,10 @@ void Tablero::dibujarTablero()
 				}
 				glBegin(GL_POLYGON);
 				glColor3ub(c1, c2, c3);
-				glVertex3f(x, y, 0);
-				glVertex3f(x, y + 10, 0);
-				glVertex3f(x + 10, y + 10, 0);
-				glVertex3f(x + 10, y, 0);
+				glVertex3f(x, y, -0.1f);
+				glVertex3f(x, y + 10, -0.1f);
+				glVertex3f(x + 10, y + 10, -0.1f);
+				glVertex3f(x + 10, y, -0.1f);
 				glEnd();
 			}	
 			x = x + 10;
@@ -121,13 +120,14 @@ void Tablero::inicializa(){
 	int i;
 	Coordenada coord;
 	for (i = 1; i < 17; i++) {
-		if (1 <= i and i <= 8) {
+		if (i >= 1 and i < 9)
+		{
 			coord.fila = 2;
 			coord.columna = i;
 			PiezaGen* aux = new Peon(BLANCO, coord);
 			piezas.agregar(aux); // agregar a la lista
 		}
-		if (8 < i and i <= 17)
+		if (i >= 9 and i < 17)
 		{
 			coord.fila = 7;
 			coord.columna = i - 8;
@@ -135,125 +135,125 @@ void Tablero::inicializa(){
 			piezas.agregar(aux); // agregar a la lista
 		}
 	}
-	//for (i = 8; i < 17; i++) {
-	//	if (8 < i <17) 
-	//	{
-	//		coord.fila = 7;
-	//		coord.columna = i - 8;
-	//		PiezaGen* aux = new Peon(NEGRO, coord);
-	//		piezas.agregar(aux); // agregar a la lista
-	//		}
-	//}
-	
-
-	//for (i = 16; i < 20; i++) {
-	//	if (16 <= i < 18) {
-	//		PiezaGen* aux = new Caballo(BLANCO, coord);
+	//for (i = 17; i < 21; i++) {
+	//	if (i >= 17 and i < 19) {
 	//		coord.fila = 1;
-	//		if (i == 16)
-	//		coord.columna = 2;
 	//		if (i == 17)
-	//			coord.columna = 7;
-	//		piezas.agregar(aux); // agregar a la lista
-	//	}
-	//	else
-	//	{
-	//		PiezaGen* aux = new Caballo(NEGRO, coord);
-	//		coord.fila = 8;
-	//		if (i == 18)
 	//			coord.columna = 2;
-	//		if (i == 19)
+	//		if (i == 18)
 	//			coord.columna = 7;
+	//		PiezaGen* aux = new Caballo(BLANCO, coord);
 	//		piezas.agregar(aux); // agregar a la lista
 	//	}
-	//}
-	//for (i = 20; i < 24; i++) {
-	//	if (20 <= i < 22) {
-	//		PiezaGen* aux = new Torre(BLANCO, coord);
-	//		coord.fila = 1;
+	//	if (i >= 19 and i < 21)
+	//	{
+	//		coord.fila = 8;
+	//		if (i == 19)
+	//			coord.columna = 2;
 	//		if (i == 20)
-	//			coord.columna = 1;
-	//		if (i == 21)
-	//			coord.columna = 8;
-	//		piezas.agregar(aux); // agregar a la lista
-	//	}
-	//	else
-	//	{
-	//		PiezaGen* aux = new Torre(NEGRO, coord);
-	//		aux->setColor(NEGRO);
-	//		coord.fila = 8;
-	//		if (i == 22)
-	//			coord.columna = 1;
-	//		if (i == 23)
-	//			coord.columna = 8;
+	//			coord.columna = 7;
+	//		PiezaGen* aux = new Caballo(NEGRO, coord);
 	//		piezas.agregar(aux); // agregar a la lista
 	//	}
 	//}
-	//for (i = 24; i < 28; i++) {
-	//	if (24 <= i < 26) {
-	//		PiezaGen* aux = new Alfil(BLANCO, coord);
+	//for (i = 21; i < 25; i++) {
+	//	if (i >= 21 and i < 23) {
 	//		coord.fila = 1;
-	//		if (i == 24)
-	//			coord.columna = 3;
-	//		if (i == 25)
-	//			coord.columna = 6;
+	//		if (i == 21)
+	//			coord.columna = 1;
+	//		if (i == 22)
+	//			coord.columna = 8;
+	//		PiezaGen* aux = new Torre(BLANCO, coord);
 	//		piezas.agregar(aux); // agregar a la lista
 	//	}
-	//	else
-	//	{
-	//		PiezaGen* aux = new Alfil(NEGRO, coord);
+	//	if (i >= 23 and i < 25) {
+
 	//		coord.fila = 8;
-	//		if (i == 26)
-	//			coord.columna = 3;
-	//		if (i == 27)
-	//			coord.columna = 6;
+	//		if (i == 23)
+	//			coord.columna = 1;
+	//		if (i == 24)
+	//			coord.columna = 8;
+	//		PiezaGen* aux = new Torre(NEGRO, coord);
 	//		piezas.agregar(aux); // agregar a la lista
 	//	}
 	//}
-	//for (i = 28; i < 32; i++) {
-	//	
-	//	if (28 <= i < 30) {
+	//for (i = 25; i < 29; i++) {
+	//	if (i >= 25 and i < 27) {
 
+	//		coord.fila = 1;
+	//		if (i == 25)
+	//			coord.columna = 3;
+	//		if (i == 26)
+	//			coord.columna = 6;
+	//		PiezaGen* aux = new Alfil(BLANCO, coord);
+	//		piezas.agregar(aux); // agregar a la lista
+	//	}
+	//	if (i >= 27 and i < 29) {
+
+	//		coord.fila = 8;
+	//		if (i == 27)
+	//			coord.columna = 3;
 	//		if (i == 28)
-	//		{
-	//			PiezaGen* aux = new Reina(BLANCO, coord);
-	//			coord.fila = 1;
-	//			coord.columna = 5;
-	//			piezas.agregar(aux); // agregar a la lista
-	//		}
+	//			coord.columna = 6;
+	//		PiezaGen* aux = new Alfil(NEGRO, coord);
+	//		piezas.agregar(aux); // agregar a la lista
+	//	}
+	//}
+	//for (i = 29; i < 33; i++) {
+
+	//	if (i >= 29 and i < 31) {
 	//		if (i == 29)
 	//		{
-	//			PiezaGen* aux = new Reina(NEGRO, coord);
+	//			coord.fila = 1;
+	//			coord.columna = 5;
+	//			PiezaGen* aux = new Reina(BLANCO, coord);
+	//			piezas.agregar(aux); // agregar a la lista
+	//		}
+	//		if (i == 30)
+	//		{
 	//			coord.fila = 8;
 	//			coord.columna = 5;
+	//			PiezaGen* aux = new Reina(NEGRO, coord);
 	//			piezas.agregar(aux); // agregar a la lista
 	//		}
 	//	}
-	//	else
-	//	{		
-	//		if (i == 30)
-	//		{
-	//			PiezaGen* aux = new Rey(BLANCO, coord);
-	//			coord.fila = 1;
-	//			coord.columna = 4;
-	//			piezas.agregar(aux); // agregar a la lista
-	//		}
+	//	if (i >= 31 and i < 33)
+	//	{
 	//		if (i == 31)
 	//		{
-	//			PiezaGen* aux = new Rey(NEGRO, coord);
-	//			coord.fila = 8;
+	//			coord.fila = 1;
 	//			coord.columna = 4;
+	//			PiezaGen* aux = new Rey(BLANCO, coord);
 	//			piezas.agregar(aux); // agregar a la lista
 	//		}
-	//	}	
+	//		if (i == 32)
+	//		{
+	//			coord.fila = 8;
+	//			coord.columna = 4;
+	//			PiezaGen* aux = new Rey(NEGRO, coord);
+	//			piezas.agregar(aux); // agregar a la lista
+	//		}
+	//	}
 	//}
 }
 
 void Tablero::mueve(int fila, int columna) {
-	piezas.mueve(fila, columna);
+	if (piezas.getTurno(fila, columna, turno)) {
+		piezas.mueve(fila, columna);
+		std::cout << "//////////Objeto seleccionado///////////" << std::endl;
+		turno_destino = true;	
+	}
+	else turno_destino = false;
 }
 
 void Tablero::destino(int fila, int columna) {
-	std::cout << "casilla destino en  fila columna: " << fila << ";" << columna << std::endl;
-	piezas.destino(fila,columna);
+	std::cout << "casilla destino: " << fila << ";" << columna << std::endl;
+	std::cout << turno_destino << std::endl;
+	if (turno_destino) {
+		if (piezas.destino(fila, columna, turno))
+			turno = true;
+		else
+			turno = false;
+	}
+	turno_destino = false;
 }

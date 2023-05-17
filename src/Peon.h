@@ -1,6 +1,4 @@
 #pragma once
-#include "Coordenada.h"
-#include <fstream>
 #include "PiezaGen.h"
 
 class Peon:public PiezaGen {
@@ -9,9 +7,11 @@ public:
 	//Constructores
 	Peon();
 	Peon(Color color, Coordenada coord);
-	bool movimientoLegal(int fila, int columna, PiezaGen*) override;
-	
+	Sprite spriteN{ "bin/imagenes/peonNegro.png" };
+	Sprite spriteB{ "bin/imagenes/peonBlanco.png" };
 	void dibuja() override;
+	//Color getColor(Color color);
+	bool movimientoLegal(int fila, int columna, PiezaGen*, PiezaGen**) override;
 
 	//void guardarHistorial();
 };

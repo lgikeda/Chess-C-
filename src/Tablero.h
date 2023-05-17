@@ -14,6 +14,8 @@
 class Tablero {
 private :
 	ListaPiezas piezas;
+	bool turno = true; // true -> BLANCAS : false -> NEGRAS
+	bool turno_destino = false;
 public: 
 	
 	Tablero();
