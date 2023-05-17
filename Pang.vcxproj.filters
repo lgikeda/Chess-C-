@@ -24,9 +24,6 @@
     <ClInclude Include="src\Coordenada.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Coordenadas.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\Entorno.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>

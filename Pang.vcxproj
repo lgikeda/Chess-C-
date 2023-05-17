@@ -22,7 +22,6 @@
     <ClInclude Include="src\Alfil.h" />
     <ClInclude Include="src\Caballo.h" />
     <ClInclude Include="src\Coordenada.h" />
-    <ClInclude Include="src\Coordenadas.h" />
     <ClInclude Include="src\Entorno.h" />
     <ClInclude Include="src\ETSIDI.h" />
     <ClInclude Include="src\ListaPiezas.h" />
