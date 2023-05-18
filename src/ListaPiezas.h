@@ -34,7 +34,7 @@ public:
 	bool comprobarPeon(PiezaGen* pieza, int fila, int columna);
 	bool mirarCasilla(int fila, int columna);
 	bool comprobarPieza(PiezaGen* aux, int fila, int columna);
-	bool movimientoLegal(PiezaGen* pieza1, int fila, int columna);
+	bool noAtraviesa(PiezaGen* pieza1, int fila, int columna);
 	bool destino(int fila, int columna, bool turno);
 	PiezaGen* select_pieza(int fila, int columna);
 	bool getTurno(int fila, int columna, bool turno);

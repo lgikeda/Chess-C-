@@ -35,106 +35,106 @@ void ListaPiezas::inicializa() {
 			agregar(aux); // agregar a la lista
 		}
 	}
-	//for (i = 17; i < 21; i++) {
-	//	if (i >= 17 and i < 19) {
-	//		coord.fila = 1;
-	//		if (i == 17)
-	//			coord.columna = 2;
-	//		if (i == 18)
-	//			coord.columna = 7;
-	//		PiezaGen* aux = new Caballo(BLANCO, coord);
-	//		agregar(aux); // agregar a la lista
-	//	}
-	//	if (i >= 19 and i < 21)
-	//	{
-	//		coord.fila = 8;
-	//		if (i == 19)
-	//			coord.columna = 2;
-	//		if (i == 20)
-	//			coord.columna = 7;
-	//		PiezaGen* aux = new Caballo(NEGRO, coord);
-	//		agregar(aux); // agregar a la lista
-	//	}
-	//}
-	//for (i = 21; i < 25; i++) {
-	//	if (i >= 21 and i < 23) {
-	//		coord.fila = 1;
-	//		if (i == 21)
-	//			coord.columna = 1;
-	//		if (i == 22)
-	//			coord.columna = 8;
-	//		PiezaGen* aux = new Torre(BLANCO, coord);
-	//		agregar(aux); // agregar a la lista
-	//	}
-	//	if (i >= 23 and i < 25) {
+	for (i = 17; i < 21; i++) {
+		if (i >= 17 and i < 19) {
+		coord.fila = 1;
+			if (i == 17)
+				coord.columna = 2;
+			if (i == 18)
+				coord.columna = 7;
+			PiezaGen* aux = new Caballo(BLANCO, coord);
+			agregar(aux); // agregar a la lista
+		}
+		if (i >= 19 and i < 21)
+		{
+			coord.fila = 8;
+			if (i == 19)
+				coord.columna = 2;
+			if (i == 20)
+				coord.columna = 7;
+			PiezaGen* aux = new Caballo(NEGRO, coord);
+			agregar(aux); // agregar a la lista
+		}
+	}
+	for (i = 21; i < 25; i++) {
+		if (i >= 21 and i < 23) {
+			coord.fila = 1;
+			if (i == 21)
+				coord.columna = 1;
+			if (i == 22)
+				coord.columna = 8;
+			PiezaGen* aux = new Torre(BLANCO, coord);
+			agregar(aux); // agregar a la lista
+		}
+		if (i >= 23 and i < 25) {
 
-	//		coord.fila = 8;
-	//		if (i == 23)
-	//			coord.columna = 1;
-	//		if (i == 24)
-	//			coord.columna = 8;
-	//		PiezaGen* aux = new Torre(NEGRO, coord);
-	//		agregar(aux); // agregar a la lista
-	//	}
-	//}
-	//for (i = 25; i < 29; i++) {
-	//	if (i >= 25 and i < 27) {
+			coord.fila = 8;
+			if (i == 23)
+				coord.columna = 1;
+			if (i == 24)
+				coord.columna = 8;
+			PiezaGen* aux = new Torre(NEGRO, coord);
+			agregar(aux); // agregar a la lista
+		}
+	}
+	for (i = 25; i < 29; i++) {
+		if (i >= 25 and i < 27) {
 
-	//		coord.fila = 1;
-	//		if (i == 25)
-	//			coord.columna = 3;
-	//		if (i == 26)
-	//			coord.columna = 6;
-	//		PiezaGen* aux = new Alfil(BLANCO, coord);
-	//		agregar(aux); // agregar a la lista
-	//	}
-	//	if (i >= 27 and i < 29) {
+			coord.fila = 1;
+			if (i == 25)
+				coord.columna = 3;
+			if (i == 26)
+				coord.columna = 6;
+			PiezaGen* aux = new Alfil(BLANCO, coord);
+			agregar(aux); // agregar a la lista
+		}
+		if (i >= 27 and i < 29) {
 
-	//		coord.fila = 8;
-	//		if (i == 27)
-	//			coord.columna = 3;
-	//		if (i == 28)
-	//			coord.columna = 6;
-	//		PiezaGen* aux = new Alfil(NEGRO, coord);
-	//		agregar(aux); // agregar a la lista
-	//	}
-	//}
-	//for (i = 29; i < 33; i++) {
+			coord.fila = 8;
+			if (i == 27)
+				coord.columna = 3;
+			if (i == 28)
+				coord.columna = 6;
+			PiezaGen* aux = new Alfil(NEGRO, coord);
+			agregar(aux); // agregar a la lista
+		}
+	}
+	for (i = 29; i < 33; i++) {
 
-	//	if (i >= 29 and i < 31) {
-	//		if (i == 29)
-	//		{
-	//			coord.fila = 1;
-	//			coord.columna = 5;
-	//			PiezaGen* aux = new Reina(BLANCO, coord);
-	//			agregar(aux); // agregar a la lista
-	//		}
-	//		if (i == 30)
-	//		{
-	//			coord.fila = 8;
-	//			coord.columna = 5;
-	//			PiezaGen* aux = new Reina(NEGRO, coord);
-	//			agregar(aux); // agregar a la lista
-	//		}
-	//	}
-	//	if (i >= 31 and i < 33)
-	//	{
-	//		if (i == 31)
-	//		{
-	//			coord.fila = 1;
-	//			coord.columna = 4;
-	//			PiezaGen* aux = new Rey(BLANCO, coord);
-	//			agregar(aux); // agregar a la lista
-	//		}
-	//		if (i == 32)
-	//		{
-	//			coord.fila = 8;
-	//			coord.columna = 4;
-	//			PiezaGen* aux = new Rey(NEGRO, coord);
-	//			agregar(aux); // agregar a la lista
-	//		}
-	//	}
-	//}
+		if (i >= 29 and i < 31) {
+			if (i == 29)
+			{
+				coord.fila = 1;
+				coord.columna = 5;
+				PiezaGen* aux = new Reina(BLANCO, coord);
+				agregar(aux); // agregar a la lista
+			}
+			if (i == 30)
+			{
+				coord.fila = 8;
+				coord.columna = 5;
+				PiezaGen* aux = new Reina(NEGRO, coord);
+				agregar(aux); // agregar a la lista
+			}
+		}
+		if (i >= 31 and i < 33)
+		{
+			if (i == 31)
+			{
+				coord.fila = 1;
+				coord.columna = 4;
+				PiezaGen* aux = new Rey(BLANCO, coord);
+				agregar(aux); // agregar a la lista
+			}
+			if (i == 32)
+			{
+				coord.fila = 8;
+				coord.columna = 4;
+				PiezaGen* aux = new Rey(NEGRO, coord);
+				agregar(aux); // agregar a la lista
+			}
+		}
+	}
 }
 
 void ListaPiezas::destino(int fila, int columna) {
@@ -162,8 +162,13 @@ PiezaGen* ListaPiezas::select_pieza(int fil, int col) {
 
 bool ListaPiezas::destino(int fila, int columna, bool turno) {
 	final = select_pieza(fila, columna);
-	if (start->movimientoLegal(fila, columna, final)) {
-		start->setCoordenada(fila, columna);
+	if ((start->movimientoLegal(fila, columna, final))) {
+		if ((start->getTipo() == PEON) and (noAtraviesa(start, fila, columna) == true)) {
+			start->setCoordenada(fila, columna);
+		}
+		if ((start->getTipo() != PEON)) {
+			start->setCoordenada(fila, columna);
+		}
 		turno = not turno;	//Toogle para turno
 	}
 	return turno;
@@ -172,7 +177,7 @@ bool ListaPiezas::destino(int fila, int columna, bool turno) {
 void ListaPiezas::mueve(int fila, int columna) {
 	
 	if (getTurno(fila, columna, turno)) {
-		if ((select_pieza(fila, columna) != NULL) and movimientoLegal(/*select_pieza(fila, columna), fila, columna*/)) {
+		if (select_pieza(fila, columna) != NULL) {
 			start = select_pieza(fila, columna);
 			std::cout << "//////////Objeto seleccionado///////////" << std::endl;
 			turno_destino = true;
@@ -273,7 +278,7 @@ bool ListaPiezas::comprobarPieza(PiezaGen* aux, int fila, int columna)
 
 }
 
-bool ListaPiezas::movimientoLegal(PiezaGen* pieza1, int fila, int columna)
+bool ListaPiezas::noAtraviesa(PiezaGen* pieza1, int fila, int columna)
 {
 	Coordenada coordDestino;
 	coordDestino.fila = fila;
@@ -281,38 +286,23 @@ bool ListaPiezas::movimientoLegal(PiezaGen* pieza1, int fila, int columna)
 	PiezaGen* piezaDestino;
 	piezaDestino = select_pieza(fila, columna);
 
-
 	//Buscamos la pieza en el array
 	int index = -1;
-	for (int i = 0; i < numero; i++) {
+	for (int i = 1; i <= numero; i++) {
 		if (pieza[i] == pieza1) {
 			index = i;
 		}
 	}
-
 	if (index != -1) {
-
-		//comprueba que el color sea diferente al sitio al que te quieres mover
-		for (int a = 0; a < numero; a++) {
-			if (coordDestino == pieza[a]->getCoordenada()) {
-				if (pieza[index]->getColor() == pieza[a]->getColor()) {
-					return false;
-				}
-			}
-		}
-		//Comprobamos si es su turno
-		
-			if (pieza[index]->movimientoLegal(coordDestino.fila, coordDestino.columna, piezaDestino)) {
-				//Comprobamos las posibles colisiones
-				if (comprobarPieza(pieza[index], fila, columna)) {
-					//Comprobamos si el movimiento provoca jaque
+		//Comprobamos las posibles colisiones
+		if (comprobarPeon(pieza[index], fila, columna)) {
+			//Comprobamos si el movimiento provoca jaque
 					
-						return true;
-				}
-			}
-			else {
-				return false;
-			}
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	return false;
 }
