@@ -31,11 +31,14 @@ public:
 	void destino(int fila, int columna);
 	void dibuja();
 	void mueve(int fila, int columna);
-	bool comprobarPeon(PiezaGen* pieza, int fila, int columna);
+	bool comprobarPeon(int fila, int columna);
+	bool comprobarAlfil(int fila, int columna);
+	bool comprobarTorre(int fila, int columna);
+	bool comprobarReina(int fila, int columna);
+	bool comprobarRey(int fila, int columna);
 	bool mirarCasilla(int fila, int columna);
-	bool comprobarPieza(PiezaGen* aux, int fila, int columna);
-	bool noAtraviesa(PiezaGen* pieza1, int fila, int columna);
-	bool destino(int fila, int columna, bool turno);
+	bool comprobarPieza(int fila, int columna);
+	bool noAtraviesa( int fila, int columna);
 	PiezaGen* select_pieza(int fila, int columna);
 	bool getTurno(int fila, int columna, bool turno);
 };

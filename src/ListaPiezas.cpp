@@ -112,7 +112,7 @@ void ListaPiezas::inicializa() {
 			if (i == 30)
 			{
 				coord.fila = 8;
-				coord.columna = 5;
+				coord.columna = 4;
 				PiezaGen* aux = new Reina(NEGRO, coord);
 				agregar(aux); // agregar a la lista
 			}
@@ -129,7 +129,7 @@ void ListaPiezas::inicializa() {
 			if (i == 32)
 			{
 				coord.fila = 8;
-				coord.columna = 4;
+				coord.columna = 5;
 				PiezaGen* aux = new Rey(NEGRO, coord);
 				agregar(aux); // agregar a la lista
 			}
@@ -140,11 +140,22 @@ void ListaPiezas::inicializa() {
 void ListaPiezas::destino(int fila, int columna) {
 	std::cout << "casilla destino: " << fila << ";" << columna << std::endl;
 	std::cout << turno_destino << std::endl;
+	final = select_pieza(fila, columna);
 	if (turno_destino) {
-		if (destino(fila, columna, turno))
-			turno = true;
-		else
-			turno = false;
+		if ((start->movimientoLegal(fila, columna, final)) and (comprobarPieza(fila, columna))) {
+			//if ((start->getTipo() == PEON) and (comprobarPeon(fila, columna) == true)) {
+			//	start->setCoordenada(fila, columna);
+			//	turno = not turno;    //Toogle para turno
+			//}
+			//if ((start->getTipo() == ALFIL) and (comprobarAlfil(fila, columna) == true)) {
+			//	start->setCoordenada(fila, columna);
+			//	turno = not turno;    //Toogle para turno
+			//}
+			//if ((start->getTipo() != PEON)) {
+				start->setCoordenada(fila, columna);
+				turno = not turno;
+			//}
+		}
 	}
 	turno_destino = false;
 }
@@ -160,20 +171,6 @@ PiezaGen* ListaPiezas::select_pieza(int fil, int col) {
 	return NULL;
 }
 
-bool ListaPiezas::destino(int fila, int columna, bool turno) {
-	final = select_pieza(fila, columna);
-	if ((start->movimientoLegal(fila, columna, final))) {
-		if ((start->getTipo() == PEON) and (noAtraviesa(start, fila, columna) == true)) {
-			start->setCoordenada(fila, columna);
-		}
-		if ((start->getTipo() != PEON)) {
-			start->setCoordenada(fila, columna);
-		}
-		turno = not turno;	//Toogle para turno
-	}
-	return turno;
-}
-
 void ListaPiezas::mueve(int fila, int columna) {
 	
 	if (getTurno(fila, columna, turno)) {
@@ -186,37 +183,185 @@ void ListaPiezas::mueve(int fila, int columna) {
 	else turno_destino = false;
 }
 
-bool ListaPiezas::comprobarPeon(PiezaGen* pieza, int fila, int columna)
+bool ListaPiezas::comprobarRey(int fila, int columna)
+{
+	Coordenada destino;
+	destino.fila = fila;
+	destino.columna = columna;
+	Coordenada inicio;
+	inicio.fila = start->getCoordenada().getFila();
+	inicio.columna = start->getCoordenada().getColumna();
+	int index = -1;
+
+	//Buscamos al rey enemigo
+	for (int i = 0; i < numero; i++) {
+		if ((pieza[i]->getTipo() == REY) && (pieza[i]->getColor() != start->getColor())) {
+			index = i;
+		}
+	}
+	//Guardamos su coordenada
+	Coordenada reyEnemigo = pieza[index]->getCoordenada();
+
+	//Comprobamos si hay una colision
+	if (mirarCasilla(fila, columna)) {
+		//Si hay una pieza pero es de distinto color permitimos el movimiento
+		//if (buscarPieza(fila, columna)->getColor() != pieza->getColor()) return true;
+		return false;
+	}
+	else {
+		//Miramos las casillas del rey enemigo una a una
+		for (int i = reyEnemigo.getFila() + 1; i >= reyEnemigo.getFila() - 1; i--) {
+			for (int j = reyEnemigo.getColumna() - 1; j <= reyEnemigo.getColumna() + 1; j++) {
+				Coordenada aux;
+				aux.fila = i;
+				aux.columna = j;
+				//Si alguna casilla del movimiento del rey enemigo coincide con una del rey que llama a la funcion se ilegaliza el movimiento
+				if (destino == aux) return false;
+			}
+		}
+	}
+}
+
+bool ListaPiezas::comprobarReina(int fila, int columna)
+{
+	Coordenada destino;
+	destino.fila = fila;
+	destino.columna = columna;
+	Coordenada resta = destino - start->getCoordenada();
+
+	//Para comprobar la reina comprobamos utilizamos el comprobar alfil y comprobar torre segun que movimiento sea
+	//Diagonal
+	if (abs(destino.getColumna() - start->getCoordenada().getColumna()) == abs(destino.getFila() - start->getCoordenada().getFila())) {
+		return comprobarAlfil(fila, columna);
+	}
+
+	//Mismma fila
+	if (start->getCoordenada().getFila() == destino.getFila()) {
+		return comprobarTorre(fila, columna);
+	}
+
+	//Misma columna
+	if (start->getCoordenada().getColumna() == destino.getColumna()) {
+		return comprobarTorre(fila, columna);
+	}
+
+	return true;
+
+}
+
+bool ListaPiezas::comprobarAlfil(int fila, int columna)
+{
+	Coordenada destino;
+	destino.fila = fila;
+	destino.columna = columna;
+	Coordenada restaDrcha = destino - start->getCoordenada();
+	Coordenada restaIzq = start->getCoordenada() - destino;
+
+	int j = 0;
+	int i = 0;
+	int s = 0;
+	int l = 0;
+	// Comprobamos las colisiones en la diagonal arriba derecha
+	if (((restaDrcha.getColumna() >= 0) && (restaDrcha.getFila()) > 0)) {
+		for (i = start->getCoordenada().getFila() + 1, j = start->getCoordenada().getColumna() + 1; (i < destino.getFila()), (j < destino.getColumna()); i++, j++) {
+			if (mirarCasilla(i, j)) {
+				return false;
+			}
+		}
+	}
+	// Comprobamos las colisiones en la diagonal abajo izquierda
+	if (((restaIzq.getColumna() >= 0) && (restaIzq.getFila()) > 0)) {
+		for (s = start->getCoordenada().getFila() - 1, l = start->getCoordenada().getColumna() - 1; (s > destino.getFila()), (l > destino.getColumna()); s--, l--) {
+			if (mirarCasilla(s, l)) {
+				return false;
+			}
+		}
+	}
+	// Comprobamos las colisiones en la diagonal arriba izq
+	if (((restaIzq.getColumna() >= 0) && (restaDrcha.getFila()) > 0)) {
+		for (i = start->getCoordenada().getFila() + 1, j = start->getCoordenada().getColumna() - 1; (i < destino.getFila()), (j > destino.getColumna()); i++, j--) {
+			if (mirarCasilla(i, j)) {
+				return false;
+			}
+		}
+	}
+	// Comprobamos las colisiones en la diagonal abajo derecha
+	if (((restaDrcha.getColumna() >= 0) && (restaIzq.getFila()) > 0)) {
+		for (s = start->getCoordenada().getFila() - 1, l = start->getCoordenada().getColumna() + 1; (s > destino.getFila()), (l < destino.getColumna()); s--, l++) {
+			if (mirarCasilla(s, l)) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+bool ListaPiezas::comprobarTorre(int fila, int columna)
+{
+	int ib = 0;
+	int pd = 0;
+	int fd = 0;
+	int px = 0;
+
+	Coordenada coordInicio = start->getCoordenada();
+	Coordenada destino;
+	destino.fila = fila;
+	destino.columna = columna;
+	//Comprobamos las colisiones hacia arriba en la misma columna
+	if (destino.getFila() - coordInicio.getFila() >= 0) {
+		for (ib = coordInicio.getFila() + 1; ib < destino.getFila(); ib++) {
+			if (mirarCasilla(ib, coordInicio.getColumna())) {
+				return false;
+			}
+		}
+	}
+	//Comprobamos las colisiones hacia la derecha en la misma fila
+	if (destino.getColumna() - coordInicio.getColumna() >= 0) {
+		for (pd = coordInicio.getColumna() + 1; pd < destino.getColumna(); pd++) {
+			if (mirarCasilla(coordInicio.getFila(), pd)) {
+				return false;
+			}
+		}
+	}
+	//Comprobamos las colisiones hacia la izquierda en la misma fila
+	if (coordInicio.getColumna() - destino.getColumna() >= 0) {
+		for (fd = coordInicio.getColumna() - 1; fd > destino.getColumna(); fd--) {
+			if (mirarCasilla(coordInicio.getFila(), fd)) {
+				return false;
+			}
+		}
+	}
+	//Comprobamos las colisiones hacia abajo en la misma columna
+	if (coordInicio.getFila() - destino.getFila() >= 0) {
+		for (px = coordInicio.getFila() - 1; px > destino.getFila(); px--) {
+			if (mirarCasilla(px, coordInicio.getColumna())) {
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
+
+bool ListaPiezas::comprobarPeon(int fila, int columna)
 {
 	Coordenada destino;
 	destino.fila = fila;
 	destino.columna = columna;
 	bool flag = false;
 
-	//Primero comprobamos el color del peon
-	if (pieza->getColor() == BLANCO)
+	//Miramos de qué color es el peon
+	if (start->getColor() == BLANCO)
 	{
-		//Comprobacion para la captura en la diagonal derecha
-		if (((destino.getColumna() - pieza->getCoordenada().getColumna()) == 1) && ((destino.getFila() - pieza->getCoordenada().getFila()) == 1)) {
-			if (mirarCasilla(fila, columna)) return true;
-			else return false;
-		}
-		//Comprobacion para la captura en la diagonal izquierda
-		if (((destino.getColumna() - pieza->getCoordenada().getColumna()) == -1) && ((destino.getFila() - pieza->getCoordenada().getFila()) == 1)) {
-			if (mirarCasilla(fila, columna)) return true;
-			else return false;
-		}
-
 		//Colision en el movimiento hacia delante
-		if (mirarCasilla(pieza->getCoordenada().getFila() + 1, pieza->getCoordenada().getColumna())) return false;
+		if (mirarCasilla(start->getCoordenada().getFila() + 1, start->getCoordenada().getColumna())) return false;
 
 		//Movimiento de dos casillas hacia delante si el peon no se ha movido
-		if ((pieza->getCoordenada().getFila()) == (2))
+		if ((start->getCoordenada().getFila()) == (2))
 		{
 			//Comprobamos si hay colisiones
-			if (mirarCasilla(pieza->getCoordenada().getFila() + 2, pieza->getCoordenada().getColumna())) flag = true;
-			if (mirarCasilla(pieza->getCoordenada().getFila() + 1, pieza->getCoordenada().getColumna())) return false;
-
+			if (mirarCasilla(start->getCoordenada().getFila() + 2, start->getCoordenada().getColumna())) flag = true;
+			if (mirarCasilla(start->getCoordenada().getFila() + 1, start->getCoordenada().getColumna())) return false;
 			if (destino.getFila() == 3) return true;
 			else if (flag) return false;
 		}
@@ -225,21 +370,12 @@ bool ListaPiezas::comprobarPeon(PiezaGen* pieza, int fila, int columna)
 	else {
 		//El negro tiene el mismo esquema que el del peon blanco pero cambiando las comprobaciones para ajustarse a su naturaleza simétrica
 
-		if (((destino.getColumna() - pieza->getCoordenada().getColumna()) == -1) && ((destino.getFila() - pieza->getCoordenada().getFila()) == -1)) {
-			if (mirarCasilla(fila, columna)) return true;
-			else return false;
-		}
-		if (((destino.getColumna() - pieza->getCoordenada().getColumna()) == 1) && ((destino.getFila() - pieza->getCoordenada().getFila()) == -1)) {
-			if (mirarCasilla(fila, columna)) return true;
-			else return false;
-		}
+		if (mirarCasilla(start->getCoordenada().getFila() - 1, start->getCoordenada().getColumna())) return false;
 
-		if (mirarCasilla(pieza->getCoordenada().getFila() - 1, pieza->getCoordenada().getColumna())) return false;
-
-		if ((pieza->getCoordenada().getFila()) == (7))
+		if ((start->getCoordenada().getFila()) == (7))
 		{
-			if (mirarCasilla(pieza->getCoordenada().getFila() - 2, pieza->getCoordenada().getColumna())) flag = true;
-			if (mirarCasilla(pieza->getCoordenada().getFila() - 1, pieza->getCoordenada().getColumna())) return false;
+			if (mirarCasilla(start->getCoordenada().getFila() - 2, start->getCoordenada().getColumna())) flag = true;
+			if (mirarCasilla(start->getCoordenada().getFila() - 1, start->getCoordenada().getColumna())) return false;
 
 			if (destino.getFila() == 6) return true;
 
@@ -253,7 +389,6 @@ bool ListaPiezas::comprobarPeon(PiezaGen* pieza, int fila, int columna)
 bool ListaPiezas::mirarCasilla(int fila, int columna)
 {
 	//Devuelve true si hay una pieza en la casilla o false si no
-
 	Coordenada casilla;
 	casilla.fila = fila;
 	casilla.columna = columna;
@@ -267,44 +402,15 @@ bool ListaPiezas::mirarCasilla(int fila, int columna)
 	return false;
 }
 
-bool ListaPiezas::comprobarPieza(PiezaGen* aux, int fila, int columna)
+bool ListaPiezas::comprobarPieza(int fila, int columna)
 {
 	//Para comprobar las colisiones, segun el tipo de pieza se invoca su funcion correspondiente
-	//if (aux->getTipo() == ALFIL) return comprobarAlfil(aux, fila, columna);
-	//else if (aux->getTipo() == TORRE) return comprobarTorre(aux, fila, columna);
-	//else if (aux->getTipo() == REINA) return comprobarReina(aux, fila, columna);
-	if (aux->getTipo() == PEON) return comprobarPeon(aux, fila, columna);
-	//else if (aux->getTipo() == REY) return comprobarRey(aux, fila, columna);
-
-}
-
-bool ListaPiezas::noAtraviesa(PiezaGen* pieza1, int fila, int columna)
-{
-	Coordenada coordDestino;
-	coordDestino.fila = fila;
-	coordDestino.columna = columna;
-	PiezaGen* piezaDestino;
-	piezaDestino = select_pieza(fila, columna);
-
-	//Buscamos la pieza en el array
-	int index = -1;
-	for (int i = 1; i <= numero; i++) {
-		if (pieza[i] == pieza1) {
-			index = i;
-		}
-	}
-	if (index != -1) {
-		//Comprobamos las posibles colisiones
-		if (comprobarPeon(pieza[index], fila, columna)) {
-			//Comprobamos si el movimiento provoca jaque
-					
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	return false;
+	if (start->getTipo() == REY) return comprobarRey(fila, columna);
+	else if (start->getTipo() == REINA) return comprobarReina(fila, columna);
+	else if (start->getTipo() == ALFIL) return comprobarAlfil(fila, columna);
+	else if (start->getTipo() == TORRE) return comprobarTorre(fila, columna);
+	else if (start->getTipo() == CABALLO) return true;
+	else if (start->getTipo() == PEON) return comprobarPeon(fila, columna);
 }
 
 void ListaPiezas::dibuja() {
