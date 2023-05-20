@@ -41,4 +41,24 @@ public:
 	bool noAtraviesa( int fila, int columna);
 	PiezaGen* select_pieza(int fila, int columna);
 	bool getTurno(int fila, int columna, bool turno);
+	// Variables para el enroque
+    bool enroqueBlanco;
+    bool enroqueNegro;
+
+    // Variables para anular el enroque
+    bool torreBlancaIzq;
+    bool torreBlancaDrc;
+    bool torreNegraIzq;
+    bool torreNegraDrc;
+
+public:
+    // Métodos de enroque y anulación de enroque
+    void enroque(pieza* rey, int fila, int columna);
+    void anularEnroque(pieza* pieza, int fila, int columna);
+    //Variables relacionadas con el jaque
+	int PosiblesJaque = 0;
+	bool jaqueBlanco=false;
+	bool jaqueNegro=false;
+	bool jaqueMateBlanco = false;
+	bool jaqueMateNegro = false;
 };
