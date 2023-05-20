@@ -48,3 +48,16 @@ bool Caballo::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
 	}
 	return false;
 }
+
+bool caballo::movimientoLegal(coordenada destino)
+{
+    coordenada coordInicio = getCoordenada();
+    int filaDiferencia = abs(coordInicio.getFila() - destino.getFila());
+    int columnaDiferencia = abs(coordInicio.getColumna() - destino.getColumna());
+
+    // Comprobación de movimiento en L
+    if ((filaDiferencia == 2 && columnaDiferencia == 1) || (filaDiferencia == 1 && columnaDiferencia == 2))
+        return true;
+
+    return false;
+}
