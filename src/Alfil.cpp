@@ -49,3 +49,17 @@ bool Alfil::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
 	}
 	return false;
 }
+
+bool Alfil::movimientoLegal(coordenada destino)
+{
+    coordenada coordInicio = getCoordenada();
+
+    int columnaDiferencia = abs(destino.getColumna() - coordInicio.getColumna());
+    int filaDiferencia = abs(destino.getFila() - coordInicio.getFila());
+
+    // Comprobación de movimiento en diagonal
+    if (columnaDiferencia == filaDiferencia)
+        return true;
+
+    return false;
+}
