@@ -102,7 +102,7 @@ bool Peon::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
 //		return true;
 //	}
 //	else {
-//		//El negro tiene el mismo esquema que el del peon blanco pero cambiando las comprobaciones para ajustarse a su naturaleza sim�trica
+//		//El negro tiene el mismo esquema que el del peon blanco pero cambiando las comprobaciones para ajustarse a su naturaleza simétrica
 //
 //		if (((casilla->getCoordenada().second - columna) == -1) && ((casilla->getCoordenada().first - fila) == -1)) {
 //			if (mirarCasilla(fila, columna)) return true;
@@ -129,4 +129,34 @@ bool Peon::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
 //	}
 //}
 
+bool Peon::movimientoLegal(coordenada destino)
+{
+    coordenada coordInicio = getCoordenada();
+    int filaInicio = coordInicio.getFila();
+    int columnaInicio = coordInicio.getColumna();
+    int filaDestino = destino.getFila();
+    int columnaDestino = destino.getColumna();
+    int direccion = (pieza::getColor() == BLANCO) ? -1 : 1;
+
+    int filaDiferencia = filaDestino - filaInicio;
+    int columnaDiferencia = columnaDestino - columnaInicio;
+
+    // Movimiento en la misma columna
+    if (columnaDiferencia == 0)
+    {
+        // Movimiento hacia adelante
+        if (filaDiferencia == direccion)
+            return true;
+
+        // Movimiento de 2 hacia adelante desde la posición inicial
+        if ((filaDiferencia == 2 * direccion) && ((filaInicio == 2) || (filaInicio == 7)))
+            return true;
+    }
+
+    // Movimiento diagonal para captura
+    if ((filaDiferencia == direccion) && (abs(columnaDiferencia) == 1))
+        return true;
+
+    return false;
+}
 	
