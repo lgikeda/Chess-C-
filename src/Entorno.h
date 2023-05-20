@@ -16,5 +16,6 @@ public:
 
 	void inicial();
 	void dibuja();
+	void promocionar(tipo_pieza tipo);
 	void raton(int button, int state, int x, int y);
 };
