@@ -13,7 +13,7 @@ void Entorno::dibuja() {
 }
 
 void Entorno::raton(int button, int state, int x, int y) {
-    // Verificar si se hizo clic en el botón izquierdo del raton y si se soltó
+    // Verificar si se hizo clic en el botÃ³n izquierdo del raton y si se soltÃ³
     if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
         // Convertir las coordenadas del mouse a una casilla en el tablero
 
@@ -29,7 +29,7 @@ void Entorno::raton(int button, int state, int x, int y) {
         
         piezas.mueve(coord.to_filaColumna(casilla_x, casilla_y).first, coord.to_filaColumna(casilla_x, casilla_y).second);
     }
-    // Verificar si se hizo clic en el botón derecho del raton y si se soltó
+    // Verificar si se hizo clic en el botÃ³n derecho del raton y si se soltÃ³
     if (button == GLUT_RIGHT_BUTTON && state == GLUT_UP) {
         // Convertir las coordenadas del mouse a una casilla en el tablero
 
@@ -43,4 +43,10 @@ void Entorno::raton(int button, int state, int x, int y) {
 
         piezas.destino(coord.to_filaColumna(casilla_x, casilla_y).first, coord.to_filaColumna(casilla_x, casilla_y).second);
     }
+}
+void partida::promocionar(tipo_pieza tipo)
+{
+    piezas.tipo_promocion = tipo;
+    piezas.promocionar = false;
+    piezas.Promocion(piezas.apuntar);
 }
