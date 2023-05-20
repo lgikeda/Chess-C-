@@ -9,9 +9,9 @@ ListaPiezas::ListaPiezas() {
 
 bool ListaPiezas::agregar(PiezaGen* p) {
 	if (numero < MAX_PIEZAS)
-		pieza[numero++] = p; // último puesto sin rellenar
+		pieza[numero++] = p; // Ãºltimo puesto sin rellenar
 	else
-		return false; // capacidad máxima alcanzada
+		return false; // capacidad mÃ¡xima alcanzada
 	return true;
 }
 
@@ -350,7 +350,7 @@ bool ListaPiezas::comprobarPeon(int fila, int columna)
 	destino.columna = columna;
 	bool flag = false;
 
-	//Miramos de qué color es el peon
+	//Miramos de quÃ© color es el peon
 	if (start->getColor() == BLANCO)
 	{
 		//Colision en el movimiento hacia delante
@@ -368,7 +368,7 @@ bool ListaPiezas::comprobarPeon(int fila, int columna)
 		return true;
 	}
 	else {
-		//El negro tiene el mismo esquema que el del peon blanco pero cambiando las comprobaciones para ajustarse a su naturaleza simétrica
+		//El negro tiene el mismo esquema que el del peon blanco pero cambiando las comprobaciones para ajustarse a su naturaleza simÃ©trica
 
 		if (mirarCasilla(start->getCoordenada().getFila() - 1, start->getCoordenada().getColumna())) return false;
 
@@ -411,6 +411,49 @@ bool ListaPiezas::comprobarPieza(int fila, int columna)
 	else if (start->getTipo() == TORRE) return comprobarTorre(fila, columna);
 	else if (start->getTipo() == CABALLO) return true;
 	else if (start->getTipo() == PEON) return comprobarPeon(fila, columna);
+}
+void ListaPiezas::enroque(pieza* rey, int fila, int columna)
+{
+    if (rey->getTipo() == REY) {
+        if (fila == 1 && (columna == 3 || columna == 7)) {
+            int torreColumna = columna == 3 ? 1 : 8;
+            buscarPieza(1, torreColumna)->setColumna(columna == 3 ? 4 : 6);
+        }
+        if (fila == 8 && (columna == 3 || columna == 7)) {
+            int torreColumna = columna == 3 ? 1 : 8;
+            buscarPieza(8, torreColumna)->setColumna(columna == 3 ? 4 : 6);
+        }
+    }
+}
+void ListaPiezas::anularEnroque(pieza* pieza, int fila, int columna)
+{
+    int filaPieza = pieza->getCoordenada().getFila();
+    int columnaPieza = pieza->getCoordenada().getColumna();
+
+    // Anular enroque para torres
+    if (pieza->getTipo() == TORRE) {
+        if ((filaPieza == 1) && (columnaPieza == 1)) {
+            torreBlancaIzq = false;
+        }
+        else if ((filaPieza == 1) && (columnaPieza == 8)) {
+            torreBlancaDrc = false;
+        }
+        else if ((filaPieza == 8) && (columnaPieza == 1)) {
+            torreNegraIzq = false;
+        }
+        else if ((filaPieza == 8) && (columnaPieza == 8)) {
+            torreNegraDrc = false;
+        }
+    }
+    // Anular enroque para el rey
+    else if (pieza->getTipo() == REY) {
+        if ((filaPieza == 1) && (columnaPieza == 5)) {
+            enroqueBlanco = false;
+        }
+        else if ((filaPieza == 8) && (columnaPieza == 5)) {
+            enroqueNegro = false;
+        }
+    }
 }
 
 void ListaPiezas::dibuja() {
