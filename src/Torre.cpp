@@ -46,16 +46,6 @@ bool Torre::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
 		std::cout << "Movimiento no valido: La casilla debe estar vacia";
 		return false;
 	}
+	first_move = false;
 	return false;
-}
-
-bool Torre::movimientoLegal(coordenada destino)
-{
-    coordenada coordInicio = getCoordenada();
-
-    if (coordInicio == destino) {
-        return false; // Movimiento a la misma casilla
-    }
-
-    return (coordInicio.getFila() == destino.getFila()) || (coordInicio.getColumna() == destino.getColumna());
 }

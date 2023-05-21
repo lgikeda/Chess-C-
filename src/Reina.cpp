@@ -53,31 +53,6 @@ bool Reina::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
 		std::cout << "Movimiento no valido: La casilla debe estar vacia";
 		return false;
 	}
+	first_move = false;
 	return false;
-}
-
-bool reina::movimientoLegal(coordenada destino)
-{
-    coordenada coordInicio = getCoordenada();
-
-    if (coordInicio == destino) {
-        return false; // Movimiento a la misma casilla
-    }
-
-    int columnaInicio = coordInicio.getColumna();
-    int filaInicio = coordInicio.getFila();
-    int columnaDestino = destino.getColumna();
-    int filaDestino = destino.getFila();
-
-    // Movimiento en la misma fila o columna
-    if (columnaInicio == columnaDestino || filaInicio == filaDestino) {
-        return true;
-    }
-
-    // Movimiento diagonal
-    if (abs(columnaInicio - columnaDestino) == abs(filaInicio - filaDestino)) {
-        return true;
-    }
-
-    return false;
 }

@@ -4,7 +4,7 @@
 #include "PiezaGen.h"
 
 class Rey :public PiezaGen {
-
+	bool first_move = true;
 public:
 	//Constructores
 	Rey();
@@ -12,7 +12,7 @@ public:
 	Sprite spriteN{ "bin/imagenes/reyNegro.png" };
 	Sprite spriteB{ "bin/imagenes/reyBlanco.png" };
 	void dibuja() override;
-	//Color getColor(Color color);
+	//bool getMovimiento();
 	bool movimientoLegal(int fila, int columna, PiezaGen*) override;
 
 	//void guardarHistorial();

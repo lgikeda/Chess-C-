@@ -41,54 +41,10 @@ bool Rey::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
 		std::cout << "coord.columna = " << coord.columna << ";" << "columa = " << columna << std::endl;;
 		return true;
 	}
-
 	else if (casilla != NULL) {
 		std::cout << "Movimiento no valido: La casilla debe estar vacia";
 		return false;
 	}
+	first_move = false;
 	return false;
-}
-
-bool rey::movimientoLegal(coordenada destino)
-{
-    coordenada coordInicio = getCoordenada();
-
-    if (coordInicio == destino) {
-        return false; // Movimiento a la misma casilla
-    }
-
-    int columnaInicio = coordInicio.getColumna();
-    int filaInicio = coordInicio.getFila();
-    int columnaDestino = destino.getColumna();
-    int filaDestino = destino.getFila();
-
-    // Movimiento en las esquinas (diagonal)
-    if (abs(columnaDestino - columnaInicio) == 1 && abs(filaDestino - filaInicio) == 1) {
-        return true;
-    }
-
-    // Movimiento en la misma columna o fila (vertical u horizontal)
-    if (columnaDestino == columnaInicio && abs(filaDestino - filaInicio) == 1) {
-        return true;
-    }
-    if (filaDestino == filaInicio && abs(columnaDestino - columnaInicio) == 1) {
-        return true;
-    }
-
-    // Movimientos para el enroque
-    if (getColor() == BLANCO) {
-        if (filaInicio == 1 && columnaInicio == 5) {
-            if (filaDestino == 1 && (columnaDestino == 3 || columnaDestino == 7)) {
-                return true;
-            }
-        }
-    } else {
-        if (filaInicio == 8 && columnaInicio == 5) {
-            if (filaDestino == 8 && (columnaDestino == 3 || columnaDestino == 7)) {
-                return true;
-            }
-        }
-    }
-
-    return false;
 }

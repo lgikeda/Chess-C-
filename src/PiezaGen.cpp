@@ -44,11 +44,10 @@ void PiezaGen::setCoordenada(int fila, int columna) {
 	this->coord.columna = columna;
 }
 
-/*
-bool movimientoLegal(int fila, int columna, PiezaGen*) {
-	///Desde aquí de llamará a la función específica de cada pieza
+
+bool PiezaGen::getMovimiento() {
+	return first_move;
 }
-*/
 
 PiezaGen::~PiezaGen()
 {

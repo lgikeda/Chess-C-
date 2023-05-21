@@ -18,16 +18,14 @@ protected:
 	Coordenada coord;
 	Tipo tipo;
 	Color color;
-
+	bool first_move = true;
 public:
 	//Constructores
 	PiezaGen(Color color, Coordenada coord, Tipo tipo);
 	PiezaGen();
 	~PiezaGen();
 
-	int getPos_x();
-	int getPos_y();
-	Color getColor();
+	
 	virtual void dibuja() = 0;
 	virtual bool movimientoLegal(int fila, int columna, PiezaGen*) = 0;
 	//virtual void guardarHistorial() = 0;
@@ -35,6 +33,13 @@ public:
 	void setCoordenada(int fila, int columna);
 	void setTipo(Tipo t);
 	void setColor(Color c);
+
+	//Getters
+	
+	int getPos_x();
+	int getPos_y();
+	Color getColor();
+	bool getMovimiento();
 
 	Coordenada getCoordenada();
 

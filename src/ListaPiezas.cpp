@@ -9,9 +9,9 @@ ListaPiezas::ListaPiezas() {
 
 bool ListaPiezas::agregar(PiezaGen* p) {
 	if (numero < MAX_PIEZAS)
-		pieza[numero++] = p; // Ãºltimo puesto sin rellenar
+		pieza[numero++] = p; // último puesto sin rellenar
 	else
-		return false; // capacidad mÃ¡xima alcanzada
+		return false; // capacidad máxima alcanzada
 	return true;
 }
 
@@ -143,18 +143,12 @@ void ListaPiezas::destino(int fila, int columna) {
 	final = select_pieza(fila, columna);
 	if (turno_destino) {
 		if ((start->movimientoLegal(fila, columna, final)) and (comprobarPieza(fila, columna))) {
-			//if ((start->getTipo() == PEON) and (comprobarPeon(fila, columna) == true)) {
-			//	start->setCoordenada(fila, columna);
-			//	turno = not turno;    //Toogle para turno
-			//}
-			//if ((start->getTipo() == ALFIL) and (comprobarAlfil(fila, columna) == true)) {
-			//	start->setCoordenada(fila, columna);
-			//	turno = not turno;    //Toogle para turno
-			//}
-			//if ((start->getTipo() != PEON)) {
-				start->setCoordenada(fila, columna);
-				turno = not turno;
-			//}
+				
+			start->setCoordenada(fila, columna);
+			if ((final != NULL) and (posicionIgual(start, final))) {
+				eliminar(final);
+			}
+			turno = not turno;
 		}
 	}
 	turno_destino = false;
@@ -183,6 +177,60 @@ void ListaPiezas::mueve(int fila, int columna) {
 	else turno_destino = false;
 }
 
+void ListaPiezas::eliminar(PiezaGen* eliminada) {
+	PiezaGen** aux = new PiezaGen * [numero];
+	int j = 0;
+
+	for (int i = 0; i < numero; i++) {
+		if (pieza[i] != eliminada) {
+			aux[j] = pieza[i];
+			j++;
+		}
+		else {
+			delete pieza[i];
+		}
+	}
+
+	for (int i = 0; i < j; i++) {
+		pieza[i] = aux[i];
+	}
+	numero = j;
+
+	delete[] aux;
+}
+
+bool ListaPiezas::enroque(int fila, int columna)
+{
+	int contador = 0;
+
+	if (start->getColor() == final->getColor()) {
+		if (((start->getTipo() == REY) and (final->getTipo() == TORRE)) or ((start->getTipo() == TORRE) and (final->getTipo() == REY))) {
+			if ((start->getMovimiento()) and (final->getMovimiento())) {
+				if (start->getCoordenada().columna < columna) {
+					for (int j = start->getCoordenada().columna; j >= columna; j--) {
+						if (mirarCasilla(fila, j)) {
+							contador++;
+							if ((abs(contador - columna) == 3) or (abs(contador - columna) == 4))
+								return true;
+						}
+					}
+				}
+				if (start->getCoordenada().columna > columna) {
+					for (int j = start->getCoordenada().columna; j <= columna; j++) {
+						if (mirarCasilla(fila, j)) {
+							contador++;
+							if ((abs(contador - columna) == 3) or (abs(contador - columna) == 4))
+								return true;
+						}
+					}
+				}
+			}
+		}
+	}
+	else
+		return false;
+}
+
 bool ListaPiezas::comprobarRey(int fila, int columna)
 {
 	Coordenada destino;
@@ -203,7 +251,7 @@ bool ListaPiezas::comprobarRey(int fila, int columna)
 	Coordenada reyEnemigo = pieza[index]->getCoordenada();
 
 	//Comprobamos si hay una colision
-	if (mirarCasilla(fila, columna)) {
+	if (mirarCasilla(fila, columna) and (start->getColor() == final->getColor())) {
 		//Si hay una pieza pero es de distinto color permitimos el movimiento
 		//if (buscarPieza(fila, columna)->getColor() != pieza->getColor()) return true;
 		return false;
@@ -350,7 +398,7 @@ bool ListaPiezas::comprobarPeon(int fila, int columna)
 	destino.columna = columna;
 	bool flag = false;
 
-	//Miramos de quÃ© color es el peon
+	//Miramos de qué color es el peon
 	if (start->getColor() == BLANCO)
 	{
 		//Colision en el movimiento hacia delante
@@ -368,7 +416,7 @@ bool ListaPiezas::comprobarPeon(int fila, int columna)
 		return true;
 	}
 	else {
-		//El negro tiene el mismo esquema que el del peon blanco pero cambiando las comprobaciones para ajustarse a su naturaleza simÃ©trica
+		//El negro tiene el mismo esquema que el del peon blanco pero cambiando las comprobaciones para ajustarse a su naturaleza simétrica
 
 		if (mirarCasilla(start->getCoordenada().getFila() - 1, start->getCoordenada().getColumna())) return false;
 
@@ -411,49 +459,6 @@ bool ListaPiezas::comprobarPieza(int fila, int columna)
 	else if (start->getTipo() == TORRE) return comprobarTorre(fila, columna);
 	else if (start->getTipo() == CABALLO) return true;
 	else if (start->getTipo() == PEON) return comprobarPeon(fila, columna);
-}
-void ListaPiezas::enroque(pieza* rey, int fila, int columna)
-{
-    if (rey->getTipo() == REY) {
-        if (fila == 1 && (columna == 3 || columna == 7)) {
-            int torreColumna = columna == 3 ? 1 : 8;
-            buscarPieza(1, torreColumna)->setColumna(columna == 3 ? 4 : 6);
-        }
-        if (fila == 8 && (columna == 3 || columna == 7)) {
-            int torreColumna = columna == 3 ? 1 : 8;
-            buscarPieza(8, torreColumna)->setColumna(columna == 3 ? 4 : 6);
-        }
-    }
-}
-void ListaPiezas::anularEnroque(pieza* pieza, int fila, int columna)
-{
-    int filaPieza = pieza->getCoordenada().getFila();
-    int columnaPieza = pieza->getCoordenada().getColumna();
-
-    // Anular enroque para torres
-    if (pieza->getTipo() == TORRE) {
-        if ((filaPieza == 1) && (columnaPieza == 1)) {
-            torreBlancaIzq = false;
-        }
-        else if ((filaPieza == 1) && (columnaPieza == 8)) {
-            torreBlancaDrc = false;
-        }
-        else if ((filaPieza == 8) && (columnaPieza == 1)) {
-            torreNegraIzq = false;
-        }
-        else if ((filaPieza == 8) && (columnaPieza == 8)) {
-            torreNegraDrc = false;
-        }
-    }
-    // Anular enroque para el rey
-    else if (pieza->getTipo() == REY) {
-        if ((filaPieza == 1) && (columnaPieza == 5)) {
-            enroqueBlanco = false;
-        }
-        else if ((filaPieza == 8) && (columnaPieza == 5)) {
-            enroqueNegro = false;
-        }
-    }
 }
 
 void ListaPiezas::dibuja() {

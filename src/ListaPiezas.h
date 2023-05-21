@@ -31,6 +31,9 @@ public:
 	void destino(int fila, int columna);
 	void dibuja();
 	void mueve(int fila, int columna);
+	void eliminar(PiezaGen* eliminada);
+	bool posicionIgual(PiezaGen* pstart, PiezaGen* pfinal) { return pstart->getCoordenada() == pfinal->getCoordenada(); }
+	bool enroque(int fila, int columna);
 	bool comprobarPeon(int fila, int columna);
 	bool comprobarAlfil(int fila, int columna);
 	bool comprobarTorre(int fila, int columna);
@@ -38,22 +41,6 @@ public:
 	bool comprobarRey(int fila, int columna);
 	bool mirarCasilla(int fila, int columna);
 	bool comprobarPieza(int fila, int columna);
-	bool noAtraviesa( int fila, int columna);
 	PiezaGen* select_pieza(int fila, int columna);
 	bool getTurno(int fila, int columna, bool turno);
-	private:
-	// Variables para el enroque
-    bool enroqueBlanco;
-    bool enroqueNegro;
-
-    // Variables para anular el enroque
-    bool torreBlancaIzq;
-    bool torreBlancaDrc;
-    bool torreNegraIzq;
-    bool torreNegraDrc;
-
-public:
-    // Métodos de enroque y anulación de enroque
-    void enroque(pieza* rey, int fila, int columna);
-    void anularEnroque(pieza* pieza, int fila, int columna);
 };
