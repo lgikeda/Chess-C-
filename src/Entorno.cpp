@@ -1,4 +1,4 @@
-#include "entorno.h"
+ï»¿#include "entorno.h"
 #include "freeglut.h"
 #include <iostream>
 
@@ -13,7 +13,7 @@ void Entorno::dibuja() {
 }
 
 void Entorno::raton(int button, int state, int x, int y) {
-    // Verificar si se hizo clic en el botón izquierdo del raton y si se soltó
+    // Verificar si se hizo clic en el boton izquierdo del raton y si se solto
     if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
         // Convertir las coordenadas del mouse a una casilla en el tablero
         std::cout << "Casilla click: (" << x << ", " << y << ")" << std::endl;
@@ -22,8 +22,8 @@ void Entorno::raton(int button, int state, int x, int y) {
         int tableroSize = 80;
         int windowWidth = 800;
         int windowHeight = 700;
-        int margenX = (windowWidth - (static_cast<float>(tableroSize)*7.4125)) / 2;
-        int margenY = (windowHeight - (static_cast<float>(tableroSize)*7.425)) / 2;
+        int margenX = (windowWidth - (static_cast<float>(tableroSize) * 7.4125)) / 2;
+        int margenY = (windowHeight - (static_cast<float>(tableroSize) * 7.425)) / 2;
         float scale = static_cast<float>(tableroSize * 7.4125) / windowWidth;
 
         int casilla_x = static_cast<int>((x - margenX) * scale);
@@ -33,18 +33,18 @@ void Entorno::raton(int button, int state, int x, int y) {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         for (int i = 0; i < 700; i += 55) {
             if (casilla_x >= i && casilla_x <= i + 55) {
-                casilla_x = ((i + i + 55) / 5.5)/2;
+                casilla_x = ((i + i + 55) / 5.5) / 2;
             }
             if (casilla_y >= i && casilla_y <= i + 55) {
-                casilla_y = ((i + i + 55) / 5.5)/2;
+                casilla_y = ((i + i + 55) / 5.5) / 2;
             }
         }
 
         std::cout << "Casilla seleccionada: (" << coord.to_filaColumna(casilla_x, casilla_y).first << ", " << coord.to_filaColumna(casilla_x, casilla_y).second << ")" << std::endl;
-        
+
         piezas.mueve(coord.to_filaColumna(casilla_x, casilla_y).first, coord.to_filaColumna(casilla_x, casilla_y).second);
     }
-    // Verificar si se hizo clic en el botón derecho del raton y si se soltó
+    // Verificar si se hizo clic en el boton derecho del raton y si se solto
     if (button == GLUT_RIGHT_BUTTON && state == GLUT_UP) {
         int tableroSize = 80;
         int windowWidth = 800;

@@ -31,37 +31,16 @@ public:
 	void destino(int fila, int columna);
 	void dibuja();
 	void mueve(int fila, int columna);
-	bool comprobarPeon(PiezaGen* pieza, int fila, int columna);
+	void eliminar(PiezaGen* eliminada);
+	bool posicionIgual(PiezaGen* pstart, PiezaGen* pfinal) { return pstart->getCoordenada() == pfinal->getCoordenada(); }
+	bool enroque(int fila, int columna);
+	bool comprobarPeon(int fila, int columna);
+	bool comprobarAlfil(int fila, int columna);
+	bool comprobarTorre(int fila, int columna);
+	bool comprobarReina(int fila, int columna);
+	bool comprobarRey(int fila, int columna);
 	bool mirarCasilla(int fila, int columna);
-	bool comprobarPieza(PiezaGen* aux, int fila, int columna);
-	bool noAtraviesa(PiezaGen* pieza1, int fila, int columna);
+	bool comprobarPieza(int fila, int columna);
 	PiezaGen* select_pieza(int fila, int columna);
 	bool getTurno(int fila, int columna, bool turno);
-
-	void eliminar(PiezaGen* eliminada) {
-		PiezaGen** aux = new PiezaGen * [numero];
-		int j = 0;
-
-		for (int i = 0; i < numero; i++) {
-			if (pieza[i] != eliminada) {
-				aux[j] = pieza[i];
-				j++;
-			}
-			else {
-				delete pieza[i];
-			}
-		}
-
-		for (int i = 0; i < j; i++) {
-			pieza[i] = aux[i];
-		}
-		numero = j;
-
-		delete[] aux;
-	}
-
-	bool PosicionIgual(PiezaGen* s, PiezaGen* f) {
-		//if (start->getCoordenada() == final->getCoordenada() ? return true : return false);
-		return (start->getCoordenada() == final->getCoordenada());
-	}
 };

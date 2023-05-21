@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_COLOR_MATERIAL);
 	glMatrixMode(GL_PROJECTION);
-	gluPerspective(40, 800 / 700.0f, 0.1, 134.0f);
+	gluPerspective(40.0, 800 / 700.0f, 0.1, 134.0f);
 
 	//Registrar los callbacks
 	glutDisplayFunc(OnDraw);

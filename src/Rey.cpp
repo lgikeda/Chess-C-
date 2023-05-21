@@ -41,10 +41,10 @@ bool Rey::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
 		std::cout << "coord.columna = " << coord.columna << ";" << "columa = " << columna << std::endl;;
 		return true;
 	}
-
 	else if (casilla != NULL) {
 		std::cout << "Movimiento no valido: La casilla debe estar vacia";
 		return false;
 	}
+	first_move = false;
 	return false;
 }

@@ -38,6 +38,14 @@ Coordenada Coordenada::operator + (Coordenada v)
 	return res;
 }
 
+Coordenada Coordenada::operator - (Coordenada v)
+{
+    Coordenada res;
+    res.fila = fila - v.fila;
+    res.columna = columna - v.columna;
+    return res;
+}
+
 bool Coordenada::operator == (Coordenada v)
 {
     if ((fila == v.fila) and (columna == v.columna))

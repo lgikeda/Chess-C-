@@ -47,5 +47,6 @@ bool Alfil::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
 			return false;
 		}
 	}
+	first_move = false;
 	return false;
 }

@@ -23,7 +23,7 @@ public:
 	//Convertidores y Operadores
 	bool operator == (Coordenada corrd);
 	Coordenada operator + (Coordenada v);
-	//Coordenada operator - (Coordenada coord) {};
+	Coordenada operator - (Coordenada coord);
 
 
 	std::pair<int, int> to_cartesianas(int& x, int& y);
