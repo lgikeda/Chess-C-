@@ -1,5 +1,5 @@
 #include "freeglut.h"
-#include "entorno.h"
+#include "Interfaz.h"
 #include <math.h>
 
 //los callback, funciones que seran llamadas automaticamente por la glut
@@ -11,11 +11,12 @@ void OnKeyboardDown(unsigned char key, int x, int y); //cuando se pulse una tecl
 void raton_callback(int button, int state, int x, int y);
 
 //Tablero tablero1;
-Entorno entorno1;
+//Entorno entorno1;
+Interfaz interfaz;
 
 int main(int argc, char* argv[])
 {
-	//inicializaci髇 de los datos de la simulaci髇
+	//inicializaci贸n de los datos de la simulaci贸n
 
 	//Inicializar el gestor de ventanas GLUT
 	//y crear la ventana
@@ -38,9 +39,9 @@ int main(int argc, char* argv[])
 	glutKeyboardFunc(OnKeyboardDown);
 	glutMouseFunc(raton_callback);
 
-	//inicializaci髇 de los datos de la simulaci髇
+	//inicializaci贸n de los datos de la simulaci贸n
 	//tablero1.inicializa();
-	entorno1.inicial();
+	//entorno1.inicial();
 	//pasarle el control a FREEGLUT,que llamara a los callbacks
 	glutMainLoop();
 
@@ -61,10 +62,11 @@ void OnDraw(void)
 		0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)    
 
 
-	//aqui es donde hay que poner el c骴igo de dibujo
+	//aqui es donde hay que poner el c贸digo de dibujo
 
 	//tablero1.dibujarTablero();
-	entorno1.dibuja();
+	//entorno1.dibuja();
+	interfaz.dibuja();
 
 	//no borrar esta linea ni poner nada despues
 
@@ -72,7 +74,8 @@ void OnDraw(void)
 }
 void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 {
-
+	interfaz.tecla(key);
+	glutPostRedisplay();
 }
 
 void raton_callback(int button, int state, int x, int y) {
