@@ -24,6 +24,7 @@
     <ClInclude Include="src\Coordenada.h" />
     <ClInclude Include="src\Entorno.h" />
     <ClInclude Include="src\ETSIDI.h" />
+    <ClInclude Include="src\Interfaz.h" />
     <ClInclude Include="src\ListaPiezas.h" />
     <ClInclude Include="src\Peon.h" />
     <ClInclude Include="src\PiezaGen.h" />
@@ -37,6 +38,7 @@
     <ClCompile Include="src\Caballo.cpp" />
     <ClCompile Include="src\Coordenada.cpp" />
     <ClCompile Include="src\Entorno.cpp" />
+    <ClCompile Include="src\Interfaz.cpp" />
     <ClCompile Include="src\ListaPiezas.cpp" />
     <ClCompile Include="src\Pang.cpp" />
     <ClCompile Include="src\Peon.cpp" />

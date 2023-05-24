@@ -51,6 +51,9 @@
     <ClInclude Include="src\Torre.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="src\Interfaz.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Alfil.cpp">
@@ -87,6 +90,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="src\Torre.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Interfaz.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
