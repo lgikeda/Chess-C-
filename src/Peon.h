@@ -2,7 +2,7 @@
 #include "PiezaGen.h"
 
 class Peon:public PiezaGen {
-	//bool first_move = true;
+	bool first_move = true;
 public:
 	//Constructores
 	Peon();

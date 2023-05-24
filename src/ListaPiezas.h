@@ -43,4 +43,7 @@ public:
 	bool comprobarPieza(int fila, int columna);
 	PiezaGen* select_pieza(int fila, int columna);
 	bool getTurno(int fila, int columna, bool turno);
+	bool jaque(PiezaGen* rey);
+	bool comprobarAlfilJaque(PiezaGen* alfil, int fila, int columna);
+	bool comprobarTorreJaque(PiezaGen* torre, int fila, int columna);
 };

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Interfaz.h"
 
+
 Interfaz::Interfaz()
 {
 	estado = INICIO;						//por defecto se va a inicializar en inicio
@@ -14,19 +15,25 @@ void Interfaz::dibuja()
 {
 	if (estado == INICIO)
 	{
-		
+		//redefimos el punto de vista para el dibujo de los menus
+		glLoadIdentity();
+		gluLookAt(0, 0, 33, // posicion del ojo									//z me aleja de la imagen, he centrado la imagen en 0,0 
+			0, 0, 0, // hacia que punto mira (0,0,0)
+			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
 		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/MenuPrincipal.png").id);
+		//glColor3f(1, 1, 1);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuPrincipal.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
-		glTexCoord2d(0, 1); glVertex3f(-5.0f, -1.0f, -17.0f);
-		glTexCoord2d(1, 1); glVertex3f(-5.0f, -1.0f, 82.0f);
-		glTexCoord2d(1, 0); glVertex3f(75.0f, -1.0f, 82.0f);
-		glTexCoord2d(0, 0); glVertex3f(75.0f, -1.0f, -17.0f);
+		glTexCoord2d(0, 1); glVertex2f(-13.7f, -12);
+		glTexCoord2d(1, 1); glVertex2f(13.7f, -12);
+		glTexCoord2d(1, 0); glVertex2f(13.7f, 12);
+		glTexCoord2d(0, 0); glVertex2f(-13.7f, 12);
 		glEnd();
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, 0);
+	
 
 	}
 	else if (estado == JUEGO)
@@ -36,16 +43,21 @@ void Interfaz::dibuja()
 	}
 	else if (estado == SEL_EJERCITO)
 	{
-		
 
+		//redefinimos el punto de vista para el dibujo de los menus
+		glLoadIdentity();
+		gluLookAt(0, 0, 33, // posicion del ojo									//z me aleja de la imagen, he centrado la imagen en 0,0 
+			0, 0, 0, // hacia que punto mira (0,0,0)
+			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
 		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/SelEjercito.png").id);
+		//glColor3f(1, 1, 1);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/SelEjercito.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
-		glTexCoord2d(0, 1); glVertex3f(-5.0f, -1.0f, -17.0f);
-		glTexCoord2d(1, 1); glVertex3f(-5.0f, -1.0f, 82.0f);
-		glTexCoord2d(1, 0); glVertex3f(80.0f, -1.0f, 82.0f);
-		glTexCoord2d(0, 0); glVertex3f(80.0f, -1.0f, -17.0f);
+		glTexCoord2d(0, 1); glVertex2f(-10, -10);
+		glTexCoord2d(1, 1); glVertex2f(10, -10);
+		glTexCoord2d(1, 0); glVertex2f(10, 10);
+		glTexCoord2d(0, 0); glVertex2f(-10, 10);
 		glEnd();
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
@@ -68,12 +80,12 @@ void Interfaz::tecla(unsigned char key)
 		}
 		if (key == 's' || key == 'S')								//si presionamos s se detiene el ejecutable
 		{
-			exit(0);				
+			exit(0);
 		}
 		if (key == 'm' || key == 'M')								//si presionamos m pasamos a seleccion de ejercito							
 		{
 			estado = SEL_EJERCITO;
-		}		
+		}
 	}
 
 	else if (estado == SEL_EJERCITO)

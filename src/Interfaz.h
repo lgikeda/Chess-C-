@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Entorno.h"
 #include "freeglut.h"
 #include "ETSIDI.h"
@@ -6,7 +7,7 @@
 
 class Interfaz
 {
-public: 
+public:
 	Interfaz();
 	virtual ~Interfaz();
 
@@ -15,9 +16,8 @@ public:
 	void dibuja();
 	void raton(int button, int state, int x, int y);
 
-protected: 
+protected:
 	Entorno entorno;
-	enum Estado {INICIO, SEL_EJERCITO, JUEGO, FIN};
+	enum Estado { INICIO, SEL_EJERCITO, JUEGO, FIN };
 	Estado estado;
 };
-

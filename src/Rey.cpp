@@ -36,7 +36,7 @@ bool Rey::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
 		std::cout << "Movimiento invalido, selecciona distinta casilla a la inicial" << std::endl;
 		return false;
 	}
-	if (((abs(coord.fila - fila) == 1) and ( abs(coord.columna - columna) == 1)) or ((abs(coord.fila - fila) == 1) and (abs(coord.columna - columna) == 0)) or ((abs(coord.fila - fila) == 0) and (abs(coord.columna - columna) == 1))) {	//Comprobacion de movimiento en direccion correcta
+	if (((abs(coord.fila - fila) == 1) and (abs(coord.columna - columna) == 1)) or ((abs(coord.fila - fila) == 1) and (abs(coord.columna - columna) == 0)) or ((abs(coord.fila - fila) == 0) and (abs(coord.columna - columna) == 1))) {	//Comprobacion de movimiento en direccion correcta
 		std::cout << "Movimiento invalido, no se puede desplazar en x" << std::endl;;
 		std::cout << "coord.columna = " << coord.columna << ";" << "columa = " << columna << std::endl;;
 		return true;

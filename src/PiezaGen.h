@@ -25,7 +25,7 @@ public:
 	PiezaGen();
 	~PiezaGen();
 
-	
+
 	virtual void dibuja() = 0;
 	virtual bool movimientoLegal(int fila, int columna, PiezaGen*) = 0;
 	//virtual void guardarHistorial() = 0;
@@ -35,7 +35,7 @@ public:
 	void setColor(Color c);
 
 	//Getters
-	
+
 	int getPos_x();
 	int getPos_y();
 	Color getColor();

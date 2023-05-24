@@ -1,4 +1,4 @@
-﻿#include "entorno.h"
+#include "entorno.h"
 #include "freeglut.h"
 #include <iostream>
 

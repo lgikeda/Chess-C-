@@ -2,7 +2,7 @@
 
 PiezaGen::PiezaGen()
 {
-	
+
 }
 
 PiezaGen::PiezaGen(Color color, Coordenada coord, Tipo tipo)
