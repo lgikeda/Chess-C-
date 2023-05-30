@@ -34,7 +34,7 @@ public:
 	void mueve(int fila, int columna);
 	void eliminar(PiezaGen* eliminada);
 	bool posicionIgual(PiezaGen* pstart, PiezaGen* pfinal) { return pstart->getCoordenada() == pfinal->getCoordenada(); }
-	void enroque(int fila, int columna);
+	bool enroque(int fila, int columna);
 	bool comprobarPeon(int fila, int columna);
 	bool comprobarAlfil(int fila, int columna);
 	bool comprobarTorre(int fila, int columna);

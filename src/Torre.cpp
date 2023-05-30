@@ -39,6 +39,7 @@ bool Torre::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
 	if ((abs(coord.fila - fila) == 0) or (abs(coord.columna - columna) == 0)) {	//Comprobacion de movimiento en direccion correcta
 		std::cout << "Movimiento invalido, no se puede desplazar en x" << std::endl;;
 		std::cout << "coord.columna = " << coord.columna << ";" << "columa = " << columna << std::endl;;
+		first_move = false;
 		return true;
 	}
 
@@ -46,6 +47,5 @@ bool Torre::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
 		std::cout << "Movimiento no valido: La casilla debe estar vacia";
 		return false;
 	}
-	first_move = false;
 	return false;
 }

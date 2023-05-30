@@ -146,7 +146,9 @@ void ListaPiezas::destino(int fila, int columna) {
 	final = select_pieza(fila, columna);
 	if (turno_destino) {
 		if ((e_jaque == false) and (final != NULL)) {
-			enroque(fila, columna);
+			if (enroque(fila, columna)) {
+				turno = not turno;
+			}
 		}
 		else if ((start->movimientoLegal(fila, columna, final)) and (comprobarPieza(fila, columna))) {
 
@@ -211,47 +213,87 @@ void ListaPiezas::eliminar(PiezaGen* eliminada) {
 	delete[] aux;
 }
 
-void ListaPiezas::enroque(int fila, int columna)
+bool ListaPiezas::enroque(int fila, int columna)
 {
+	bool enr = false;
+
 	int contador = 0;
 
 	if (start->getColor() == final->getColor()) {
-		if (((start->getTipo() == REY) and (final->getTipo() == TORRE)) or ((start->getTipo() == TORRE) and (final->getTipo() == REY))) {
+		if (((start->getTipo() == REY) and (final->getTipo() == TORRE))/* or ((start->getTipo() == TORRE) and (final->getTipo() == REY))*/) {
 			if ((start->getMovimiento()) and (final->getMovimiento())) {
-				if (start->getCoordenada().columna < columna) {
+				if (start->getCoordenada().columna < final->getCoordenada().columna) {
 					if (start->getColor() == BLANCO) {
 						if ((mirarCasilla(start, fila, columna))) {
-							start->setCoordenada(1, 7);
+							start->setCoordenada(1, 6);
+							final->setCoordenada(1, 5);
+							enr = true;
+						}
+					}
+					if (start->getColor() == NEGRO) {
+						if ((mirarCasilla(start, fila, columna))) {
+							start->setCoordenada(8, 7);
+							final->setCoordenada(8, 6);
+							enr = true;
+						}
+					}	
+				}
+				else if (start->getCoordenada().columna > final->getCoordenada().columna) {
+					if (start->getColor() == BLANCO) {
+						if ((mirarCasilla(start, fila, columna))) {
+							start->setCoordenada(1, 2);
+							final->setCoordenada(1, 3);
+							enr = true;
+						}
+					}
+					if (start->getColor() == NEGRO) {
+						if ((mirarCasilla(start, fila, columna))) {
+							start->setCoordenada(8, 3);
+							final->setCoordenada(8, 4);
+							enr = true;
+						}
+					}
+				}
+			}
+		}
+		else if (((start->getTipo() == TORRE) and (final->getTipo() == REY))/* or ((start->getTipo() == TORRE) and (final->getTipo() == REY))*/) {
+			if ((start->getMovimiento()) and (final->getMovimiento())) {
+				if (start->getCoordenada().columna < final->getCoordenada().columna) {
+					if (start->getColor() == BLANCO) {
+						if ((mirarCasilla(start, fila, columna))) {
+							start->setCoordenada(1, 3);
+							final->setCoordenada(1, 2);
+							enr = true;
+						}
+					}
+					if (start->getColor() == NEGRO) {
+						if ((mirarCasilla(start, fila, columna))) {
+							start->setCoordenada(8, 4);
+							final->setCoordenada(8, 3);
+							enr = true;
+						}
+					}
+				}
+				else if (start->getCoordenada().columna > final->getCoordenada().columna) {
+					if (start->getColor() == BLANCO) {
+						if ((mirarCasilla(start, fila, columna))) {
+							start->setCoordenada(1, 5);
 							final->setCoordenada(1, 6);
+							enr = true;
 						}
 					}
 					if (start->getColor() == NEGRO) {
 						if ((mirarCasilla(start, fila, columna))) {
 							start->setCoordenada(8, 6);
-							final->setCoordenada(8, 5);
-						}
-					}	
-				}
-				else if (start->getCoordenada().columna > columna) {
-					if (start->getColor() == BLANCO) {
-						if ((mirarCasilla(start, fila, columna))) {
-							start->setCoordenada(1, 3);
-							final->setCoordenada(1, 4);
-						}
-					}
-					if (start->getColor() == NEGRO) {
-						if ((mirarCasilla(start, fila, columna))) {
-							start->setCoordenada(8, 2);
-							final->setCoordenada(8, 3);
+							final->setCoordenada(8, 7);
+							enr = true;
 						}
 					}
 				}
 			}
 		}
 	}
-
-	
-		
+	return enr;
 }
 
 bool ListaPiezas::comprobarRey(int fila, int columna)
