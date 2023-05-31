@@ -1,3 +1,0 @@
-﻿  ListaPiezas.cpp
-D:\Programas_Instalados\Github\lgikeda\Chess-Game\src\ListaPiezas.cpp(365): warning C4715: 'ListaPiezas::comprobarRey': no todas las rutas de acceso de control devuelven un valor
-  Pang.vcxproj -> D:\Programas_Instalados\Github\lgikeda\Chess-Game\bin\Pang.exe

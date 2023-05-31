@@ -59,7 +59,7 @@ public:
 			if ((pieza[i]->getTipo() != REY) and (pieza[i]->getColor() != rey->getColor())) {
 				start = pieza[i];
 				if (pieza[i]->movimientoLegal(rey->getCoordenada().fila, rey->getCoordenada().columna, rey) and comprobarPieza(rey->getCoordenada().fila, rey->getCoordenada().columna)) {
-					std::cout << "Permiso al jaque 1." << std::endl;
+					std::cout << "Permiso al jaque." << std::endl;
 					if (final != NULL) {
 						if (pieza[i] == final) return false;
 					}else return true;

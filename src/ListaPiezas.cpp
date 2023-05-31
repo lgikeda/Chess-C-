@@ -146,25 +146,6 @@ void ListaPiezas::destino(int fila, int columna) {
 	final = select_pieza(fila, columna);
 	if (turno_destino and (start != NULL)) {
 		Coordenada ultimaPosicion = start->getCoordenada();
-		//if (/*(e_jaque == false) and*/ (final != NULL)) {
-		//	if (enroque(fila, columna)) {
-		//		turno = not turno;
-		//	}
-		//}
-		//else if ((start->movimientoLegal(fila, columna, final)) and (comprobarPieza(fila, columna))) {
-
-		//		start->setCoordenada(fila, columna);
-		//		if (jaque(start, final)) {
-		//		std::cout << "////////////////////////////////////            JAQUE!            /////////////////////////////////" << std::endl;
-		//		e_jaque = true;
-		//		}
-		//		else
-		//			e_jaque = false;
-		//		if ((final != NULL) and (posicionIgual(start, final))) {
-		//			eliminar(final);
-		//		}
-		//		turno = not turno;
-		//}
 		if ((e_jaque == false) and (final != NULL) and (start->getColor() == final->getColor())) {
 			if (enroque(fila, columna)) {
 				turno = not turno;
@@ -180,10 +161,12 @@ void ListaPiezas::destino(int fila, int columna) {
 			}
 			else {
 				start = aux1;
-				//start->setCoordenada(fila, columna);
 			}
 			if (jaque(start, final)) {
-				std::cout << "////////////////////////////////////            JAQUE!            /////////////////////////////////" << std::endl;
+				if (start->getColor() == BLANCO) {
+					std::cout << "////////////////////////////////////            JAQUE AL REY NEGRO!            /////////////////////////////////" << std::endl;
+				}
+				else std::cout << "////////////////////////////////////            JAQUE AL REY BLANCO!            /////////////////////////////////" << std::endl;
 				e_jaque = true;
 			}
 			else
