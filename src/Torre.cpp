@@ -32,6 +32,7 @@ void Torre::dibuja() {
 }
 
 bool Torre::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
+	
 	if ((coord.fila == fila) and (coord.columna == columna)) {	//Comprobacion de quedarse en la misma casilla
 		std::cout << "Movimiento invalido, selecciona distinta casilla a la inicial" << std::endl;
 		return false;

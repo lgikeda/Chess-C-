@@ -1,4 +1,3 @@
 ﻿  ListaPiezas.cpp
-C:\Users\Recsofer\Desktop\Infor\trabajoinfor - copia\menusimplementados\src\ListaPiezas.cpp(278): warning C4715: 'ListaPiezas::comprobarRey': no todas las rutas de acceso de control devuelven un valor
-C:\Users\Recsofer\Desktop\Infor\trabajoinfor - copia\menusimplementados\src\ListaPiezas.cpp(239): warning C4715: 'ListaPiezas::enroque': no todas las rutas de acceso de control devuelven un valor
-  Pang.vcxproj -> C:\Users\Recsofer\Desktop\Infor\trabajoinfor - copia\menusimplementados\bin\Pang.exe
+D:\Programas_Instalados\Github\lgikeda\Chess-Game\src\ListaPiezas.cpp(365): warning C4715: 'ListaPiezas::comprobarRey': no todas las rutas de acceso de control devuelven un valor
+  Pang.vcxproj -> D:\Programas_Instalados\Github\lgikeda\Chess-Game\bin\Pang.exe

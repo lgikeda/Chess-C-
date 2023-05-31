@@ -46,4 +46,27 @@ public:
 	bool getTurno(int fila, int columna, bool turno);
 	bool jaque(PiezaGen* s, PiezaGen* f);
 	bool trayecto(PiezaGen* s, PiezaGen* f);
+
+	bool permisoAlJaque(PiezaGen* s) {
+		PiezaGen* rey = NULL;	//rey amigo
+		PiezaGen* siguientePosicion = NULL;
+		for (int i = 0; i < numero; i++) {
+			if ((pieza[i]->getTipo() == REY) and (pieza[i]->getColor() == s->getColor())) {
+				rey = pieza[i];
+			}
+		}
+		for (int i = 0; i < numero; i++) {
+			if ((pieza[i]->getTipo() != REY) and (pieza[i]->getColor() != rey->getColor())) {
+				start = pieza[i];
+				if (pieza[i]->movimientoLegal(rey->getCoordenada().fila, rey->getCoordenada().columna, rey) and comprobarPieza(rey->getCoordenada().fila, rey->getCoordenada().columna)) {
+					std::cout << "Permiso al jaque 1." << std::endl;
+					if (final != NULL) {
+						if (pieza[i] == final) return false;
+					}else return true;
+				}
+			}
+		}
+		std::cout << "Movimiento no permitido por poner en jaque al rey." << std::endl;
+		return false;
+	}
 };

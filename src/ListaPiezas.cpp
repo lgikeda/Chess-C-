@@ -139,30 +139,59 @@ void ListaPiezas::inicializa() {
 
 void ListaPiezas::destino(int fila, int columna) {
 
-	Coordenada aux1, aux2;
+	PiezaGen* aux1 = start;
 	
 	std::cout << "casilla destino: " << fila << ";" << columna << std::endl;
 	std::cout << turno_destino << std::endl;
 	final = select_pieza(fila, columna);
-	if (turno_destino) {
-		if ((e_jaque == false) and (final != NULL)) {
+	if (turno_destino and (start != NULL)) {
+		Coordenada ultimaPosicion = start->getCoordenada();
+		//if (/*(e_jaque == false) and*/ (final != NULL)) {
+		//	if (enroque(fila, columna)) {
+		//		turno = not turno;
+		//	}
+		//}
+		//else if ((start->movimientoLegal(fila, columna, final)) and (comprobarPieza(fila, columna))) {
+
+		//		start->setCoordenada(fila, columna);
+		//		if (jaque(start, final)) {
+		//		std::cout << "////////////////////////////////////            JAQUE!            /////////////////////////////////" << std::endl;
+		//		e_jaque = true;
+		//		}
+		//		else
+		//			e_jaque = false;
+		//		if ((final != NULL) and (posicionIgual(start, final))) {
+		//			eliminar(final);
+		//		}
+		//		turno = not turno;
+		//}
+		if ((e_jaque == false) and (final != NULL) and (start->getColor() == final->getColor())) {
 			if (enroque(fila, columna)) {
 				turno = not turno;
 			}
 		}
-		else if ((start->movimientoLegal(fila, columna, final)) and (comprobarPieza(fila, columna))) {
+		else if ((start->movimientoLegal(fila, columna, final)) and (comprobarPieza(fila, columna)) and ((final == NULL) or (start->getColor() != final->getColor()))) {
 
-				start->setCoordenada(fila, columna);
-				if (jaque(start, final)) {
+			start->setCoordenada(fila, columna);
+			if (permisoAlJaque(start)) {
+				start = aux1;
+				start->setCoordenada(ultimaPosicion.fila, ultimaPosicion.columna);
+				turno = not turno;
+			}
+			else {
+				start = aux1;
+				//start->setCoordenada(fila, columna);
+			}
+			if (jaque(start, final)) {
 				std::cout << "////////////////////////////////////            JAQUE!            /////////////////////////////////" << std::endl;
 				e_jaque = true;
-				}
-				else
-					e_jaque = false;
-				if ((final != NULL) and (posicionIgual(start, final))) {
-					eliminar(final);
-				}
-				turno = not turno;
+			}
+			else
+				e_jaque = false;
+			if ((final != NULL) and (posicionIgual(start, final))) {
+				eliminar(final);
+			}
+			turno = not turno;
 		}
 	}
 	turno_destino = false;
