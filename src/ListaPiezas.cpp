@@ -1,4 +1,5 @@
 #include "ListaPiezas.h"
+#include "Interfaz.h"
 #include<iostream>
 
 ListaPiezas::ListaPiezas() {
@@ -165,8 +166,18 @@ void ListaPiezas::destino(int fila, int columna) {
 			if (jaque(start, final)) {
 				if (start->getColor() == BLANCO) {
 					std::cout << "////////////////////////////////////            JAQUE AL REY NEGRO!            /////////////////////////////////" << std::endl;
+					if (jaqueMate()) {
+						Interfaz::cambiaEstado("JAQUE MATE AL REY NEGRO");
+					}else 
+						Interfaz::cambiaEstado("JAQUE AL REY NEGRO");
 				}
-				else std::cout << "////////////////////////////////////            JAQUE AL REY BLANCO!            /////////////////////////////////" << std::endl;
+				else {
+					std::cout << "////////////////////////////////////            JAQUE AL REY BLANCO!            /////////////////////////////////" << std::endl;
+					if (jaqueMate()) {
+						Interfaz::cambiaEstado("JAQUE MATE AL REY BLANCO");
+					}else
+						Interfaz::cambiaEstado("JAQUE AL REY BLANCO");
+				}
 				e_jaque = true;
 			}
 			else

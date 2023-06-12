@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Interfaz.h"
-
+#include <chrono>
+#include <thread>
 
 Interfaz::Interfaz()
 {
@@ -11,8 +12,12 @@ Interfaz::~Interfaz()
 {
 }
 
+int Interfaz::j = 0;
+
 void Interfaz::dibuja()
 {
+	if (j != 0) setEstado();
+
 	if (estado == INICIO)
 	{
 		//redefimos el punto de vista para el dibujo de los menus
@@ -62,6 +67,50 @@ void Interfaz::dibuja()
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+	else if (estado == JAQUE) {
+		
+		// Configura el color del texto
+		//glColor3f(1.0f, 1.0f, 1.0f); // Blanco
+		// Configura la posición del texto
+		glRasterPos2f(20.0f, 40.0f);
+
+		// Dibuja cada carácter individual del texto "JAQUE"
+		if (j == 1) {
+			std::string texto = "JAQUE AL REY NEGRO!!!";
+			for (char c : texto) {
+				glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, c);
+			}	
+			estado = JUEGO;
+		}
+		else if(j==2){
+			std::string texto = "JAQUE AL REY BLANCO!!!";
+			for (char c : texto) {
+				glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, c); 
+			}
+			estado = JUEGO;
+		}
+		else if (j == 3) {
+			std::string texto = "JAQUE MATE AL REY NEGRO!!!";
+			for (char c : texto) {
+				glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, c);
+			}
+			estado = INICIO;
+		}
+		else if (j == 4) {
+			std::string texto = "JAQUE MATE AL REY BLANCO!!!";
+			for (char c : texto) {
+				glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, c);
+			}
+			estado = INICIO;
+		}
+		
+		glutSwapBuffers();
+		//estado = JUEGO;
+		j = 0;
+		std::this_thread::sleep_for(std::chrono::seconds(2));
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		dibuja();
 	}
 	//else if de los estados de jaque mate blanco y jaque mate negro, y de promocionar
 
