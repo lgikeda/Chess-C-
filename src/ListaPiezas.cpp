@@ -145,6 +145,7 @@ void ListaPiezas::destino(int fila, int columna) {
 	std::cout << "casilla destino: " << fila << ";" << columna << std::endl;
 	std::cout << turno_destino << std::endl;
 	final = select_pieza(fila, columna);
+	
 	if (turno_destino and (start != NULL)) {
 		Coordenada ultimaPosicion = start->getCoordenada();
 		if ((e_jaque == false) and (final != NULL) and (start->getColor() == final->getColor())) {
@@ -180,14 +181,26 @@ void ListaPiezas::destino(int fila, int columna) {
 				}
 				e_jaque = true;
 			}
+			
 			else
 				e_jaque = false;
+
 			if ((final != NULL) and (posicionIgual(start, final))) {
 				eliminar(final);
 			}
 			turno = not turno;
 		}
 	}
+
+	for (int i = 0; i < numero; i++) {
+		if ((pieza[i]->getColor() == BLANCO) and (pieza[i]->getCoordenada().fila == 8)) {
+			Interfaz::cambiaEstado("PROMOCION BLANCA");
+		}
+		if ((pieza[i]->getColor() == NEGRO) and (pieza[i]->getCoordenada().fila == 1)) {
+			Interfaz::cambiaEstado("PROMOCION NEGRA");
+		}
+	}
+
 	turno_destino = false;
 }
 

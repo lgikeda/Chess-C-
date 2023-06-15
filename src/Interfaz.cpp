@@ -16,7 +16,7 @@ int Interfaz::j = 0;
 
 void Interfaz::dibuja()
 {
-	if (j != 0) setEstado();
+	if ((j != 0) and (j != 5) and (j != 6)) setEstado();
 
 	if (estado == INICIO)
 	{
@@ -43,9 +43,64 @@ void Interfaz::dibuja()
 	}
 	else if (estado == JUEGO)
 	{
-		entorno.dibuja();					//llamamos desde aqui a la funcion dibuja de entorno
-		//aqui debe ir todo el codigo correspondiente a los jaques y promociones de piezas
+		if (j == 5) {
+			//estado = INICIO;
+			estado = PROMOCION_B;
+		}
+
+		else if (j == 6) {
+			//estado = INICIO;
+			estado = PROMOCION_N;
+		}
+		else if (not ((j == 5) or (j == 6)))
+		entorno.dibuja(); //llamamos desde aqui a la funcion dibuja de entorno
+		
 	}
+	
+	else if (estado == PROMOCION_B)
+	{
+		//redefimos el punto de vista para el dibujo de los menus
+		glLoadIdentity();
+		gluLookAt(0, 0, 33, // posicion del ojo									//z me aleja de la imagen, he centrado la imagen en 0,0 
+			0, 0, 0, // hacia que punto mira (0,0,0)
+			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
+		glEnable(GL_TEXTURE_2D);
+		//glColor3f(1, 1, 1);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuPromocion.png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glTexCoord2d(0, 1); glVertex2f(-13.7f, -12);
+		glTexCoord2d(1, 1); glVertex2f(13.7f, -12);
+		glTexCoord2d(1, 0); glVertex2f(13.7f, 12);
+		glTexCoord2d(0, 0); glVertex2f(-13.7f, 12);
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+
+	else if (estado == PROMOCION_N)
+	{
+		//redefimos el punto de vista para el dibujo de los menus
+		glLoadIdentity();
+		gluLookAt(0, 0, 33, // posicion del ojo									//z me aleja de la imagen, he centrado la imagen en 0,0 
+			0, 0, 0, // hacia que punto mira (0,0,0)
+			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
+		glEnable(GL_TEXTURE_2D);
+		//glColor3f(1, 1, 1);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuPromocion.png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glTexCoord2d(0, 1); glVertex2f(-13.7f, -12);
+		glTexCoord2d(1, 1); glVertex2f(13.7f, -12);
+		glTexCoord2d(1, 0); glVertex2f(13.7f, 12);
+		glTexCoord2d(0, 0); glVertex2f(-13.7f, 12);
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+
 	else if (estado == SEL_EJERCITO)
 	{
 

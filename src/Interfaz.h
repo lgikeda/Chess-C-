@@ -21,6 +21,9 @@ public:
 		else if (e == "JAQUE AL REY BLANCO") j = 2;
 		else if (e == "JAQUE MATE AL REY NEGRO") j = 3;
 		else if (e == "JAQUE MATE AL REY BLANCO") j = 4;
+		else if (e == "PROMOCION BLANCA") j = 5;
+		else if (e == "PROMOCION NEGRA") j = 6;
+		//else if (e == "JUEGO") j = 7;
 		else j = 0;
 	}
 	void setEstado() {
@@ -29,7 +32,7 @@ public:
 
 protected:
 	Entorno entorno;
-	enum Estado { INICIO, SEL_EJERCITO, JUEGO, FIN, JAQUE };
+	enum Estado { INICIO, SEL_EJERCITO, JUEGO, PROMOCION_B, PROMOCION_N,FIN, JAQUE };
 	Estado estado;
 	static int j;
 };
