@@ -23,6 +23,8 @@ private:
 
 public:
 
+	static int cambio;
+
 	PiezaGen* final = NULL;
 	PiezaGen* start = NULL;
 	ListaPiezas();
@@ -46,6 +48,8 @@ public:
 	bool getTurno(int fila, int columna, bool turno);
 	bool jaque(PiezaGen* s, PiezaGen* f);
 	bool trayecto(PiezaGen* s, PiezaGen* f);
+
+	static void cambiarTipo(PiezaGen* pieza, Tipo t);
 
 	bool movHaciaRey(PiezaGen* rey) {
 		for (int i = 0; i < numero; i++) {
@@ -135,45 +139,6 @@ public:
 		if (cont != 0) return true;
 		else return false;
 	}
-
-	//bool movRey1(PiezaGen* p) {
-	//	PiezaGen* auxP = p;
-	//	PiezaGen* auxS = start;
-	//	int aux[2] = { p->getCoordenada().fila,p->getCoordenada().columna };
-	//	int aux1[2] = { start->getCoordenada().fila,start->getCoordenada().columna };
-	//	int contColor = 0;
-	//	int cont = 0;
-	//	int fila= p->getCoordenada().fila;
-	//	int columna= p->getCoordenada().columna;
-	//	for (int i = fila - 1; i <= fila + 1; i++) {
-	//		for (int j = columna - 1; j <= columna + 1; j++) {
-	//			if (p->movimientoLegal(i, j, select_pieza(i, j))) {
-	//				p->setCoordenada(i, j);
-	//				/*fila = p->getCoordenada().fila;
-	//				columna = p->getCoordenada().columna;*/
-	//				for (int k = 0; k < numero; k++) {
-	//					if ((pieza[k]->getTipo() != REY) and (pieza[k]->getColor() == start->getColor())) {
-	//						start = pieza[k];
-	//						contColor++;
-	//						if (not(start->movimientoLegal(fila, columna, p) and comprobarPieza(fila, columna))) {
-	//							cont++;
-	//						}
-	//					}
-	//				}
-	//				if (contColor == cont) {
-	//					p = auxP;
-	//					p->setCoordenada(aux[0], aux[1]);
-	//					start = auxS;
-	//					start->setCoordenada(aux1[0], aux1[1]);
-	//					return true;
-	//				}
-	//			}
-	//		}
-	//	}
-	//	p->setCoordenada(aux[0], aux[1]);
-	//	start->setCoordenada(aux1[0], aux1[1]);
-	//	return false;
-	//}
 
 	bool proteccionRey(PiezaGen* p) {
 		PiezaGen* aux = NULL;

@@ -8,6 +8,8 @@ ListaPiezas::ListaPiezas() {
 		pieza[i] = 0;
 }
 
+int ListaPiezas::cambio = 0;
+
 bool ListaPiezas::agregar(PiezaGen* p) {
 	if (numero < MAX_PIEZAS)
 		pieza[numero++] = p; // último puesto sin rellenar
@@ -195,13 +197,41 @@ void ListaPiezas::destino(int fila, int columna) {
 	for (int i = 0; i < numero; i++) {
 		if ((pieza[i]->getColor() == BLANCO) and (pieza[i]->getCoordenada().fila == 8)) {
 			Interfaz::cambiaEstado("PROMOCION BLANCA");
+			if (cambio == 1) {
+				cambiarTipo(pieza[i], ALFIL);
+			}
+			if (cambio == 2) {
+				cambiarTipo(pieza[i], CABALLO);
+			}
+			if (cambio == 3) {
+				cambiarTipo(pieza[i], REINA);
+			}
+			if (cambio == 4) {
+				cambiarTipo(pieza[i], TORRE);
+			}
 		}
 		if ((pieza[i]->getColor() == NEGRO) and (pieza[i]->getCoordenada().fila == 1)) {
 			Interfaz::cambiaEstado("PROMOCION NEGRA");
+			if (cambio == 1) {
+				cambiarTipo(pieza[i], ALFIL);
+			}
+			if (cambio == 2) {
+				cambiarTipo(pieza[i], CABALLO);
+			}
+			if (cambio == 3) {
+				cambiarTipo(pieza[i], REINA);
+			}
+			if (cambio == 4) {
+				cambiarTipo(pieza[i], TORRE);
+			}
 		}
 	}
 
 	turno_destino = false;
+}
+
+void ListaPiezas::cambiarTipo(PiezaGen* pieza, Tipo t) {
+	pieza->setTipo(t);
 }
 
 PiezaGen* ListaPiezas::select_pieza(int fil, int col) {
@@ -580,40 +610,6 @@ bool ListaPiezas::getTurno(int fila, int columna, bool turno) {
 	std::cout << "Turno incorrecto!" << std::endl;
 	return false;
 }
-
-//bool ListaPiezas::jaque(PiezaGen* rey) {
-//
-//	//for (int i = 1; i <= numero; i++) {
-//	//	if (pieza[i]->getTipo() != REY) {
-//	//		if (pieza[i]->getColor() != rey->getColor()) {
-//
-//	//			/*if (pieza[i]->getTipo() == CABALLO) {
-//	//				if ((pieza[i]->getCoordenada().fila == rey->getCoordenada().fila + 2) and (pieza[i]->getCoordenada().columna == rey->getCoordenada().columna + 1)) {
-//	//					return true;
-//	//				}
-//	//				if ((pieza[i]->getCoordenada().fila == rey->getCoordenada().fila + 2) and (pieza[i]->getCoordenada().columna == rey->getCoordenada().columna - 1)) {
-//	//					return true;
-//	//				}
-//	//				if ((pieza[i]->getCoordenada().fila == rey->getCoordenada().fila - 2) and (pieza[i]->getCoordenada().columna == rey->getCoordenada().columna + 1)) {
-//	//					return true;
-//	//				}
-//	//				if ((pieza[i]->getCoordenada().fila == rey->getCoordenada().fila - 2) and (pieza[i]->getCoordenada().columna == rey->getCoordenada().columna - 1)) {
-//	//					return true;
-//	//				}
-//	//				if ((pieza[i]->getCoordenada().fila == rey->getCoordenada().fila + 1) and (pieza[i]->getCoordenada().columna == rey->getCoordenada().columna + 2)) {
-//	//					return true;
-//	//				}
-//	//				if ((pieza[i]->getCoordenada().fila == rey->getCoordenada().fila + 1) and (pieza[i]->getCoordenada().columna == rey->getCoordenada().columna - 2)) {
-//	//					return true;
-//	//				}
-//	//				if ((pieza[i]->getCoordenada().fila == rey->getCoordenada().fila - 1) and (pieza[i]->getCoordenada().columna == rey->getCoordenada().columna + 2)) {
-//	//					return true;
-//	//				}
-//	//				if ((pieza[i]->getCoordenada().fila == rey->getCoordenada().fila - 1) and (pieza[i]->getCoordenada().columna == rey->getCoordenada().columna - 2)) {
-//	//					return true;
-//	//				}
-//	//return false;
-//}
 
 bool ListaPiezas::jaque(PiezaGen* s, PiezaGen* f) {	//
 	PiezaGen* aux[2] = {};

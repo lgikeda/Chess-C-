@@ -192,6 +192,34 @@ void Interfaz::tecla(unsigned char key)
 		}
 	}
 
+	if ((estado == PROMOCION_B) or (estado == PROMOCION_N))
+	{
+		if (key == '1')								//ALFIL
+		{
+			ListaPiezas::cambio = 1;
+			j = 0;
+			estado = JUEGO;
+		}
+		if (key == '2')								//CABALLO
+		{
+			ListaPiezas::cambio = 2;
+			j = 0;
+			estado = JUEGO;
+		}
+		if (key == '3')								//REINA							
+		{
+			ListaPiezas::cambio = 3;
+			j = 0;
+			estado = JUEGO;
+		}
+		if (key == '4')								//TORRE							
+		{
+			ListaPiezas::cambio = 4;
+			j = 0;
+			estado = JUEGO;
+		}
+	}
+
 	else if (estado == SEL_EJERCITO)
 	{
 		if (key == '1')												//seleccionando 1 se inicia la partida con el ejercito 1
