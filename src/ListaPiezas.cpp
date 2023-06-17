@@ -8,7 +8,7 @@ ListaPiezas::ListaPiezas() {
 		pieza[i] = 0;
 }
 
-int ListaPiezas::cambio = 0;
+//int ListaPiezas::cambio = 0;
 
 bool ListaPiezas::agregar(PiezaGen* p) {
 	if (numero < MAX_PIEZAS)
@@ -143,6 +143,7 @@ void ListaPiezas::inicializa() {
 void ListaPiezas::destino(int fila, int columna) {
 
 	PiezaGen* aux1 = start;
+	Coordenada CoordProm;
 	
 	std::cout << "casilla destino: " << fila << ";" << columna << std::endl;
 	std::cout << turno_destino << std::endl;
@@ -197,41 +198,57 @@ void ListaPiezas::destino(int fila, int columna) {
 	for (int i = 0; i < numero; i++) {
 		if ((pieza[i]->getColor() == BLANCO) and (pieza[i]->getCoordenada().fila == 8)) {
 			Interfaz::cambiaEstado("PROMOCION BLANCA");
-			if (cambio == 1) {
-				cambiarTipo(pieza[i], ALFIL);
+
+			CoordProm.fila = pieza[i]->getCoordenada().fila;
+			CoordProm.columna = pieza[i]->getCoordenada().columna;
+
+			eliminar(pieza[i]);
+
+			if (Interfaz::cambio == 1) {
+				PiezaGen* aux = new Alfil(BLANCO, CoordProm);
+				turno = not turno;
 			}
-			if (cambio == 2) {
-				cambiarTipo(pieza[i], CABALLO);
+			if (Interfaz::cambio == 2) {
+				PiezaGen* aux = new Caballo(BLANCO, CoordProm);
+				turno = not turno;
 			}
-			if (cambio == 3) {
-				cambiarTipo(pieza[i], REINA);
+			if (Interfaz::cambio == 3) {
+				PiezaGen* aux = new Reina(BLANCO, CoordProm);
+				turno = not turno;
 			}
-			if (cambio == 4) {
-				cambiarTipo(pieza[i], TORRE);
+			if (Interfaz::cambio == 4) {
+				PiezaGen* aux = new Torre(BLANCO, CoordProm);
+				turno = not turno;
 			}
 		}
 		if ((pieza[i]->getColor() == NEGRO) and (pieza[i]->getCoordenada().fila == 1)) {
 			Interfaz::cambiaEstado("PROMOCION NEGRA");
-			if (cambio == 1) {
-				cambiarTipo(pieza[i], ALFIL);
+
+			CoordProm.fila = pieza[i]->getCoordenada().fila;
+			CoordProm.columna = pieza[i]->getCoordenada().columna;
+
+			eliminar(pieza[i]);
+
+			if (Interfaz::cambio == 1) {
+				PiezaGen* aux = new Alfil(NEGRO, CoordProm);
+				turno = not turno;
 			}
-			if (cambio == 2) {
-				cambiarTipo(pieza[i], CABALLO);
+			if (Interfaz::cambio == 2) {
+				PiezaGen* aux = new Caballo(NEGRO, CoordProm);
+				turno = not turno;
 			}
-			if (cambio == 3) {
-				cambiarTipo(pieza[i], REINA);
+			if (Interfaz::cambio == 3) {
+				PiezaGen* aux = new Reina(NEGRO, CoordProm);
+				turno = not turno;
 			}
-			if (cambio == 4) {
-				cambiarTipo(pieza[i], TORRE);
+			if (Interfaz::cambio == 4) {
+				PiezaGen* aux = new Torre(NEGRO, CoordProm);
+				turno = not turno;
 			}
 		}
 	}
 
 	turno_destino = false;
-}
-
-void ListaPiezas::cambiarTipo(PiezaGen* pieza, Tipo t) {
-	pieza->setTipo(t);
 }
 
 PiezaGen* ListaPiezas::select_pieza(int fil, int col) {

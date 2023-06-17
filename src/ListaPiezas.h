@@ -23,7 +23,7 @@ private:
 
 public:
 
-	static int cambio;
+	//static int cambio;
 
 	PiezaGen* final = NULL;
 	PiezaGen* start = NULL;
@@ -48,8 +48,6 @@ public:
 	bool getTurno(int fila, int columna, bool turno);
 	bool jaque(PiezaGen* s, PiezaGen* f);
 	bool trayecto(PiezaGen* s, PiezaGen* f);
-
-	static void cambiarTipo(PiezaGen* pieza, Tipo t);
 
 	bool movHaciaRey(PiezaGen* rey) {
 		for (int i = 0; i < numero; i++) {

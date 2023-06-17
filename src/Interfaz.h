@@ -9,6 +9,9 @@ class Interfaz
 {
 	friend class ListaPiezas;
 public:
+
+	static int cambio;
+
 	Interfaz();
 	virtual ~Interfaz();
 

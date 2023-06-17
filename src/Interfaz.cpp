@@ -12,6 +12,7 @@ Interfaz::~Interfaz()
 {
 }
 
+int Interfaz::cambio = 0;
 int Interfaz::j = 0;
 
 void Interfaz::dibuja()
@@ -196,27 +197,27 @@ void Interfaz::tecla(unsigned char key)
 	{
 		if (key == '1')								//ALFIL
 		{
-			ListaPiezas::cambio = 1;
-			j = 0;
 			estado = JUEGO;
+			cambio = 1;
+			j = 0;
 		}
 		if (key == '2')								//CABALLO
 		{
-			ListaPiezas::cambio = 2;
-			j = 0;
 			estado = JUEGO;
+			cambio = 2;
+			j = 0;
 		}
 		if (key == '3')								//REINA							
 		{
-			ListaPiezas::cambio = 3;
-			j = 0;
 			estado = JUEGO;
+			cambio = 3;
+			j = 0;
 		}
 		if (key == '4')								//TORRE							
 		{
-			ListaPiezas::cambio = 4;
-			j = 0;
 			estado = JUEGO;
+			cambio = 4;
+			j = 0;
 		}
 	}
 
@@ -244,9 +245,7 @@ void Interfaz::tecla(unsigned char key)
 		}
 		if (key == 's' || key == 'S')
 			exit(0);
-
 	}
-
 }
 
 void Interfaz::raton(int button, int state, int x, int y)
