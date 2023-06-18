@@ -10,7 +10,7 @@ class Interfaz
 	friend class ListaPiezas;
 public:
 
-	static int cambio;
+	int tipoPromocion;
 
 	Interfaz();
 	virtual ~Interfaz();

@@ -8,14 +8,16 @@ ListaPiezas::ListaPiezas() {
 		pieza[i] = 0;
 }
 
-//int ListaPiezas::cambio = 0;
-
 bool ListaPiezas::agregar(PiezaGen* p) {
 	if (numero < MAX_PIEZAS)
 		pieza[numero++] = p; // último puesto sin rellenar
 	else
 		return false; // capacidad máxima alcanzada
 	return true;
+}
+
+void ListaPiezas::setTipoPromocion(int tipo) {
+	this->tipoPromocion = tipo;
 }
 
 void ListaPiezas::inicializa() {
@@ -204,19 +206,19 @@ void ListaPiezas::destino(int fila, int columna) {
 
 			eliminar(pieza[i]);
 
-			if (Interfaz::cambio == 1) {
+			if (tipoPromocion == 1) {
 				PiezaGen* aux = new Alfil(BLANCO, CoordProm);
 				turno = not turno;
 			}
-			if (Interfaz::cambio == 2) {
+			if (tipoPromocion == 2) {
 				PiezaGen* aux = new Caballo(BLANCO, CoordProm);
 				turno = not turno;
 			}
-			if (Interfaz::cambio == 3) {
+			if (tipoPromocion == 3) {
 				PiezaGen* aux = new Reina(BLANCO, CoordProm);
 				turno = not turno;
 			}
-			if (Interfaz::cambio == 4) {
+			if (tipoPromocion == 4) {
 				PiezaGen* aux = new Torre(BLANCO, CoordProm);
 				turno = not turno;
 			}
@@ -229,19 +231,19 @@ void ListaPiezas::destino(int fila, int columna) {
 
 			eliminar(pieza[i]);
 
-			if (Interfaz::cambio == 1) {
+			if (tipoPromocion == 1) {
 				PiezaGen* aux = new Alfil(NEGRO, CoordProm);
 				turno = not turno;
 			}
-			if (Interfaz::cambio == 2) {
+			if (tipoPromocion == 2) {
 				PiezaGen* aux = new Caballo(NEGRO, CoordProm);
 				turno = not turno;
 			}
-			if (Interfaz::cambio == 3) {
+			if (tipoPromocion == 3) {
 				PiezaGen* aux = new Reina(NEGRO, CoordProm);
 				turno = not turno;
 			}
-			if (Interfaz::cambio == 4) {
+			if (tipoPromocion == 4) {
 				PiezaGen* aux = new Torre(NEGRO, CoordProm);
 				turno = not turno;
 			}

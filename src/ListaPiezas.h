@@ -16,6 +16,7 @@ class ListaPiezas
 private:
 	PiezaGen* pieza[MAX_PIEZAS];
 	int numero;
+	int tipoPromocion;
 
 	bool e_jaque = false; // estado de jaque
 	bool turno = true; // true -> BLANCAS : false -> NEGRAS
@@ -48,6 +49,7 @@ public:
 	bool getTurno(int fila, int columna, bool turno);
 	bool jaque(PiezaGen* s, PiezaGen* f);
 	bool trayecto(PiezaGen* s, PiezaGen* f);
+	void setTipoPromocion(int tipo);
 
 	bool movHaciaRey(PiezaGen* rey) {
 		for (int i = 0; i < numero; i++) {

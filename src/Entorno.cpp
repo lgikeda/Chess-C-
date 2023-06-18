@@ -1,6 +1,8 @@
 #include "entorno.h"
-#include "freeglut.h"
-#include <iostream>
+
+Entorno::Entorno() {
+
+}
 
 void Entorno::inicial() {
     piezas.inicializa();
@@ -8,8 +10,12 @@ void Entorno::inicial() {
 
 void Entorno::dibuja() {
     tablero.dibujarTablero();
+    piezas.setTipoPromocion(tipoPromo);
     piezas.dibuja();
+}
 
+void Entorno::getTipoPromocion(int _tipoPromocion) {
+    tipoPromo = _tipoPromocion;
 }
 
 void Entorno::raton(int button, int state, int x, int y) {
@@ -67,4 +73,8 @@ void Entorno::raton(int button, int state, int x, int y) {
 
         piezas.destino(coord.to_filaColumna(casilla_x, casilla_y).first, coord.to_filaColumna(casilla_x, casilla_y).second);
     }
+}
+
+Entorno::~Entorno(){
+
 }
