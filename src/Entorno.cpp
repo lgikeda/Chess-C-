@@ -10,12 +10,12 @@ void Entorno::inicial() {
 
 void Entorno::dibuja() {
     tablero.dibujarTablero();
-    piezas.setTipoPromocion(tipoPromo);
+   
     piezas.dibuja();
 }
 
 void Entorno::getTipoPromocion(int _tipoPromocion) {
-    tipoPromo = _tipoPromocion;
+    piezas.setTipoPromocion(_tipoPromocion);
 }
 
 void Entorno::raton(int button, int state, int x, int y) {

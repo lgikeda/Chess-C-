@@ -194,34 +194,34 @@ void Interfaz::tecla(unsigned char key)
 
 	if ((estado == PROMOCION_B) or (estado == PROMOCION_N))
 	{
-		if (key == '1')								//ALFIL
-		{
-			estado = JUEGO;
-			tipoPromocion = 1;
-			j = 0;
-			entorno.getTipoPromocion(tipoPromocion);
-		}
-		if (key == '2')								//CABALLO
-		{
-			estado = JUEGO;
-			tipoPromocion = 2;
-			j = 0;
-			entorno.getTipoPromocion(tipoPromocion);
-		}
-		if (key == '3')								//REINA							
-		{
-			estado = JUEGO;
-			tipoPromocion = 3;
-			j = 0;
-			entorno.getTipoPromocion(tipoPromocion);
-		}
-		if (key == '4')								//TORRE							
-		{
-			estado = JUEGO;
-			tipoPromocion = 4;
-			j = 0;
-			entorno.getTipoPromocion(tipoPromocion);
-		}
+			if (key == '1')								//ALFIL
+			{
+				estado = JUEGO;
+				tipoPromocion = 1;
+				j = 0;
+				entorno.getTipoPromocion(tipoPromocion);
+			}
+			if (key == '2')								//CABALLO
+			{
+				estado = JUEGO;
+				tipoPromocion = 2;
+				j = 0;
+				entorno.getTipoPromocion(tipoPromocion);
+			}
+			if (key == '3')								//REINA							
+			{
+				estado = JUEGO;
+				tipoPromocion = 3;
+				j = 0;
+				entorno.getTipoPromocion(tipoPromocion);
+			}
+			if (key == '4')								//TORRE							
+			{
+				estado = JUEGO;
+				tipoPromocion = 4;
+				j = 0;
+				entorno.getTipoPromocion(tipoPromocion);
+			}
 	}
 
 	else if (estado == SEL_EJERCITO)

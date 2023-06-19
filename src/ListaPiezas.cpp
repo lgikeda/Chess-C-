@@ -144,8 +144,10 @@ void ListaPiezas::inicializa() {
 
 void ListaPiezas::destino(int fila, int columna) {
 
+	int piezaEliminada = 0;
+	
+
 	PiezaGen* aux1 = start;
-	Coordenada CoordProm;
 	
 	std::cout << "casilla destino: " << fila << ";" << columna << std::endl;
 	std::cout << turno_destino << std::endl;
@@ -198,30 +200,17 @@ void ListaPiezas::destino(int fila, int columna) {
 	}
 
 	for (int i = 0; i < numero; i++) {
-		if ((pieza[i]->getColor() == BLANCO) and (pieza[i]->getCoordenada().fila == 8)) {
+		if ((pieza[i]->getTipo() == PEON) and (pieza[i]->getColor() == BLANCO) and (pieza[i]->getCoordenada().fila == 8) and (tipoPromocion == 0)) {
+			
 			Interfaz::cambiaEstado("PROMOCION BLANCA");
 
+			
 			CoordProm.fila = pieza[i]->getCoordenada().fila;
 			CoordProm.columna = pieza[i]->getCoordenada().columna;
 
-			eliminar(pieza[i]);
-
-			if (tipoPromocion == 1) {
-				PiezaGen* aux = new Alfil(BLANCO, CoordProm);
-				turno = not turno;
-			}
-			if (tipoPromocion == 2) {
-				PiezaGen* aux = new Caballo(BLANCO, CoordProm);
-				turno = not turno;
-			}
-			if (tipoPromocion == 3) {
-				PiezaGen* aux = new Reina(BLANCO, CoordProm);
-				turno = not turno;
-			}
-			if (tipoPromocion == 4) {
-				PiezaGen* aux = new Torre(BLANCO, CoordProm);
-				turno = not turno;
-			}
+			piezaEliminada = i;
+			condicionPromocion = true;
+			break;
 		}
 		if ((pieza[i]->getColor() == NEGRO) and (pieza[i]->getCoordenada().fila == 1)) {
 			Interfaz::cambiaEstado("PROMOCION NEGRA");
@@ -229,27 +218,62 @@ void ListaPiezas::destino(int fila, int columna) {
 			CoordProm.fila = pieza[i]->getCoordenada().fila;
 			CoordProm.columna = pieza[i]->getCoordenada().columna;
 
-			eliminar(pieza[i]);
-
-			if (tipoPromocion == 1) {
-				PiezaGen* aux = new Alfil(NEGRO, CoordProm);
-				turno = not turno;
-			}
-			if (tipoPromocion == 2) {
-				PiezaGen* aux = new Caballo(NEGRO, CoordProm);
-				turno = not turno;
-			}
-			if (tipoPromocion == 3) {
-				PiezaGen* aux = new Reina(NEGRO, CoordProm);
-				turno = not turno;
-			}
-			if (tipoPromocion == 4) {
-				PiezaGen* aux = new Torre(NEGRO, CoordProm);
-				turno = not turno;
-			}
+			piezaEliminada = i;
+			break;
 		}
 	}
+	
 
+	if (tipoPromocion != 0) {
+		
+		eliminar(pieza[piezaEliminada]);
+		
+		if (tipoPromocion == 1) {
+			pieza[piezaEliminada] = new Alfil(BLANCO, CoordProm);
+			//turno = not turno;
+		}
+		if (tipoPromocion == 2) {
+			pieza[piezaEliminada] = new Caballo(BLANCO, CoordProm);
+			//turno = not turno;
+		}
+		if (tipoPromocion == 3) {
+			pieza[piezaEliminada] = new Reina(BLANCO, CoordProm);
+			//turno = not turno;
+		}
+		if (tipoPromocion == 4) {
+			pieza[piezaEliminada] = new Torre(BLANCO, CoordProm);
+			//turno = not turno;
+		}
+		pieza[piezaEliminada]->dibuja();
+		tipoPromocion = 0;
+	}
+
+	if ((pieza[piezaEliminada]->getColor() == NEGRO) and (pieza[piezaEliminada]->getCoordenada().fila == 8)) {
+		
+		eliminar(pieza[piezaEliminada]);
+		
+		if (tipoPromocion == 1) {
+			//eliminar(pieza[piezaEliminada]);
+			PiezaGen* aux = new Alfil(NEGRO, CoordProm);
+			turno = not turno;
+		}
+		if (tipoPromocion == 2) {
+			//eliminar(pieza[piezaEliminada]);
+			PiezaGen* aux = new Caballo(NEGRO, CoordProm);
+			turno = not turno;
+		}
+		if (tipoPromocion == 3) {
+			//eliminar(pieza[piezaEliminada]);
+			PiezaGen* aux = new Reina(NEGRO, CoordProm);
+			turno = not turno;
+		}
+		if (tipoPromocion == 4) {
+			//eliminar(pieza[piezaEliminada]);
+			PiezaGen* aux = new Torre(NEGRO, CoordProm);
+			turno = not turno;
+		}
+	}
+	
 	turno_destino = false;
 }
 
@@ -391,14 +415,14 @@ bool ListaPiezas::comprobarRey(int fila, int columna)
 	inicio.columna = start->getCoordenada().getColumna();
 	int index = -1;
 
-	//Buscamos al rey enemigo
-	for (int i = 0; i < numero; i++) {
-		if ((pieza[i]->getTipo() == REY) && (pieza[i]->getColor() != start->getColor())) {
-			index = i;
-		}
-	}
-	//Guardamos su coordenada
-	Coordenada reyEnemigo = pieza[index]->getCoordenada();
+	////Buscamos al rey enemigo
+	//for (int i = 0; i < numero; i++) {
+	//	if ((pieza[i]->getTipo() == REY) && (pieza[i]->getColor() != start->getColor())) {
+	//		index = i;
+	//	}
+	//}
+	////Guardamos su coordenada
+	//Coordenada reyEnemigo = pieza[index]->getCoordenada();
 
 	//Comprobamos si hay una colision
 	if (mirarCasilla(start, fila, columna) and (start->getColor() == final->getColor())) {
@@ -406,18 +430,18 @@ bool ListaPiezas::comprobarRey(int fila, int columna)
 		//if (buscarPieza(fila, columna)->getColor() != pieza->getColor()) return true;
 		return false;
 	}
-	else {
-		//Miramos las casillas del rey enemigo una a una
-		for (int i = reyEnemigo.getFila() + 1; i >= reyEnemigo.getFila() - 1; i--) {
-			for (int j = reyEnemigo.getColumna() - 1; j <= reyEnemigo.getColumna() + 1; j++) {
-				Coordenada aux;
-				aux.fila = i;
-				aux.columna = j;
-				//Si alguna casilla del movimiento del rey enemigo coincide con una del rey que llama a la funcion se ilegaliza el movimiento
-				if (destino == aux) return false;
-			}
-		}
-	}
+	//else {
+	//	//Miramos las casillas del rey enemigo una a una
+	//	for (int i = reyEnemigo.getFila() + 1; i >= reyEnemigo.getFila() - 1; i--) {
+	//		for (int j = reyEnemigo.getColumna() - 1; j <= reyEnemigo.getColumna() + 1; j++) {
+	//			Coordenada aux;
+	//			aux.fila = i;
+	//			aux.columna = j;
+	//			//Si alguna casilla del movimiento del rey enemigo coincide con una del rey que llama a la funcion se ilegaliza el movimiento
+	//			if (destino == aux) return false;
+	//		}
+	//	}
+	//}
 }
 
 bool ListaPiezas::comprobarReina(int fila, int columna)

@@ -2,6 +2,9 @@
 #include "Interfaz.h"
 #include <math.h>
 
+
+
+
 //los callback, funciones que seran llamadas automaticamente por la glut
 //cuando sucedan eventos
 //NO HACE FALTA LLAMARLAS EXPLICITAMENTE
@@ -16,6 +19,7 @@ Interfaz interfaz;
 
 int main(int argc, char* argv[])
 {
+
 	//inicialización de los datos de la simulación
 
 	//Inicializar el gestor de ventanas GLUT
