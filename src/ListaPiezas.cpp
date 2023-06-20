@@ -145,6 +145,7 @@ void ListaPiezas::inicializa() {
 void ListaPiezas::destino(int fila, int columna) {
 	
 	PiezaGen* aux1 = start;
+	Color colorPiezaEliminada;
 	
 	std::cout << "casilla destino: " << fila << ";" << columna << std::endl;
 	std::cout << turno_destino << std::endl;
@@ -201,7 +202,6 @@ void ListaPiezas::destino(int fila, int columna) {
 			
 			Interfaz::cambiaEstado("PROMOCION BLANCA");
 
-			
 			CoordProm.fila = pieza[i]->getCoordenada().fila;
 			CoordProm.columna = pieza[i]->getCoordenada().columna;
 
@@ -209,13 +209,14 @@ void ListaPiezas::destino(int fila, int columna) {
 			condicionPromocion = true;
 			break;
 		}
-		else if ((pieza[i]->getColor() == NEGRO) and (pieza[i]->getCoordenada().fila == 1)) {
+		else if ((pieza[i]->getTipo() == PEON) and (pieza[i]->getColor() == NEGRO) and (pieza[i]->getCoordenada().fila == 1) and (tipoPromocion == 0)) {
 			Interfaz::cambiaEstado("PROMOCION NEGRA");
 
 			CoordProm.fila = pieza[i]->getCoordenada().fila;
 			CoordProm.columna = pieza[i]->getCoordenada().columna;
 
 			piezaEliminada = i;
+			condicionPromocion = true;
 			break;
 		}
 	}
@@ -225,15 +226,17 @@ void ListaPiezas::destino(int fila, int columna) {
 		bool permiso = true;		//Comprueba si han comido a la pieza que se esta promocionando
 
 		for (int i = 0; i < numero; i++) {
-			if ((pieza[i]->getCoordenada().fila != CoordProm.fila) and (pieza[i]->getCoordenada().columna != CoordProm.columna)) {
+			if ((pieza[i]->getTipo() != PEON) and (pieza[i]->getCoordenada().fila == CoordProm.fila) and (pieza[i]->getCoordenada().columna == CoordProm.columna)) {
 				permiso = false;
 			}
 		}
 		if (permiso == true) {
 
+			colorPiezaEliminada = pieza[piezaEliminada]->getColor();
+
 			eliminar(pieza[piezaEliminada]);		//Elimina la pieza que ha llegado a la fila de promocion para poder generar otra del tipo seleccionado
 
-			if (pieza[piezaEliminada]->getColor() == BLANCO) {
+			if (colorPiezaEliminada == BLANCO) {
 
 				if (tipoPromocion == 1) {
 					pieza[piezaEliminada] = new Alfil(BLANCO, CoordProm);
@@ -249,7 +252,7 @@ void ListaPiezas::destino(int fila, int columna) {
 				}
 			}
 
-			else if (pieza[piezaEliminada]->getColor() == NEGRO) {
+			else if (colorPiezaEliminada == NEGRO) {
 
 				if (tipoPromocion == 1) {
 					pieza[piezaEliminada] = new Alfil(NEGRO, CoordProm);
