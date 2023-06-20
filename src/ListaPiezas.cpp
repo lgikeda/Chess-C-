@@ -144,7 +144,6 @@ void ListaPiezas::inicializa() {
 
 void ListaPiezas::destino(int fila, int columna) {
 	
-
 	PiezaGen* aux1 = start;
 	
 	std::cout << "casilla destino: " << fila << ";" << columna << std::endl;
@@ -210,7 +209,7 @@ void ListaPiezas::destino(int fila, int columna) {
 			condicionPromocion = true;
 			break;
 		}
-		if ((pieza[i]->getColor() == NEGRO) and (pieza[i]->getCoordenada().fila == 1)) {
+		else if ((pieza[i]->getColor() == NEGRO) and (pieza[i]->getCoordenada().fila == 1)) {
 			Interfaz::cambiaEstado("PROMOCION NEGRA");
 
 			CoordProm.fila = pieza[i]->getCoordenada().fila;
@@ -220,56 +219,55 @@ void ListaPiezas::destino(int fila, int columna) {
 			break;
 		}
 	}
-	
 
 	if (tipoPromocion != 0) {
+
+		bool permiso = true;		//Comprueba si han comido a la pieza que se esta promocionando
+
+		for (int i = 0; i < numero; i++) {
+			if ((pieza[i]->getCoordenada().fila != CoordProm.fila) and (pieza[i]->getCoordenada().columna != CoordProm.columna)) {
+				permiso = false;
+			}
+		}
+		if (permiso == true) {
+
+			eliminar(pieza[piezaEliminada]);		//Elimina la pieza que ha llegado a la fila de promocion para poder generar otra del tipo seleccionado
+
+			if (pieza[piezaEliminada]->getColor() == BLANCO) {
+
+				if (tipoPromocion == 1) {
+					pieza[piezaEliminada] = new Alfil(BLANCO, CoordProm);
+				}
+				else if (tipoPromocion == 2) {
+					pieza[piezaEliminada] = new Caballo(BLANCO, CoordProm);
+				}
+				else if (tipoPromocion == 3) {
+					pieza[piezaEliminada] = new Reina(BLANCO, CoordProm);
+				}
+				else if (tipoPromocion == 4) {
+					pieza[piezaEliminada] = new Torre(BLANCO, CoordProm);
+				}
+			}
+
+			else if (pieza[piezaEliminada]->getColor() == NEGRO) {
+
+				if (tipoPromocion == 1) {
+					pieza[piezaEliminada] = new Alfil(NEGRO, CoordProm);
+				}
+				else if (tipoPromocion == 2) {
+					pieza[piezaEliminada] = new Caballo(NEGRO, CoordProm);
+				}
+				else if (tipoPromocion == 3) {
+					pieza[piezaEliminada] = new Reina(NEGRO, CoordProm);
+				}
+				else if (tipoPromocion == 4) {
+					pieza[piezaEliminada] = new Torre(NEGRO, CoordProm);
+				}
+			}
+		}
 		
-		eliminar(pieza[piezaEliminada]);
-		
-		if (tipoPromocion == 1) {
-			pieza[piezaEliminada] = new Alfil(BLANCO, CoordProm);
-			//turno = not turno;
-		}
-		if (tipoPromocion == 2) {
-			pieza[piezaEliminada] = new Caballo(BLANCO, CoordProm);
-			//turno = not turno;
-		}
-		if (tipoPromocion == 3) {
-			pieza[piezaEliminada] = new Reina(BLANCO, CoordProm);
-			//turno = not turno;
-		}
-		if (tipoPromocion == 4) {
-			pieza[piezaEliminada] = new Torre(BLANCO, CoordProm);
-			//turno = not turno;
-		}
 		pieza[piezaEliminada]->dibuja();
 		tipoPromocion = 0;
-	}
-
-	if ((pieza[piezaEliminada]->getColor() == NEGRO) and (pieza[piezaEliminada]->getCoordenada().fila == 8)) {
-		
-		eliminar(pieza[piezaEliminada]);
-		
-		if (tipoPromocion == 1) {
-			//eliminar(pieza[piezaEliminada]);
-			PiezaGen* aux = new Alfil(NEGRO, CoordProm);
-			turno = not turno;
-		}
-		if (tipoPromocion == 2) {
-			//eliminar(pieza[piezaEliminada]);
-			PiezaGen* aux = new Caballo(NEGRO, CoordProm);
-			turno = not turno;
-		}
-		if (tipoPromocion == 3) {
-			//eliminar(pieza[piezaEliminada]);
-			PiezaGen* aux = new Reina(NEGRO, CoordProm);
-			turno = not turno;
-		}
-		if (tipoPromocion == 4) {
-			//eliminar(pieza[piezaEliminada]);
-			PiezaGen* aux = new Torre(NEGRO, CoordProm);
-			turno = not turno;
-		}
 	}
 	
 	turno_destino = false;
