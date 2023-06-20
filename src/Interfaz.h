@@ -35,7 +35,7 @@ public:
 
 protected:
 	Entorno entorno;
-	enum Estado { INICIO, SEL_EJERCITO, JUEGO, PROMOCION_B, PROMOCION_N,FIN, JAQUE };
+	enum Estado { INICIO, SEL_EJERCITO, JUEGO, PROMOCION_B, PROMOCION_N,AJUSTES, FIN, JAQUE };
 	Estado estado;
 	static int j;
 };

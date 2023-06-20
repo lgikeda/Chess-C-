@@ -103,6 +103,28 @@ void Interfaz::dibuja()
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
+	else if (estado == AJUSTES)
+	{
+		//redefimos el punto de vista para el dibujo de los menus
+		glLoadIdentity();
+		gluLookAt(0, 0, 33, // posicion del ojo									//z me aleja de la imagen, he centrado la imagen en 0,0 
+			0, 0, 0, // hacia que punto mira (0,0,0)
+			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
+		glEnable(GL_TEXTURE_2D);
+		//glColor3f(1, 1, 1);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuAjustesAudio.png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glTexCoord2d(0, 1); glVertex2f(-13.7f, -12);
+		glTexCoord2d(1, 1); glVertex2f(13.7f, -12);
+		glTexCoord2d(1, 0); glVertex2f(13.7f, 12);
+		glTexCoord2d(0, 0); glVertex2f(-13.7f, 12);
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+
 	else if (estado == SEL_EJERCITO)
 	{
 
@@ -192,6 +214,14 @@ void Interfaz::tecla(unsigned char key)
 		{
 			estado = SEL_EJERCITO;
 		}
+	}
+
+	if (estado == JUEGO) {
+
+		if (key == 27) {
+			estado = AJUSTES;
+		}
+
 	}
 
 	if ((estado == PROMOCION_B) or (estado == PROMOCION_N))
