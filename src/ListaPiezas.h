@@ -18,6 +18,7 @@ private:
 	PiezaGen* pieza[MAX_PIEZAS];
 	int numero;
 	int tipoPromocion = 0;
+	int piezaEliminada = 0;
 	bool condicionPromocion = false;	//Esta variable hace que solo salte una vez el menu de promocion de piezas
 
 	bool e_jaque = false; // estado de jaque
