@@ -143,8 +143,6 @@ void ListaPiezas::inicializa() {
 }
 
 void ListaPiezas::destino(int fila, int columna) {
-
-	int piezaEliminada = 0;
 	
 
 	PiezaGen* aux1 = start;
