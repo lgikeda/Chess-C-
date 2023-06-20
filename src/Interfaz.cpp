@@ -38,6 +38,8 @@ void Interfaz::dibuja()
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, 0);
+
+
 	
 
 	}

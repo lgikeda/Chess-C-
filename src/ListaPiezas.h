@@ -54,24 +54,6 @@ public:
 	bool trayecto(PiezaGen* s, PiezaGen* f);
 	void setTipoPromocion(int tipo);
 
-	bool movHaciaRey(PiezaGen* rey) {
-		for (int i = 0; i < numero; i++) {
-			if ((pieza[i]->getTipo() != REY) and (pieza[i]->getColor() != rey->getColor())) {
-				start = pieza[i];
-				//Comprobacion de movimiento de cada pieza hacia el rey y comprobacion de obtaculo en su movimiento
-				if (pieza[i]->movimientoLegal(rey->getCoordenada().fila, rey->getCoordenada().columna, rey) and comprobarPieza(rey->getCoordenada().fila, rey->getCoordenada().columna)) {
-					std::cout << "Permiso al jaque." << std::endl;
-					if (final != NULL) {
-						//Comprobacion de igualdad entre la pieza que realiza el jaque y la pieza de la posicion final
-						if (pieza[i] == final) return false;
-						else return true;
-					}
-					else return true;
-				}
-			}
-		}
-	}
-
 	bool permisoAlJaque(PiezaGen* s) {
 		PiezaGen* rey = NULL;	//rey amigo
 		PiezaGen* siguientePosicion = NULL;
@@ -80,7 +62,6 @@ public:
 				rey = pieza[i];
 			}
 		}
-		//if (movHaciaRey(rey)) return true;
 		for (int i = 0; i < numero; i++) {
 			if ((pieza[i]->getTipo() != REY) and (pieza[i]->getColor() != rey->getColor())) {
 				start = pieza[i];
@@ -101,49 +82,69 @@ public:
 
 	bool jaqueMate() {
 		PiezaGen* aux = NULL;
+		Coordenada rey;
+		PiezaGen* ini = NULL;
+		int r = 0;
+		ini = start;
 		for (int i = 0; i < numero; i++) {
-			if ((pieza[i]->getTipo() == REY) and (pieza[i]->getColor() != start->getColor())){
+			if ((pieza[i]->getTipo() == REY) and (pieza[i]->getColor() != start->getColor())) {
 				aux = pieza[i];
+				r = i;
 			}
 		}
-		if ((not movRey(aux)) and (not proteccionRey(aux))) {
+		rey.fila=aux->getCoordenada().fila;
+		rey.columna=aux->getCoordenada().columna;
+
+		if ((not movRey(aux)) /* and (not proteccionRey(aux))*/) {
+			pieza[r]->setCoordenada(rey.fila,rey.columna);
+			start = ini;
 			return true;
 		}
-		else return false;
+		else {
+			pieza[r]->setCoordenada(rey.fila, rey.columna);
+			start = ini;
+			return false;
+		}
 	}
 
-	bool movRey(PiezaGen* p) {
-		PiezaGen* aux = start;
+	bool movRey(PiezaGen* pr) {
+		PiezaGen* p = pr;
 		int cont = 0;
-		int posibilidad = 0;
 		int fila = p->getCoordenada().fila;
 		int columna = p->getCoordenada().columna;
 		for (int i = fila - 1; i <= fila + 1; i++) {
 			for (int j = columna - 1; j <= columna + 1; j++) {
-				//COMPROBACION DE PERMANECER DENTRO DEL TABLERO
-				if ((j>0)and(j < 9) and (i < 0) and (i < 9)) {
-					//iteracion de recorrido de cada pieza
+				//COMPROBACION DE PERMANECER DENTRO DEL TABLERO Y CASILLA VACIA
+				if ((j > 0) and (j < 9) and (i > 0) and (i < 9) and (select_pieza(i, j) == NULL)) {
+					p->setCoordenada(i,j);
+					//ITERACION DE RECORRIDO PARA CADA PIEZA HACIA LA NUEVA POSICION DEL REY
 					for (int k = 0; k < numero; k++) {
 						if ((pieza[k]->getColor() != p->getColor()) and pieza[k]->getTipo() != REY) {
 							start = pieza[k];
-							if ((pieza[k]->movimientoLegal(i, j, select_pieza(i, j))) and comprobarPieza(i, j)) {
+							if ((pieza[k]->movimientoLegal(i, j, p)) and comprobarPieza(i, j)) {
 								cont = 0;
 								break;
 							}
 							else cont++;
-
-							start = aux;
 						}
 					}
 					if (cont != 0) return true;
 				}
 			}
 		}
-		if (cont != 0) return true;
-		else return false;
+		return false;
 	}
 
-	bool proteccionRey(PiezaGen* p) {
+	//bool proteccionRey(PiezaGen* p) {
+	//
+	//	for (auto& elemento : pieza) {
+	//	
+	//		
+	//	}
+	//}
+
+
+	bool proteccionRey1(PiezaGen* p) {
 		PiezaGen* aux = NULL;
 		PiezaGen* aux1 = NULL;
 		for (auto& elemento : pieza) {
@@ -163,6 +164,7 @@ public:
 									}
 									else {
 										//retorna true cuando hay una posible jugada para obstaculizar el jaque
+										std::cout << "POSIBLE PROTECCION!" << std::endl;
 										elemento = aux;
 										return true;
 									}
@@ -181,6 +183,7 @@ public:
 
 									}
 									else {
+										std::cout << "POSIBLE PROTECCION!" << std::endl;
 										elemento = aux;
 										return true;
 									}
@@ -203,6 +206,7 @@ public:
 
 									}
 									else {
+										std::cout << "POSIBLE PROTECCION!" << std::endl;
 										elemento = aux;
 										return true;
 									}
@@ -221,6 +225,7 @@ public:
 
 									}
 									else {
+										std::cout << "POSIBLE PROTECCION!" << std::endl;
 										elemento = aux;
 										return true;
 									}
