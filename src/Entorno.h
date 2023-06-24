@@ -21,4 +21,5 @@ public:
 	void dibuja();
 	void raton(int button, int state, int x, int y);
 	void getTipoPromocion(int tipo);
+	void setSeleccionAjedrez(int seleccion);
 };

@@ -18,16 +18,39 @@ Alfil::Alfil(Color color, Coordenada coord)
 //}
 
 void Alfil::dibuja() {
-	if (getColor() == NEGRO) {
-		spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
-		spriteN.setSize(10, 10);
-		spriteN.draw();
+	if (tipoAjedrez != 1) {
+		Sprite spriteN{ "bin/imagenes/alfilNegro.png" };
+		Sprite spriteB{ "bin/imagenes/alfilBlanco.png" };
+
+		if (getColor() == NEGRO) {
+			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteN.setSize(10, 10);
+			spriteN.draw();
+		}
+
+		if (getColor() == BLANCO) {
+			spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteB.setSize(10, 10);
+			spriteB.draw();
+		}
 	}
 
-	if (getColor() == BLANCO) {
-		spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
-		spriteB.setSize(10, 10);
-		spriteB.draw();
+	if (tipoAjedrez == 1) {
+
+		Sprite spriteN{ "bin/imagenes/nazgul.png" };
+		Sprite spriteB{ "bin/imagenes/legolas.png" };
+
+		if (getColor() == NEGRO) {
+			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteN.setSize(10, 10);
+			spriteN.draw();
+		}
+
+		if (getColor() == BLANCO) {
+			spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteB.setSize(10, 10);
+			spriteB.draw();
+		}
 	}
 }
 

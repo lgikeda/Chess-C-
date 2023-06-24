@@ -49,7 +49,11 @@ bool PiezaGen::getMovimiento() {
 	return first_move;
 }
 
+void PiezaGen::setTipoAjedrez(int tipo) {
+	tipoAjedrez = tipo;
+}
+
 PiezaGen::~PiezaGen()
 {
-
+	
 }

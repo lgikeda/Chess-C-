@@ -47,7 +47,9 @@ int main(int argc, char* argv[])
 	//tablero1.inicializa();
 	//entorno1.inicial();
 	//pasarle el control a FREEGLUT,que llamara a los callbacks
+	
 	glutMainLoop();
+	
 
 	return 0;
 }
@@ -89,5 +91,5 @@ void raton_callback(int button, int state, int x, int y) {
 
 void OnTimer(int value)
 {
-
+	
 }

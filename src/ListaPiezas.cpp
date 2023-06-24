@@ -145,7 +145,13 @@ void ListaPiezas::inicializa() {
 void ListaPiezas::destino(int fila, int columna) {
 	
 	PiezaGen* aux1 = start;
+
+	bool PeonBlancoEnFila8 = false;
+	bool PeonNegroEnFila1 = false;
+
 	Color colorPiezaEliminada;
+
+	//setTipoAjedrez(tipoAjedrez);
 	
 	std::cout << "casilla destino: " << fila << ";" << columna << std::endl;
 	std::cout << turno_destino << std::endl;
@@ -192,6 +198,8 @@ void ListaPiezas::destino(int fila, int columna) {
 
 			if ((final != NULL) and (posicionIgual(start, final))) {
 				eliminar(final);
+				if (start->getTipoAjedrez() == 1)
+					ETSIDI::play("bin/sonidos/espadazo.wav");
 			}
 			turno = not turno;
 		}
@@ -207,6 +215,9 @@ void ListaPiezas::destino(int fila, int columna) {
 
 			piezaEliminada = i;
 			condicionPromocion = true;
+
+			PeonBlancoEnFila8 = true;
+
 			break;
 		}
 		else if ((pieza[i]->getTipo() == PEON) and (pieza[i]->getColor() == NEGRO) and (pieza[i]->getCoordenada().fila == 1) and (tipoPromocion == 0)) {
@@ -217,10 +228,11 @@ void ListaPiezas::destino(int fila, int columna) {
 
 			piezaEliminada = i;
 			condicionPromocion = true;
+			
+			PeonNegroEnFila1 = true;
 			break;
 		}
 	}
-
 	if (tipoPromocion != 0) {
 
 		bool permiso = true;		//Comprueba si han comido a la pieza que se esta promocionando
@@ -239,40 +251,40 @@ void ListaPiezas::destino(int fila, int columna) {
 			if (colorPiezaEliminada == BLANCO) {
 
 				if (tipoPromocion == 1) {
-					pieza[piezaEliminada] = new Alfil(BLANCO, CoordProm);
+					pieza[numero] = new Alfil(BLANCO, CoordProm);
 				}
 				else if (tipoPromocion == 2) {
-					pieza[piezaEliminada] = new Caballo(BLANCO, CoordProm);
+					pieza[numero] = new Caballo(BLANCO, CoordProm);
 				}
 				else if (tipoPromocion == 3) {
-					pieza[piezaEliminada] = new Reina(BLANCO, CoordProm);
+					pieza[numero] = new Reina(BLANCO, CoordProm);
 				}
 				else if (tipoPromocion == 4) {
-					pieza[piezaEliminada] = new Torre(BLANCO, CoordProm);
+					pieza[numero] = new Torre(BLANCO, CoordProm);
 				}
 			}
 
 			else if (colorPiezaEliminada == NEGRO) {
 
 				if (tipoPromocion == 1) {
-					pieza[piezaEliminada] = new Alfil(NEGRO, CoordProm);
+					pieza[numero] = new Alfil(NEGRO, CoordProm);
 				}
 				else if (tipoPromocion == 2) {
-					pieza[piezaEliminada] = new Caballo(NEGRO, CoordProm);
+					pieza[numero] = new Caballo(NEGRO, CoordProm);
 				}
 				else if (tipoPromocion == 3) {
-					pieza[piezaEliminada] = new Reina(NEGRO, CoordProm);
+					pieza[numero] = new Reina(NEGRO, CoordProm);
 				}
 				else if (tipoPromocion == 4) {
-					pieza[piezaEliminada] = new Torre(NEGRO, CoordProm);
+					pieza[numero] = new Torre(NEGRO, CoordProm);
 				}
 			}
 		}
-		
-		pieza[piezaEliminada]->dibuja();
+
+		pieza[numero++]->dibuja();
 		tipoPromocion = 0;
 	}
-	
+
 	turno_destino = false;
 }
 
@@ -316,6 +328,7 @@ void ListaPiezas::eliminar(PiezaGen* eliminada) {
 	for (int i = 0; i < j; i++) {
 		pieza[i] = aux[i];
 	}
+	pieza[numero - 1] = nullptr;
 	numero = j;
 
 	delete[] aux;
@@ -414,33 +427,12 @@ bool ListaPiezas::comprobarRey(int fila, int columna)
 	inicio.columna = start->getCoordenada().getColumna();
 	int index = -1;
 
-	////Buscamos al rey enemigo
-	//for (int i = 0; i < numero; i++) {
-	//	if ((pieza[i]->getTipo() == REY) && (pieza[i]->getColor() != start->getColor())) {
-	//		index = i;
-	//	}
-	//}
-	////Guardamos su coordenada
-	//Coordenada reyEnemigo = pieza[index]->getCoordenada();
-
 	//Comprobamos si hay una colision
 	if (mirarCasilla(start, fila, columna) and (start->getColor() == final->getColor())) {
 		//Si hay una pieza pero es de distinto color permitimos el movimiento
 		//if (buscarPieza(fila, columna)->getColor() != pieza->getColor()) return true;
 		return false;
 	}
-	//else {
-	//	//Miramos las casillas del rey enemigo una a una
-	//	for (int i = reyEnemigo.getFila() + 1; i >= reyEnemigo.getFila() - 1; i--) {
-	//		for (int j = reyEnemigo.getColumna() - 1; j <= reyEnemigo.getColumna() + 1; j++) {
-	//			Coordenada aux;
-	//			aux.fila = i;
-	//			aux.columna = j;
-	//			//Si alguna casilla del movimiento del rey enemigo coincide con una del rey que llama a la funcion se ilegaliza el movimiento
-	//			if (destino == aux) return false;
-	//		}
-	//	}
-	//}
 }
 
 bool ListaPiezas::comprobarReina(int fila, int columna)
@@ -724,6 +716,18 @@ bool ListaPiezas::trayecto(PiezaGen* s, PiezaGen* f) {
 	return false;
 }
 
-ListaPiezas::~ListaPiezas() {
+void ListaPiezas::setTipoAjedrez(int tipo) {
+	
+	inicializa();
+	tipoAjedrez = tipo;
+	for (int i = 0; i < numero; i++) {
+		pieza[i]->setTipoAjedrez(tipo);
+	}
+	
+}
 
+ListaPiezas::~ListaPiezas() {
+	for (int i = 0; i < numero; i++) {
+		delete pieza[i];
+	}
 }

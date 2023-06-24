@@ -18,16 +18,39 @@ Rey::Rey(Color color, Coordenada coord)
 //}
 
 void Rey::dibuja() {
-	if (getColor() == NEGRO) {
-		spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
-		spriteN.setSize(10, 10);
-		spriteN.draw();
+	if (tipoAjedrez != 1) {
+		Sprite spriteN{ "bin/imagenes/reyNegro.png" };
+		Sprite spriteB{ "bin/imagenes/reyBlanco.png" };
+
+		if (getColor() == NEGRO) {
+			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteN.setSize(10, 10);
+			spriteN.draw();
+		}
+
+		if (getColor() == BLANCO) {
+			spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteB.setSize(10, 10);
+			spriteB.draw();
+		}
 	}
 
-	if (getColor() == BLANCO) {
-		spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
-		spriteB.setSize(10, 10);
-		spriteB.draw();
+	if (tipoAjedrez == 1) {
+
+		Sprite spriteN{ "bin/imagenes/sauron.png" };
+		Sprite spriteB{ "bin/imagenes/frodo.png" };
+
+		if (getColor() == NEGRO) {
+			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteN.setSize(10, 10);
+			spriteN.draw();
+		}
+
+		if (getColor() == BLANCO) {
+			spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteB.setSize(10, 10);
+			spriteB.draw();
+		}
 	}
 }
 

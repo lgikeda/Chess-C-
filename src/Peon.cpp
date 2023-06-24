@@ -18,16 +18,41 @@ Peon::Peon(Color color, Coordenada coord)
 //}
 
 void Peon::dibuja() {
-	if (getColor() == NEGRO) {
-		spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
-		spriteN.setSize(10, 10);
-		spriteN.draw();
+
+		
+	if (tipoAjedrez != 1) {
+		Sprite spriteN{ "bin/imagenes/peonNegro.png" };
+		Sprite spriteB{ "bin/imagenes/peonBlanco.png" };
+
+		if (getColor() == NEGRO) {
+			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteN.setSize(10, 10);
+			spriteN.draw();
+		}
+
+		if (getColor() == BLANCO) {
+			spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteB.setSize(10, 10);
+			spriteB.draw();
+		}
 	}
 
-	if (getColor() == BLANCO) {
-		spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
-		spriteB.setSize(10, 10);
-		spriteB.draw();
+	if (tipoAjedrez == 1) {
+
+		Sprite spriteN{ "bin/imagenes/orco.png" };
+		Sprite spriteB{ "bin/imagenes/caballero.png" };
+
+		if (getColor() == NEGRO) {
+			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteN.setSize(10, 10);
+			spriteN.draw();
+		}
+
+		if (getColor() == BLANCO) {
+			spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteB.setSize(10, 10);
+			spriteB.draw();
+		}
 	}
 }
 

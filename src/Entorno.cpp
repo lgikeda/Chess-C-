@@ -5,6 +5,7 @@ Entorno::Entorno() {
 }
 
 void Entorno::inicial() {
+    piezas = ListaPiezas();
     piezas.inicializa();
 }
 
@@ -16,6 +17,10 @@ void Entorno::dibuja() {
 
 void Entorno::getTipoPromocion(int _tipoPromocion) {
     piezas.setTipoPromocion(_tipoPromocion);
+}
+
+void Entorno::setSeleccionAjedrez(int seleccion) {
+    piezas.setTipoAjedrez(seleccion);
 }
 
 void Entorno::raton(int button, int state, int x, int y) {

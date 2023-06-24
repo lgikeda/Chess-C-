@@ -21,6 +21,8 @@ private:
 	int piezaEliminada = 0;
 	bool condicionPromocion = false;	//Esta variable hace que solo salte una vez el menu de promocion de piezas
 
+	int tipoAjedrez;
+
 	bool e_jaque = false; // estado de jaque
 	bool turno = true; // true -> BLANCAS : false -> NEGRAS
 	bool turno_destino = false;
@@ -54,6 +56,7 @@ public:
 	bool jaque(PiezaGen* s, PiezaGen* f);
 	bool trayecto(PiezaGen* s, PiezaGen* f);
 	void setTipoPromocion(int tipo);
+	void setTipoAjedrez(int tipo);
 
 	bool permisoAlJaque(PiezaGen* s) {
 		PiezaGen* rey = NULL;	//rey amigo

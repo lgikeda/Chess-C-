@@ -18,16 +18,39 @@ Torre::Torre(Color color, Coordenada coord)
 //}
 
 void Torre::dibuja() {
-	if (getColor() == NEGRO) {
-		spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
-		spriteN.setSize(10, 10);
-		spriteN.draw();
+	if (tipoAjedrez != 1) {
+		Sprite spriteN{ "bin/imagenes/torreNegra.png" };
+		Sprite spriteB{ "bin/imagenes/torreBlanca.png" };
+
+		if (getColor() == NEGRO) {
+			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteN.setSize(10, 10);
+			spriteN.draw();
+		}
+
+		if (getColor() == BLANCO) {
+			spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteB.setSize(10, 10);
+			spriteB.draw();
+		}
 	}
 
-	if (getColor() == BLANCO) {
-		spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
-		spriteB.setSize(10, 10);
-		spriteB.draw();
+	if (tipoAjedrez == 1) {
+
+		Sprite spriteN{ "bin/imagenes/balrog.png" };
+		Sprite spriteB{ "bin/imagenes/gimli.png" };
+
+		if (getColor() == NEGRO) {
+			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteN.setSize(10, 10);
+			spriteN.draw();
+		}
+
+		if (getColor() == BLANCO) {
+			spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteB.setSize(10, 10);
+			spriteB.draw();
+		}
 	}
 }
 

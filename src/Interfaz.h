@@ -7,10 +7,17 @@
 
 class Interfaz
 {
-	friend class ListaPiezas;
-public:
+private:
 
+	friend class ListaPiezas;
+	int seleccionMusica = 0;
+	bool musicaSonando1 = false;
+	bool musicaSonando2 = false;
+	bool aspectoAjedrez = false;
+	bool inicioDePrograma = true;
 	int tipoPromocion;
+
+public:
 
 	Interfaz();
 	virtual ~Interfaz();
@@ -35,7 +42,7 @@ public:
 
 protected:
 	Entorno entorno;
-	enum Estado { INICIO, SEL_EJERCITO, JUEGO, PROMOCION_B, PROMOCION_N,AJUSTES, FIN, JAQUE };
+	enum Estado { INICIO, MENUPRINCIPAL, SEL_EJERCITO, JUEGO, PROMOCION_B, PROMOCION_N,AJUSTES, FIN, JAQUE };
 	Estado estado;
 	static int j;
 };

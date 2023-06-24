@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+//#include <vector>
 
 using ETSIDI::Sprite;
 
@@ -19,6 +20,9 @@ protected:
 	Tipo tipo;
 	Color color;
 	bool first_move = true;
+
+	int tipoAjedrez;
+
 public:
 	//Constructores
 	PiezaGen(Color color, Coordenada coord, Tipo tipo);
@@ -40,11 +44,10 @@ public:
 	int getPos_y();
 	Color getColor();
 	bool getMovimiento();
-
 	Coordenada getCoordenada();
-
-	//Getters
 	virtual Tipo getTipo() { return tipo; }
+	virtual void setTipoAjedrez(int tipo);
+	int getTipoAjedrez() { return tipoAjedrez; }
 	//int getValor() { return valor; }                  ////////////          por si quiero hacer un contador de puntos
 };
 
