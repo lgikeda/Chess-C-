@@ -7,7 +7,7 @@ Coordenada::Coordenada() {
             int coordenada_x = (x - 5) / 10 + 1;
             int coordenada_y = (y - 5) / 10 + 1;
             std::pair<int, int> coordenada = { coordenada_x, coordenada_y };
-            mapeado[coordenada] = {x, y};
+            mapeado[coordenada] = { x, y };
         }
     }
 }
@@ -32,10 +32,18 @@ std::pair<int, int> Coordenada::to_filaColumna(int& x, int& y) {
 
 Coordenada Coordenada::operator + (Coordenada v)
 {
-	Coordenada res;
-	res.fila = fila + v.fila;
-	res.columna = columna + v.columna;
-	return res;
+    Coordenada res;
+    res.fila = fila + v.fila;
+    res.columna = columna + v.columna;
+    return res;
+}
+
+Coordenada Coordenada::operator - (Coordenada v)
+{
+    Coordenada res;
+    res.fila = fila - v.fila;
+    res.columna = columna - v.columna;
+    return res;
 }
 
 bool Coordenada::operator == (Coordenada v)

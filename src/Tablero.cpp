@@ -12,7 +12,7 @@ void Tablero::dibujarTablero()
 	int c1 = 0, c2 = 0, c3 = 0;
 
 	for (fila = 1; fila < 9; fila++) {
-		for (columna = 1; columna <9; columna ++) {
+		for (columna = 1; columna < 9; columna++) {
 			if (columna % 2 != 0) {
 				if (fila % 2 != 0) {
 					c1 = 255;
@@ -51,16 +51,16 @@ void Tablero::dibujarTablero()
 				glVertex3f(x + 10, y + 10, -0.1f);
 				glVertex3f(x + 10, y, -0.1f);
 				glEnd();
-			}	
+			}
 			x = x + 10;
 		}
 		y = y + 10;
 		x = 0;
 	}
 	/*
-	* 
+	*
 	*  //PONER NUMEROS EN EL TABLERO
-	* 
+	*
 	for (int i = 0; i < 8; i++) {
 		switch (i) {
 		case 0:
@@ -106,6 +106,6 @@ void Tablero::dibujarTablero()
 	}
 	glEnable(GL_LIGHTING);
 	*/
-	
+
 }
 

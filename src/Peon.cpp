@@ -18,12 +18,12 @@ Peon::Peon(Color color, Coordenada coord)
 //}
 
 void Peon::dibuja() {
-	if (getColor() == NEGRO){
+	if (getColor() == NEGRO) {
 		spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
 		spriteN.setSize(10, 10);
 		spriteN.draw();
 	}
-		
+
 	if (getColor() == BLANCO) {
 		spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
 		spriteB.setSize(10, 10);
@@ -49,7 +49,7 @@ bool Peon::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
 		std::cout << "coord.columna = " << coord.columna << ";" << "columa = " << columna << std::endl;
 		return false;
 	}
-	if (abs(coord.columna - columna)) {	//Comprobacion para el desplazamiento lateral
+	if (abs(coord.columna - columna) == 1) {	//Comprobacion para el desplazamiento lateral
 		if (casilla == NULL) {	//Comprobacion de existencia de pieza para comer
 			std::cout << std::endl << "Movimiento invalido: La casilla debe tener una pieza contraria";
 			return false;
