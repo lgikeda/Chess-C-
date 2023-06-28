@@ -110,15 +110,15 @@ void ListaPiezas::inicializa() {
 			if (i == 29)
 			{
 				coord.fila = 1;
-				coord.columna = 5;
-				PiezaGen* aux = new Reina(BLANCO, coord);
+				coord.columna = 4;
+				PiezaGen* aux = new Dama(BLANCO, coord);
 				agregar(aux); // agregar a la lista
 			}
 			if (i == 30)
 			{
 				coord.fila = 8;
 				coord.columna = 4;
-				PiezaGen* aux = new Reina(NEGRO, coord);
+				PiezaGen* aux = new Dama(NEGRO, coord);
 				agregar(aux); // agregar a la lista
 			}
 		}
@@ -127,7 +127,7 @@ void ListaPiezas::inicializa() {
 			if (i == 31)
 			{
 				coord.fila = 1;
-				coord.columna = 4;
+				coord.columna = 5;
 				PiezaGen* aux = new Rey(BLANCO, coord);
 				agregar(aux); // agregar a la lista
 			}
@@ -199,7 +199,7 @@ void ListaPiezas::destino(int fila, int columna) {
 			if ((final != NULL) and (posicionIgual(start, final))) {
 				eliminar(final);
 				if (start->getTipoAjedrez() == 1)
-					ETSIDI::play("bin/sonidos/espadazo.wav");
+					ETSIDI::play("sonidos/espadazo.wav");
 			}
 			turno = not turno;
 		}
@@ -214,9 +214,6 @@ void ListaPiezas::destino(int fila, int columna) {
 			CoordProm.columna = pieza[i]->getCoordenada().columna;
 
 			piezaEliminada = i;
-			condicionPromocion = true;
-
-			PeonBlancoEnFila8 = true;
 
 			break;
 		}
@@ -227,9 +224,7 @@ void ListaPiezas::destino(int fila, int columna) {
 			CoordProm.columna = pieza[i]->getCoordenada().columna;
 
 			piezaEliminada = i;
-			condicionPromocion = true;
 			
-			PeonNegroEnFila1 = true;
 			break;
 		}
 	}
@@ -257,7 +252,7 @@ void ListaPiezas::destino(int fila, int columna) {
 					pieza[numero] = new Caballo(BLANCO, CoordProm);
 				}
 				else if (tipoPromocion == 3) {
-					pieza[numero] = new Reina(BLANCO, CoordProm);
+					pieza[numero] = new Dama(BLANCO, CoordProm);
 				}
 				else if (tipoPromocion == 4) {
 					pieza[numero] = new Torre(BLANCO, CoordProm);
@@ -273,7 +268,7 @@ void ListaPiezas::destino(int fila, int columna) {
 					pieza[numero] = new Caballo(NEGRO, CoordProm);
 				}
 				else if (tipoPromocion == 3) {
-					pieza[numero] = new Reina(NEGRO, CoordProm);
+					pieza[numero] = new Dama(NEGRO, CoordProm);
 				}
 				else if (tipoPromocion == 4) {
 					pieza[numero] = new Torre(NEGRO, CoordProm);
@@ -345,14 +340,14 @@ bool ListaPiezas::enroque(int fila, int columna)
 			if ((start->getMovimiento()) and (final->getMovimiento())) {
 				if (start->getCoordenada().columna < final->getCoordenada().columna) {
 					if (start->getColor() == BLANCO) {
-						if ((mirarCasilla(start, fila, columna))) {
-							start->setCoordenada(1, 6);
-							final->setCoordenada(1, 5);
+						if ((mirarCasilla(start, fila, columna - 1) == false) and (mirarCasilla(start, fila, columna - 2) == false)) {
+							start->setCoordenada(1, 7);
+							final->setCoordenada(1, 6);
 							enr = true;
 						}
 					}
 					if (start->getColor() == NEGRO) {
-						if ((mirarCasilla(start, fila, columna))) {
+						if ((mirarCasilla(start, fila, columna - 1) == false) and (mirarCasilla(start, fila, columna - 2) == false)) {
 							start->setCoordenada(8, 7);
 							final->setCoordenada(8, 6);
 							enr = true;
@@ -361,14 +356,14 @@ bool ListaPiezas::enroque(int fila, int columna)
 				}
 				else if (start->getCoordenada().columna > final->getCoordenada().columna) {
 					if (start->getColor() == BLANCO) {
-						if ((mirarCasilla(start, fila, columna))) {
-							start->setCoordenada(1, 2);
-							final->setCoordenada(1, 3);
+						if ((mirarCasilla(start, fila, columna + 1) == false) and (mirarCasilla(start, fila, columna + 2) == false) and (mirarCasilla(start, fila, columna + 3) == false)) {
+							start->setCoordenada(1, 3);
+							final->setCoordenada(1, 4);
 							enr = true;
 						}
 					}
 					if (start->getColor() == NEGRO) {
-						if ((mirarCasilla(start, fila, columna))) {
+						if ((mirarCasilla(start, fila, columna + 1) == false) and (mirarCasilla(start, fila, columna + 2) == false) and (mirarCasilla(start, fila, columna + 3) == false)) {
 							start->setCoordenada(8, 3);
 							final->setCoordenada(8, 4);
 							enr = true;
@@ -381,14 +376,14 @@ bool ListaPiezas::enroque(int fila, int columna)
 			if ((start->getMovimiento()) and (final->getMovimiento())) {
 				if (start->getCoordenada().columna < final->getCoordenada().columna) {
 					if (start->getColor() == BLANCO) {
-						if ((mirarCasilla(start, fila, columna))) {
-							start->setCoordenada(1, 3);
-							final->setCoordenada(1, 2);
+						if ((mirarCasilla(start, fila, columna - 1) == false) and (mirarCasilla(start, fila, columna - 2) == false) and (mirarCasilla(start, fila, columna - 3) == false)) {
+							start->setCoordenada(1, 4);
+							final->setCoordenada(1, 3);
 							enr = true;
 						}
 					}
 					if (start->getColor() == NEGRO) {
-						if ((mirarCasilla(start, fila, columna))) {
+						if ((mirarCasilla(start, fila, columna - 1) == false) and (mirarCasilla(start, fila, columna - 2) == false) and (mirarCasilla(start, fila, columna - 3) == false)) {
 							start->setCoordenada(8, 4);
 							final->setCoordenada(8, 3);
 							enr = true;
@@ -397,14 +392,14 @@ bool ListaPiezas::enroque(int fila, int columna)
 				}
 				else if (start->getCoordenada().columna > final->getCoordenada().columna) {
 					if (start->getColor() == BLANCO) {
-						if ((mirarCasilla(start, fila, columna))) {
-							start->setCoordenada(1, 5);
-							final->setCoordenada(1, 6);
+						if ((mirarCasilla(start, fila, columna + 1) == false) and (mirarCasilla(start, fila, columna + 2))) {
+							start->setCoordenada(1, 6);
+							final->setCoordenada(1, 7);
 							enr = true;
 						}
 					}
 					if (start->getColor() == NEGRO) {
-						if ((mirarCasilla(start, fila, columna))) {
+						if ((mirarCasilla(start, fila, columna + 1) == false) and (mirarCasilla(start, fila, columna + 2)) == false) {
 							start->setCoordenada(8, 6);
 							final->setCoordenada(8, 7);
 							enr = true;
@@ -429,13 +424,11 @@ bool ListaPiezas::comprobarRey(int fila, int columna)
 
 	//Comprobamos si hay una colision
 	if (mirarCasilla(start, fila, columna) and (start->getColor() == final->getColor())) {
-		//Si hay una pieza pero es de distinto color permitimos el movimiento
-		//if (buscarPieza(fila, columna)->getColor() != pieza->getColor()) return true;
 		return false;
 	}
 }
 
-bool ListaPiezas::comprobarReina(int fila, int columna)
+bool ListaPiezas::comprobarDama(int fila, int columna)
 {
 	Coordenada destino;
 	destino.fila = fila;
@@ -621,7 +614,7 @@ bool ListaPiezas::comprobarPieza(int fila, int columna)
 {
 	//Para comprobar las colisiones, segun el tipo de pieza se invoca su funcion correspondiente
 	if (start->getTipo() == REY) return comprobarRey(fila, columna);
-	else if (start->getTipo() == REINA) return comprobarReina(fila, columna);
+	else if (start->getTipo() == DAMA) return comprobarDama(fila, columna);
 	else if (start->getTipo() == ALFIL) return comprobarAlfil(fila, columna);
 	else if (start->getTipo() == TORRE) return comprobarTorre(fila, columna);
 	else if (start->getTipo() == CABALLO) return true;
@@ -724,6 +717,394 @@ void ListaPiezas::setTipoAjedrez(int tipo) {
 		pieza[i]->setTipoAjedrez(tipo);
 	}
 	
+}
+
+bool ListaPiezas::permisoAlJaque(PiezaGen* s) {
+	PiezaGen* rey = NULL;	//rey amigo
+	PiezaGen* siguientePosicion = NULL;
+	for (int i = 0; i < numero; i++) {
+		if ((pieza[i]->getTipo() == REY) and (pieza[i]->getColor() == s->getColor())) {
+			rey = pieza[i];
+		}
+	}
+	for (int i = 0; i < numero; i++) {
+		if ((pieza[i]->getTipo() != REY) and (pieza[i]->getColor() != rey->getColor())) {
+			start = pieza[i];
+			//Comprobacion de movimiento de cada pieza hacia el rey y comprobacion de obtaculo en su movimiento
+			if (pieza[i]->movimientoLegal(rey->getCoordenada().fila, rey->getCoordenada().columna, rey) and comprobarPieza(rey->getCoordenada().fila, rey->getCoordenada().columna)) {
+				std::cout << "Permiso al jaque." << std::endl;
+				if (final != NULL) {
+					//Comprobacion de 
+					if (pieza[i] == final) return false;
+					else return true;
+				}
+				else return true;
+			}
+		}
+	}
+	std::cout << "Movimiento no permitido por poner en jaque al rey." << std::endl;
+	return false;
+}
+
+bool ListaPiezas::jaqueMate() {
+	PiezaGen* aux = NULL;
+	Coordenada rey;
+	PiezaGen* ini = NULL;
+	int r = 0;
+	ini = start;
+	for (int i = 0; i < numero; i++) {
+		if ((pieza[i]->getTipo() == REY) and (pieza[i]->getColor() != start->getColor())) {
+			aux = pieza[i];
+			r = i;
+		}
+	}
+	rey.fila = aux->getCoordenada().fila;
+	rey.columna = aux->getCoordenada().columna;
+
+	if ((not movRey(aux)) /* and (not proteccionRey(aux))*/) {
+		aux->setCoordenada(rey.fila, rey.columna);
+		pieza[r]->setCoordenada(rey.fila, rey.columna);
+		start = ini;
+		if (not proteccionRey(aux)) return true;
+		else return false;
+	}
+	else {
+		pieza[r]->setCoordenada(rey.fila, rey.columna);
+		start = ini;
+		return false;
+	}
+}
+
+bool ListaPiezas::movRey(PiezaGen* pr) {
+	PiezaGen* p = pr;
+	int cont = 0;
+	int fila = p->getCoordenada().fila;
+	int columna = p->getCoordenada().columna;
+	for (int i = fila - 1; i <= fila + 1; i++) {
+		for (int j = columna - 1; j <= columna + 1; j++) {
+			//COMPROBACION DE PERMANECER DENTRO DEL TABLERO Y CASILLA VACIA
+			if ((j > 0) and (j < 9) and (i > 0) and (i < 9) and (select_pieza(i, j) == NULL)) {
+				p->setCoordenada(i, j);
+				//ITERACION DE RECORRIDO PARA CADA PIEZA HACIA LA NUEVA POSICION DEL REY
+				for (int k = 0; k < numero; k++) {
+					if ((pieza[k]->getColor() != p->getColor()) and pieza[k]->getTipo() != REY) {
+						start = pieza[k];
+						if ((pieza[k]->movimientoLegal(i, j, p)) and comprobarPieza(i, j)) {
+							cont = 0;
+							break;
+						}
+						else cont++;
+					}
+				}
+				if (cont != 0) return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool ListaPiezas::proteccionRey(PiezaGen* p) {
+	PiezaGen* aux = start;
+	Coordenada iniStart = start->getCoordenada();
+	Color colorRey = p->getColor();
+	Tipo tipoRey = p->getTipo();
+	Coordenada posRey = p->getCoordenada();
+	Coordenada posRival = start->getCoordenada();
+	Coordenada c;
+	//tipo jaque
+	int tipoJaque = 0;
+	std::vector<Coordenada> posicionesProteccion;
+	if (abs(posRival.fila - posRey.fila) == abs(posRival.columna - posRey.columna)) tipoJaque = 0;	//Jaque diagonal
+	else if (posRival.fila == posRey.fila) tipoJaque = 1;	//Jaque horizontal
+	else if (posRival.columna == posRey.columna) tipoJaque = 2;	//Jaque vertical
+
+	if (posRival.fila <= posRey.fila) {
+		for (int i = posRival.fila; i <= posRey.fila; i++) {
+			if (posRival.columna <= posRey.columna) {
+				for (int j = posRival.columna; j <= posRey.columna; j++) {
+					if ((j > 0) and (j < 9) and (i > 0) and (i < 9)) {
+						if ((posRival.fila != i) or (posRival.columna != j)) {
+							if (select_pieza(i, j) == NULL) {
+								//Comprobacion de movimiento posible
+								if (start->movimientoLegal(i, j, select_pieza(i, j)) and comprobarPieza(i, j)) {
+									if (start->getTipo() != DAMA) {
+										start->setCoordenada(i, j);
+										//Comprobacion de movimiento de nueva posicion hacia el rey
+										if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+											c.fila = i;
+											c.columna = j;
+											posicionesProteccion.push_back(c);
+										}
+									}
+									else {
+										switch (tipoJaque) {
+										case 0:
+											if (abs(i - posRey.fila) == abs(j - posRey.columna)) {
+												start->setCoordenada(i, j);
+												//Comprobacion de movimiento de nueva posicion hacia el rey
+												if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+													c.fila = i;
+													c.columna = j;
+													posicionesProteccion.push_back(c);
+												}
+											}
+											break;
+										case 1:
+											if (i == posRey.fila) {
+												start->setCoordenada(i, j);
+												//Comprobacion de movimiento de nueva posicion hacia el rey
+												if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+													c.fila = i;
+													c.columna = j;
+													posicionesProteccion.push_back(c);
+												}
+											}
+											break;
+										case 2:
+											if (j == posRey.columna) {
+												start->setCoordenada(i, j);
+												//Comprobacion de movimiento de nueva posicion hacia el rey
+												if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+													c.fila = i;
+													c.columna = j;
+													posicionesProteccion.push_back(c);
+												}
+											}
+											break;
+										}
+									}
+								}
+							}
+						}
+						else if ((posRival.fila == i) or (posRival.columna == j)) {
+							c.fila = i;
+							c.columna = j;
+							posicionesProteccion.push_back(c);
+						}
+					}
+				}
+			}
+			else {
+				for (int j = posRival.columna; j >= posRey.columna; j--) {
+					if ((j > 0) and (j < 9) and (i > 0) and (i < 9)) {
+						if ((posRival.fila != i) or (posRival.columna != j)) {
+							if (select_pieza(i, j) == NULL) {
+								//Comprobacion de movimiento posible
+								if (start->movimientoLegal(i, j, select_pieza(i, j)) and comprobarPieza(i, j)) {
+									if (start->getTipo() != DAMA) {
+										start->setCoordenada(i, j);
+										//Comprobacion de movimiento de nueva posicion hacia el rey
+										if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+											c.fila = i;
+											c.columna = j;
+											posicionesProteccion.push_back(c);
+										}
+									}
+									else {
+										switch (tipoJaque) {
+										case 0:
+											if (abs(i - posRey.fila) == abs(j - posRey.columna)) {
+												start->setCoordenada(i, j);
+												//Comprobacion de movimiento de nueva posicion hacia el rey
+												if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+													c.fila = i;
+													c.columna = j;
+													posicionesProteccion.push_back(c);
+												}
+											}
+											break;
+										case 1:
+											if (i == posRey.fila) {
+												start->setCoordenada(i, j);
+												//Comprobacion de movimiento de nueva posicion hacia el rey
+												if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+													c.fila = i;
+													c.columna = j;
+													posicionesProteccion.push_back(c);
+												}
+											}
+											break;
+										case 2:
+											if (j == posRey.columna) {
+												start->setCoordenada(i, j);
+												//Comprobacion de movimiento de nueva posicion hacia el rey
+												if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+													c.fila = i;
+													c.columna = j;
+													posicionesProteccion.push_back(c);
+												}
+											}
+											break;
+										}
+									}
+								}
+							}
+						}
+						else if ((posRival.fila == i) or (posRival.columna == j)) {
+							c.fila = i;
+							c.columna = j;
+							posicionesProteccion.push_back(c);
+						}
+					}
+				}
+			}
+		}
+	}
+	else {
+		for (int i = posRival.fila; i >= posRey.fila; i--) {
+			if (posRival.columna <= posRey.columna) {
+				for (int j = posRival.columna; j <= posRey.columna; j++) {
+					if ((j > 0) and (j < 9) and (i > 0) and (i < 9)) {
+						if ((posRival.fila != i) or (posRival.columna != j)) {
+							if (select_pieza(i, j) == NULL) {
+								//Comprobacion de movimiento posible
+								if (start->movimientoLegal(i, j, select_pieza(i, j)) and comprobarPieza(i, j)) {
+									if (start->getTipo() != DAMA) {
+										start->setCoordenada(i, j);
+										//Comprobacion de movimiento de nueva posicion hacia el rey
+										if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+											c.fila = i;
+											c.columna = j;
+											posicionesProteccion.push_back(c);
+										}
+									}
+									else {
+										switch (tipoJaque) {
+										case 0:
+											if (abs(i - posRey.fila) == abs(j - posRey.columna)) {
+												start->setCoordenada(i, j);
+												//Comprobacion de movimiento de nueva posicion hacia el rey
+												if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+													c.fila = i;
+													c.columna = j;
+													posicionesProteccion.push_back(c);
+												}
+											}
+											break;
+										case 1:
+											if (i == posRey.fila) {
+												start->setCoordenada(i, j);
+												//Comprobacion de movimiento de nueva posicion hacia el rey
+												if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+													c.fila = i;
+													c.columna = j;
+													posicionesProteccion.push_back(c);
+												}
+											}
+											break;
+										case 2:
+											if (j == posRey.columna) {
+												start->setCoordenada(i, j);
+												//Comprobacion de movimiento de nueva posicion hacia el rey
+												if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+													c.fila = i;
+													c.columna = j;
+													posicionesProteccion.push_back(c);
+												}
+											}
+											break;
+										}
+
+									}
+								}
+							}
+						}
+						else if ((posRival.fila == i) or (posRival.columna == j)) {
+							c.fila = i;
+							c.columna = j;
+							posicionesProteccion.push_back(c);
+						}
+					}
+				}
+			}
+			else {
+				for (int j = posRival.columna; j >= posRey.columna; j--) {
+					if ((j > 0) and (j < 9) and (i > 0) and (i < 9)) {
+						if ((posRival.fila != i) or (posRival.columna != j)) {
+							if (select_pieza(i, j) == NULL) {
+								//Comprobacion de movimiento posible
+								if (start->movimientoLegal(i, j, select_pieza(i, j)) and comprobarPieza(i, j)) {
+									if (start->getTipo() != DAMA) {
+										start->setCoordenada(i, j);
+										//Comprobacion de movimiento de nueva posicion hacia el rey
+										if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+											c.fila = i;
+											c.columna = j;
+											posicionesProteccion.push_back(c);
+										}
+									}
+									else {
+										switch (tipoJaque) {
+										case 0:
+											if (abs(i - posRey.fila) == abs(j - posRey.columna)) {
+												start->setCoordenada(i, j);
+												//Comprobacion de movimiento de nueva posicion hacia el rey
+												if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+													c.fila = i;
+													c.columna = j;
+													posicionesProteccion.push_back(c);
+												}
+											}
+											break;
+										case 1:
+											if (i == posRey.fila) {
+												start->setCoordenada(i, j);
+												//Comprobacion de movimiento de nueva posicion hacia el rey
+												if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+													c.fila = i;
+													c.columna = j;
+													posicionesProteccion.push_back(c);
+												}
+											}
+											break;
+										case 2:
+											if (j == posRey.columna) {
+												start->setCoordenada(i, j);
+												//Comprobacion de movimiento de nueva posicion hacia el rey
+												if (start->movimientoLegal(posRey.fila, posRey.columna, p) and comprobarPieza(posRey.fila, posRey.columna)) {
+													c.fila = i;
+													c.columna = j;
+													posicionesProteccion.push_back(c);
+												}
+											}
+											break;
+										}
+									}
+								}
+							}
+						}
+						else if ((posRival.fila == i) or (posRival.columna == j)) {
+							c.fila = i;
+							c.columna = j;
+							posicionesProteccion.push_back(c);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//Recorrido por todas las piezas
+	for (auto& elemento : pieza) {
+		//Restriccion de bucle para ejecutarlo solo con piezas amigas de rey en jaque
+		if (elemento == NULL) {}
+		else if ((elemento->getColor() == colorRey) and (elemento->getTipo() != tipoRey)) {
+			start = elemento;
+			//Iteracion para cada casilla guardada con posibilidad de proteccion al rey
+			for (auto casilla : posicionesProteccion) {
+				if (elemento->movimientoLegal(casilla.fila, casilla.columna, select_pieza(casilla.fila, casilla.columna)) and comprobarPieza(casilla.fila, casilla.columna)) {
+					posicionesProteccion.clear();	//Eliminamos todas las casillas guardadas
+					start = aux;
+					start->setCoordenada(iniStart.fila, iniStart.columna);
+					return true;
+				}
+			}
+		}
+	}
+	posicionesProteccion.clear();
+	start = aux;
+	start->setCoordenada(iniStart.fila, iniStart.columna);
+	return false;
 }
 
 ListaPiezas::~ListaPiezas() {

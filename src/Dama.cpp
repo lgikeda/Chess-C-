@@ -1,11 +1,11 @@
-#include "Torre.h"
+#include "Dama.h"
 
-Torre::Torre(Color color, Coordenada coord) :PiezaGen(color, coord, TORRE) {}
+Dama::Dama(Color color, Coordenada coord) :PiezaGen(color, coord, DAMA){}
 
-void Torre::dibuja() {
+void Dama::dibuja() {
 	if (tipoAjedrez != 1) {
-		Sprite spriteN{ "imagenes/torreNegra.png" };
-		Sprite spriteB{ "imagenes/torreBlanca.png" };
+		Sprite spriteN{ "imagenes/reinaNegra.png" };
+		Sprite spriteB{ "imagenes/reinaBlanca.png" };
 
 		if (getColor() == NEGRO) {
 			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
@@ -20,10 +20,10 @@ void Torre::dibuja() {
 		}
 	}
 
-	else if (tipoAjedrez == 1) {
+	if (tipoAjedrez == 1) {
 
-		Sprite spriteN{ "imagenes/balrog.png" };
-		Sprite spriteB{ "imagenes/gimli.png" };
+		Sprite spriteN{ "imagenes/saruman.png" };
+		Sprite spriteB{ "imagenes/gandalf.png" };
 
 		if (getColor() == NEGRO) {
 			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
@@ -39,16 +39,21 @@ void Torre::dibuja() {
 	}
 }
 
-bool Torre::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
-	
+bool Dama::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
 	if ((coord.fila == fila) and (coord.columna == columna)) {	//Comprobacion de quedarse en la misma casilla
 		std::cout << "Movimiento invalido, selecciona distinta casilla a la inicial" << std::endl;
 		return false;
 	}
+
+	else if (abs(coord.fila - fila) == abs(coord.columna - columna)) {	//Comprobacion de movimiento en direccion correcta
+		std::cout << "Movimiento invalido, no se puede desplazar en x" << std::endl;;
+		std::cout << "coord.columna = " << coord.columna << ";" << "columa = " << columna << std::endl;;
+		return true;
+	}
+
 	else if ((abs(coord.fila - fila) == 0) or (abs(coord.columna - columna) == 0)) {	//Comprobacion de movimiento en direccion correcta
 		std::cout << "Movimiento invalido, no se puede desplazar en x" << std::endl;;
 		std::cout << "coord.columna = " << coord.columna << ";" << "columa = " << columna << std::endl;;
-		first_move = false;
 		return true;
 	}
 
@@ -56,5 +61,6 @@ bool Torre::movimientoLegal(int fila, int columna, PiezaGen* casilla) {
 		std::cout << "Movimiento no valido: La casilla debe estar vacia";
 		return false;
 	}
+	first_move = false;
 	return false;
 }

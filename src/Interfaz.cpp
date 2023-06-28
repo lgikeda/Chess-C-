@@ -15,9 +15,9 @@ Interfaz::~Interfaz()
 
 int Interfaz::j = 0;
 
-void Interfaz::dibuja()
+void Interfaz::dibujaInterfaz()
 {
-	if ((j != 0) and (j != 5) and (j != 6)) setEstado();
+	if ((j != 0) and (j != 5) and (j != 6)) setEstadoJaque();
 
 	if (estado == INICIO)
 	{
@@ -29,10 +29,10 @@ void Interfaz::dibuja()
 		glEnable(GL_TEXTURE_2D);
 		//glColor3f(1, 1, 1);
 		if (inicioDePrograma == true) {
-			glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuPrincipal1.png").id);
+			glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/MenuPrincipal1.png").id);
 		}
 		else if (inicioDePrograma == false) {
-			glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuPrincipal2.png").id);
+			glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/MenuPrincipal2.png").id);
 		}
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
@@ -66,10 +66,10 @@ void Interfaz::dibuja()
 			if (musicaSonando1 == false) {
 				PlaySoundW(NULL, NULL, SND_ASYNC | SND_FILENAME | SND_LOOP);
 				musicaSonando2 = false;
-				std::string sonido1 = "bin/sonidos/AudioRohan.wav";
+				std::string sonido1 = "sonidos/AudioRohan.wav";
 				std::wstring wsonido(sonido1.begin(), sonido1.end());
 				LPCWSTR punterosSonido = wsonido.c_str();
-				PlaySoundW(punterosSonido, NULL, SND_ASYNC | SND_FILENAME | SND_LOOP); //version completa de ETSIDI::playMusica("bin/sonidos/AudioRohan.wav", false); para que no se pare al hacer click
+				PlaySoundW(punterosSonido, NULL, SND_ASYNC | SND_FILENAME | SND_LOOP); //version completa de ETSIDI::playMusica("sonidos/AudioRohan.wav", false); para que no se pare al hacer click
 				musicaSonando1 = true;
 			}
 		}
@@ -77,10 +77,10 @@ void Interfaz::dibuja()
 			if (musicaSonando2 == false) {
 				PlaySoundW(NULL, NULL, SND_ASYNC | SND_FILENAME | SND_LOOP);
 				musicaSonando1 = false;
-				std::string sonido2 = "bin/sonidos/AudioNazgulTheme.wav";
+				std::string sonido2 = "sonidos/AudioNazgulTheme.wav";
 				std::wstring wsonido(sonido2.begin(), sonido2.end());
 				LPCWSTR punterosSonido = wsonido.c_str();
-				PlaySoundW(punterosSonido, NULL, SND_ASYNC | SND_FILENAME | SND_LOOP); //version completa de ETSIDI::playMusica("bin/sonidos/AudioRohan.wav", false); para que no se pare al hacer click
+				PlaySoundW(punterosSonido, NULL, SND_ASYNC | SND_FILENAME | SND_LOOP); //version completa de ETSIDI::playMusica("sonidos/AudioRohan.wav", false); para que no se pare al hacer click
 				musicaSonando2 = true;
 			}
 		}
@@ -100,7 +100,7 @@ void Interfaz::dibuja()
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
 		glEnable(GL_TEXTURE_2D);
 		//glColor3f(1, 1, 1);
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuPromocion.png").id);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/MenuPromocionBlancas.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glTexCoord2d(0, 1); glVertex2f(-13.7f, -12);
@@ -122,7 +122,7 @@ void Interfaz::dibuja()
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
 		glEnable(GL_TEXTURE_2D);
 		//glColor3f(1, 1, 1);
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuPromocion.png").id);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/MenuPromocionNegras.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glTexCoord2d(0, 1); glVertex2f(-13.7f, -12);
@@ -144,7 +144,7 @@ void Interfaz::dibuja()
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
 		glEnable(GL_TEXTURE_2D);
 		//glColor3f(1, 1, 1);
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuAjustesAudio.png").id);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/MenuAjustesAudio.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glTexCoord2d(0, 1); glVertex2f(-13.7f, -12);
@@ -168,7 +168,7 @@ void Interfaz::dibuja()
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
 		glEnable(GL_TEXTURE_2D);
 		//glColor3f(1, 1, 1);
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuEjercitos.png").id);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/MenuEjercitos.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glTexCoord2d(0, 1); glVertex2f(-13.7f, -12);
@@ -222,45 +222,51 @@ void Interfaz::dibuja()
 		j = 0;
 		std::this_thread::sleep_for(std::chrono::seconds(2));
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		dibuja();
+		dibujaInterfaz();
 	}
 	//else if de los estados de jaque mate blanco y jaque mate negro, y de promocionar
 	
 	
 }
 
+void Interfaz::setSeleccionAjedrez(int selec) {
+	this->seleccionAjedrez = selec;
+}
+
 void Interfaz::tecla(unsigned char key)
 {
-	int seleccionAjedrez = 0;
+
 	if (estado == INICIO)
 	{
 		seleccionMusica = 0;
 
-			if (key == '1')								//si se presiona a se inicia una partida rapida
-			{
-				//delete entorno;
-				seleccionAjedrez = 0;
-				entorno.inicial();
-				estado = JUEGO;
-			}
-			else if (key == '2')								//si presionamos s se detiene el ejecutable
-			{
-				aspectoAjedrez = not aspectoAjedrez;
+		if (key == '1')								
+		{
+			setSeleccionAjedrez(0);
+			entorno.inicial();
+			estado = JUEGO;
+		}
+		else if (key == '2')							
+		{
+			aspectoAjedrez = not aspectoAjedrez;
 
-				if (aspectoAjedrez == false) {
-					seleccionAjedrez = 0;
-					entorno.setSeleccionAjedrez(seleccionAjedrez);
-				}
-				else if (aspectoAjedrez == true) {
-					seleccionAjedrez = 1;
-					entorno.setSeleccionAjedrez(seleccionAjedrez);
-				}
-				if (inicioDePrograma == true) {
-					entorno.inicial();
-					inicioDePrograma = false;
-				}
-				estado = SEL_EJERCITO;
+			if (inicioDePrograma == true) {
+				setSeleccionAjedrez(1); 
+				entorno.inicial();
+				entorno.setSeleccionAjedrez(seleccionAjedrez);
+				inicioDePrograma = false;
 			}
+			if ((aspectoAjedrez == false) and (inicioDePrograma == false)) {
+				setSeleccionAjedrez(0);
+			}
+			else if ((aspectoAjedrez == true) and (inicioDePrograma == false)) {
+				setSeleccionAjedrez(1);
+				
+			}
+
+			entorno.setSeleccionAjedrez(seleccionAjedrez);
+			estado = SEL_EJERCITO;
+		}
 		
 		else if (key == '3')								//si presionamos m pasamos a seleccion de ejercito							
 		{
@@ -288,9 +294,9 @@ void Interfaz::tecla(unsigned char key)
 	{
 			if (key == '1')								//ALFIL
 			{
-				estado = JUEGO;
 				tipoPromocion = 1;
 				j = 0;
+				estado = JUEGO;
 			}
 			if (key == '2')								//CABALLO
 			{
@@ -298,7 +304,7 @@ void Interfaz::tecla(unsigned char key)
 				tipoPromocion = 2;
 				j = 0;
 			}
-			if (key == '3')								//REINA							
+			if (key == '3')								//DAMA							
 			{
 				estado = JUEGO;
 				tipoPromocion = 3;
@@ -352,7 +358,21 @@ void Interfaz::tecla(unsigned char key)
 			estado = JUEGO;
 		}
 	}
-	
+}
+
+void Interfaz::cambiaEstado(std::string e) {
+
+	if (e == "JAQUE AL REY NEGRO") j = 1;
+	else if (e == "JAQUE AL REY BLANCO") j = 2;
+	else if (e == "JAQUE MATE AL REY NEGRO") j = 3;
+	else if (e == "JAQUE MATE AL REY BLANCO") j = 4;
+	else if (e == "PROMOCION BLANCA") j = 5;
+	else if (e == "PROMOCION NEGRA") j = 6;
+	else j = 0;
+}
+
+void Interfaz::setEstadoJaque() {
+	estado = JAQUE;
 }
 
 void Interfaz::raton(int button, int state, int x, int y)

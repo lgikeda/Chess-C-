@@ -1,26 +1,11 @@
 #include "Alfil.h"
 
-Alfil::Alfil()
-{
-
-}
-
-Alfil::Alfil(Color color, Coordenada coord)
-{
-	//En el futuro hacer in-line
-	this->color = color;
-	this->coord = coord;
-	this->tipo = ALFIL;
-}
-
-//Color Peon::getColor(Color color) {
-//	return color;
-//}
+Alfil::Alfil(Color color, Coordenada coord) :PiezaGen(color, coord, ALFIL) {}
 
 void Alfil::dibuja() {
 	if (tipoAjedrez != 1) {
-		Sprite spriteN{ "bin/imagenes/alfilNegro.png" };
-		Sprite spriteB{ "bin/imagenes/alfilBlanco.png" };
+		Sprite spriteN{ "imagenes/alfilNegro.png" };
+		Sprite spriteB{ "imagenes/alfilBlanco.png" };
 
 		if (getColor() == NEGRO) {
 			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
@@ -37,8 +22,8 @@ void Alfil::dibuja() {
 
 	if (tipoAjedrez == 1) {
 
-		Sprite spriteN{ "bin/imagenes/nazgul.png" };
-		Sprite spriteB{ "bin/imagenes/legolas.png" };
+		Sprite spriteN{ "imagenes/nazgul.png" };
+		Sprite spriteB{ "imagenes/legolas.png" };
 
 		if (getColor() == NEGRO) {
 			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);

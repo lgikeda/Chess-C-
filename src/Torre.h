@@ -6,12 +6,9 @@
 class Torre :public PiezaGen {
 
 public:
-	//Constructores
-	Torre();
+
 	Torre(Color color, Coordenada coord);
 	void dibuja() override;
 	//Color getColor(Color color);
 	bool movimientoLegal(int fila, int columna, PiezaGen*) override;
-
-	//void guardarHistorial();
 };

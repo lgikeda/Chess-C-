@@ -1,10 +1,6 @@
 #include "PiezaGen.h"
 
-PiezaGen::PiezaGen()
-{
-
-}
-
+PiezaGen::PiezaGen() {}
 PiezaGen::PiezaGen(Color color, Coordenada coord, Tipo tipo)
 {
 	this->color = color;
