@@ -4,8 +4,8 @@ Caballo::Caballo(Color color, Coordenada coord) :PiezaGen(color, coord, CABALLO)
 
 void Caballo::dibuja() {
 	if (tipoAjedrez != 1) {
-		Sprite spriteN{ "imagenes/caballoNegro.png" };
-		Sprite spriteB{ "imagenes/caballoBlanco.png" };
+		Sprite spriteN{ "bin/imagenes/caballoNegro.png" };
+		Sprite spriteB{ "bin/imagenes/caballoBlanco.png" };
 
 		if (getColor() == NEGRO) {
 			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
@@ -22,8 +22,8 @@ void Caballo::dibuja() {
 
 	else if (tipoAjedrez == 1) {
 
-		Sprite spriteN{ "imagenes/gollum.png" };
-		Sprite spriteB{ "imagenes/sam.png" };
+		Sprite spriteN{ "bin/imagenes/gollum.png" };
+		Sprite spriteB{ "bin/imagenes/sam.png" };
 
 		if (getColor() == NEGRO) {
 			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);

@@ -29,10 +29,10 @@ void Interfaz::dibujaInterfaz()
 		glEnable(GL_TEXTURE_2D);
 		//glColor3f(1, 1, 1);
 		if (inicioDePrograma == true) {
-			glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/MenuPrincipal1.png").id);
+			glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuPrincipal1.png").id);
 		}
 		else if (inicioDePrograma == false) {
-			glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/MenuPrincipal2.png").id);
+			glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuPrincipal2.png").id);
 		}
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
@@ -66,7 +66,7 @@ void Interfaz::dibujaInterfaz()
 			if (musicaSonando1 == false) {
 				PlaySoundW(NULL, NULL, SND_ASYNC | SND_FILENAME | SND_LOOP);
 				musicaSonando2 = false;
-				std::string sonido1 = "sonidos/AudioRohan.wav";
+				std::string sonido1 = "bin/sonidos/AudioRohan.wav";
 				std::wstring wsonido(sonido1.begin(), sonido1.end());
 				LPCWSTR punterosSonido = wsonido.c_str();
 				PlaySoundW(punterosSonido, NULL, SND_ASYNC | SND_FILENAME | SND_LOOP); //version completa de ETSIDI::playMusica("sonidos/AudioRohan.wav", false); para que no se pare al hacer click
@@ -77,7 +77,7 @@ void Interfaz::dibujaInterfaz()
 			if (musicaSonando2 == false) {
 				PlaySoundW(NULL, NULL, SND_ASYNC | SND_FILENAME | SND_LOOP);
 				musicaSonando1 = false;
-				std::string sonido2 = "sonidos/AudioNazgulTheme.wav";
+				std::string sonido2 = "bin/sonidos/AudioNazgulTheme.wav";
 				std::wstring wsonido(sonido2.begin(), sonido2.end());
 				LPCWSTR punterosSonido = wsonido.c_str();
 				PlaySoundW(punterosSonido, NULL, SND_ASYNC | SND_FILENAME | SND_LOOP); //version completa de ETSIDI::playMusica("sonidos/AudioRohan.wav", false); para que no se pare al hacer click
@@ -100,7 +100,7 @@ void Interfaz::dibujaInterfaz()
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
 		glEnable(GL_TEXTURE_2D);
 		//glColor3f(1, 1, 1);
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/MenuPromocionBlancas.png").id);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuPromocionBlancas.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glTexCoord2d(0, 1); glVertex2f(-13.7f, -12);
@@ -122,7 +122,7 @@ void Interfaz::dibujaInterfaz()
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
 		glEnable(GL_TEXTURE_2D);
 		//glColor3f(1, 1, 1);
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/MenuPromocionNegras.png").id);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuPromocionNegras.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glTexCoord2d(0, 1); glVertex2f(-13.7f, -12);
@@ -144,7 +144,7 @@ void Interfaz::dibujaInterfaz()
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
 		glEnable(GL_TEXTURE_2D);
 		//glColor3f(1, 1, 1);
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/MenuAjustesAudio.png").id);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuAjustesAudio.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glTexCoord2d(0, 1); glVertex2f(-13.7f, -12);
@@ -168,7 +168,7 @@ void Interfaz::dibujaInterfaz()
 			0.0, 1.0, 0.0); // definimos hacia arriba (eje Y) 
 		glEnable(GL_TEXTURE_2D);
 		//glColor3f(1, 1, 1);
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/MenuEjercitos.png").id);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("bin/imagenes/MenuEjercitos.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glTexCoord2d(0, 1); glVertex2f(-13.7f, -12);

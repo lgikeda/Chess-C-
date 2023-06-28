@@ -6,8 +6,8 @@ void Peon::dibuja() {
 
 		
 	if (tipoAjedrez != 1) {
-		Sprite spriteN{ "imagenes/peonNegro.png" };
-		Sprite spriteB{ "imagenes/peonBlanco.png" };
+		Sprite spriteN{ "bin/imagenes/peonNegro.png" };
+		Sprite spriteB{ "bin/imagenes/peonBlanco.png" };
 
 		if (getColor() == NEGRO) {
 			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
@@ -24,8 +24,8 @@ void Peon::dibuja() {
 
 	else if (tipoAjedrez == 1) {
 
-		Sprite spriteN{ "imagenes/orco.png" };
-		Sprite spriteB{ "imagenes/caballero.png" };
+		Sprite spriteN{ "bin/imagenes/orco.png" };
+		Sprite spriteB{ "bin/imagenes/caballero.png" };
 
 		if (getColor() == NEGRO) {
 			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);

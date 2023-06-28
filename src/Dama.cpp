@@ -4,8 +4,8 @@ Dama::Dama(Color color, Coordenada coord) :PiezaGen(color, coord, DAMA){}
 
 void Dama::dibuja() {
 	if (tipoAjedrez != 1) {
-		Sprite spriteN{ "imagenes/reinaNegra.png" };
-		Sprite spriteB{ "imagenes/reinaBlanca.png" };
+		Sprite spriteN{ "bin/imagenes/reinaNegra.png" };
+		Sprite spriteB{ "bin/imagenes/reinaBlanca.png" };
 
 		if (getColor() == NEGRO) {
 			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
@@ -22,8 +22,8 @@ void Dama::dibuja() {
 
 	if (tipoAjedrez == 1) {
 
-		Sprite spriteN{ "imagenes/saruman.png" };
-		Sprite spriteB{ "imagenes/gandalf.png" };
+		Sprite spriteN{ "bin/imagenes/saruman.png" };
+		Sprite spriteB{ "bin/imagenes/gandalf.png" };
 
 		if (getColor() == NEGRO) {
 			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);

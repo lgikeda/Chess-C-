@@ -8,14 +8,14 @@ Tablero::Tablero()
 
 void Tablero::dibujarTablero()
 {
-	Sprite s1{ "imagenes/1 (1).png" };
-	Sprite s2{ "imagenes/1 (2).png" };
-	Sprite s3{ "imagenes/1 (3).png" };
-	Sprite s4{ "imagenes/1 (4).png" };
-	Sprite s5{ "imagenes/1 (5).png" };
-	Sprite s6{ "imagenes/1 (6).png" };
-	Sprite s7{ "imagenes/1 (7).png" };
-	Sprite s8{ "imagenes/1 (8).png" };
+	Sprite s1{ "bin/imagenes/1 (1).png" };
+	Sprite s2{ "bin/imagenes/1 (2).png" };
+	Sprite s3{ "bin/imagenes/1 (3).png" };
+	Sprite s4{ "bin/imagenes/1 (4).png" };
+	Sprite s5{ "bin/imagenes/1 (5).png" };
+	Sprite s6{ "bin/imagenes/1 (6).png" };
+	Sprite s7{ "bin/imagenes/1 (7).png" };
+	Sprite s8{ "bin/imagenes/1 (8).png" };
 
 	int fila = 1, columna = 1, x = 0, y = 0;
 	int c1 = 0, c2 = 0, c3 = 0;

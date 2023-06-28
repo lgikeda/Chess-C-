@@ -4,8 +4,8 @@ Rey::Rey(Color color, Coordenada coord) :PiezaGen(color, coord, REY) {}
 
 void Rey::dibuja() {
 	if (tipoAjedrez != 1) {
-		Sprite spriteN{ "imagenes/reyNegro.png" };
-		Sprite spriteB{ "imagenes/reyBlanco.png" };
+		Sprite spriteN{ "bin/imagenes/reyNegro.png" };
+		Sprite spriteB{ "bin/imagenes/reyBlanco.png" };
 
 		if (getColor() == NEGRO) {
 			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
@@ -21,8 +21,8 @@ void Rey::dibuja() {
 	}
 
 	else if (tipoAjedrez == 1) {
-		Sprite spriteN{ "imagenes/sauron.png" };
-		Sprite spriteB{ "imagenes/frodo.png" };
+		Sprite spriteN{ "bin/imagenes/sauron.png" };
+		Sprite spriteB{ "bin/imagenes/frodo.png" };
 
 		if (getColor() == NEGRO) {
 			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);

@@ -199,7 +199,7 @@ void ListaPiezas::destino(int fila, int columna) {
 			if ((final != NULL) and (posicionIgual(start, final))) {
 				eliminar(final);
 				if (start->getTipoAjedrez() == 1)
-					ETSIDI::play("sonidos/espadazo.wav");
+					ETSIDI::play("bin/sonidos/espadazo.wav");
 			}
 			turno = not turno;
 		}

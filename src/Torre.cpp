@@ -4,8 +4,8 @@ Torre::Torre(Color color, Coordenada coord) :PiezaGen(color, coord, TORRE) {}
 
 void Torre::dibuja() {
 	if (tipoAjedrez != 1) {
-		Sprite spriteN{ "imagenes/torreNegra.png" };
-		Sprite spriteB{ "imagenes/torreBlanca.png" };
+		Sprite spriteN{ "bin/imagenes/torreNegra.png" };
+		Sprite spriteB{ "bin/imagenes/torreBlanca.png" };
 
 		if (getColor() == NEGRO) {
 			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
@@ -22,8 +22,8 @@ void Torre::dibuja() {
 
 	else if (tipoAjedrez == 1) {
 
-		Sprite spriteN{ "imagenes/balrog.png" };
-		Sprite spriteB{ "imagenes/gimli.png" };
+		Sprite spriteN{ "bin/imagenes/balrog.png" };
+		Sprite spriteB{ "bin/imagenes/gimli.png" };
 
 		if (getColor() == NEGRO) {
 			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
