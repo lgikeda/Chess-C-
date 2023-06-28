@@ -1,10 +1,6 @@
 #include "PiezaGen.h"
 
-PiezaGen::PiezaGen()
-{
-
-}
-
+PiezaGen::PiezaGen() {}
 PiezaGen::PiezaGen(Color color, Coordenada coord, Tipo tipo)
 {
 	this->color = color;
@@ -49,7 +45,11 @@ bool PiezaGen::getMovimiento() {
 	return first_move;
 }
 
+void PiezaGen::setTipoAjedrez(int tipo) {
+	tipoAjedrez = tipo;
+}
+
 PiezaGen::~PiezaGen()
 {
-
+	
 }

@@ -1,33 +1,43 @@
 #include "Peon.h"
 
-Peon::Peon()
-{
-
-}
-
-Peon::Peon(Color color, Coordenada coord)
-{
-	//En el futuro hacer in-line
-	this->color = color;
-	this->coord = coord;
-	this->tipo = PEON;
-}
-
-//Color Peon::getColor(Color color) {
-//	return color;
-//}
+Peon::Peon(Color color, Coordenada coord) :PiezaGen(color, coord, PEON) {}
 
 void Peon::dibuja() {
-	if (getColor() == NEGRO) {
-		spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
-		spriteN.setSize(10, 10);
-		spriteN.draw();
+
+		
+	if (tipoAjedrez != 1) {
+		Sprite spriteN{ "imagenes/peonNegro.png" };
+		Sprite spriteB{ "imagenes/peonBlanco.png" };
+
+		if (getColor() == NEGRO) {
+			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteN.setSize(10, 10);
+			spriteN.draw();
+		}
+
+		else if (getColor() == BLANCO) {
+			spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteB.setSize(10, 10);
+			spriteB.draw();
+		}
 	}
 
-	if (getColor() == BLANCO) {
-		spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
-		spriteB.setSize(10, 10);
-		spriteB.draw();
+	else if (tipoAjedrez == 1) {
+
+		Sprite spriteN{ "imagenes/orco.png" };
+		Sprite spriteB{ "imagenes/caballero.png" };
+
+		if (getColor() == NEGRO) {
+			spriteN.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteN.setSize(10, 10);
+			spriteN.draw();
+		}
+
+		else if (getColor() == BLANCO) {
+			spriteB.setCenter(-coord.to_cartesianas(coord.fila, coord.columna).first + 5, -coord.to_cartesianas(coord.fila, coord.columna).second + 5);
+			spriteB.setSize(10, 10);
+			spriteB.draw();
+		}
 	}
 }
 

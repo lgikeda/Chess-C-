@@ -1,11 +1,13 @@
 #pragma once
+#include "Coordenada.h"
+#include <fstream>
 #include "PiezaGen.h"
 
-class Peon:public PiezaGen {
-	bool first_move = true;
+class Dama :public PiezaGen {
+
 public:
 
-	Peon(Color color, Coordenada coord);
+	Dama(Color color, Coordenada coord);
 	void dibuja() override;
 	bool movimientoLegal(int fila, int columna, PiezaGen*) override;
 };

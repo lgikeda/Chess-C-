@@ -8,7 +8,7 @@
 
 using ETSIDI::Sprite;
 
-enum Tipo { REY, REINA, ALFIL, TORRE, CABALLO, PEON };
+enum Tipo { REY, DAMA, ALFIL, TORRE, CABALLO, PEON };
 enum Color { NEGRO, BLANCO };
 
 class PiezaGen
@@ -16,20 +16,25 @@ class PiezaGen
 protected:
 
 	Coordenada coord;
-	Tipo tipo;
-	Color color;
-	bool first_move = true;
+	Tipo tipo;						// Tipo de pieza
+	Color color;					// Color de pieza
+	bool first_move = true;			// Variable que indica si es el primer movimiento de la pieza (se usa para el enroque)
+
+	int tipoAjedrez = 0;				// Esta variable se usa para ver si hay que usar el aspecto tipico de lajedrez o el de La Tierra Media
+
 public:
-	//Constructores
-	PiezaGen(Color color, Coordenada coord, Tipo tipo);
+	
 	PiezaGen();
+	PiezaGen(Color color, Coordenada coord, Tipo tipo);
+	
 	~PiezaGen();
 
 
-	virtual void dibuja() = 0;
-	virtual bool movimientoLegal(int fila, int columna, PiezaGen*) = 0;
-	//virtual void guardarHistorial() = 0;
-	//Setters
+	virtual void dibuja() = 0;													// Funcion que se va a usar para dibujar cada pieza
+	virtual bool movimientoLegal(int fila, int columna, PiezaGen*) = 0;			// Comprobacion de si el movimiento de la pieza es legal
+
+	// Setters // 
+
 	void setCoordenada(int fila, int columna);
 	void setTipo(Tipo t);
 	void setColor(Color c);
@@ -40,11 +45,9 @@ public:
 	int getPos_y();
 	Color getColor();
 	bool getMovimiento();
-
 	Coordenada getCoordenada();
-
-	//Getters
 	virtual Tipo getTipo() { return tipo; }
-	//int getValor() { return valor; }                  ////////////          por si quiero hacer un contador de puntos
+	virtual void setTipoAjedrez(int tipo);
+	int getTipoAjedrez() { return tipoAjedrez; }
 };
 
